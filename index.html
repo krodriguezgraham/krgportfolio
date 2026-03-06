@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" style="transition: background-color 0.3s, color 0.3s;">
+<html lang="en" style="transition:background-color 0.3s,color 0.3s;">
 <head>
 <meta charset="UTF-8" />
-<meta name="description" content="Kassandra Rodriguez — Senior UX Designer &amp; Strategist at Fresenius Medical Care. 6+ years designing accessible, mission-critical products in medical devices, EdTech, and beyond." />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kassandra Rodriguez — Senior Product & UX Designer</title>
+<title>Kassandra Rodriguez — Senior UX Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
 <style>
 :root {
-  /* RGB channel splits for rgba() usage */
-  --bg-rgb: 240, 247, 249;        /* matches --bg: #f0f7f9 */
-  --ink-rgb: 13, 43, 53;          /* matches --ink: #0d2b35 */
-  --paper-rgb: 255, 255, 255;     /* matches --paper: #ffffff */
-  /* ── Aquatic Light Mode ── */
   --bg:          #f0f7f9;
-  --bg-mid:      #dff0f2;
+  --bg-mid:      #dde9ec;
   --paper:       #ffffff;
   --ink:         #0d2b35;
   --ink-soft:    #2e5f6e;
@@ -25,32 +18,24 @@
   --accent:      #007a85;
   --accent-dark: #005f69;
   --accent-light:#cef0f3;
-  --border:      #b8d8de;
+  --border:      #aacdd5;
   --amber:       #7a5c1e;
   --amber-light: #fdf3dc;
   --focus-ring:  #007a85;
-
-  /* Legacy aliases — keep component CSS working */
-  --cream:       var(--bg);
-  --cream-mid:   var(--bg-mid);
-  --rust:        var(--accent);
-  --rust-dark:   var(--accent-dark);
-  --teal:        var(--accent);
-  --teal-light:  var(--accent-light);
-  --ink-color:   var(--ink);
-
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
-  --font-mono:    'DM Mono', 'Courier New', monospace;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-bg:      #f0f7f9;
+  --nav-scrolled:rgba(240,247,249,0.94);
+  --footer-text: rgba(13,43,53,0.5);
+  --footer-text-hi: rgba(13,43,53,0.8);
+  --subtle-stripe:rgba(13,43,53,0.04);
+  --font-display:'DM Serif Display',Georgia,serif;
+  --font-body:   'DM Sans',system-ui,sans-serif;
+  --font-mono:   'DM Mono','Courier New',monospace;
+  --ease:        cubic-bezier(0.16,1,0.3,1);
+  --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+  --ease-in-out: cubic-bezier(0.4,0,0.2,1);
 }
 
 [data-theme="dark"] {
-  /* RGB channel splits for dark mode rgba() */
-  --bg-rgb: 6, 28, 36;            /* matches --bg: #061c24 */
-  --ink-rgb: 232, 246, 249;       /* matches --ink: #e8f6f9 */
-  --paper-rgb: 15, 51, 68;        /* matches --paper: #0f3344 */
-  /* ── Aquatic Dark Mode ── */
   --bg:          #061c24;
   --bg-mid:      #0d2f3d;
   --paper:       #0f3344;
@@ -60,18 +45,20 @@
   --accent:      #3ec9d6;
   --accent-dark: #2fb3c0;
   --accent-light:#0d3d4a;
-  --border:      #1a4a5c;
+  --border:      #1e5468;
   --amber:       #f4c661;
   --amber-light: #1e1600;
   --focus-ring:  #3ec9d6;
-
-  --cream:       var(--bg);
-  --cream-mid:   var(--bg-mid);
-  --rust:        var(--accent);
-  --rust-dark:   var(--accent-dark);
-  --teal:        var(--accent);
-  --teal-light:  var(--accent-light);
+  --nav-bg:      #061c24;
+  --nav-scrolled:rgba(6,28,36,0.94);
+  --footer-text: rgba(232,246,249,0.45);
+  --footer-text-hi:rgba(232,246,249,0.8);
+  --subtle-stripe:rgba(232,246,249,0.04);
 }
+
+
+
+
 
 /* ─────────────────────────────────────────────
    WCAG 2.2 AA compliant color tokens
@@ -85,7 +72,7 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  background: var(--cream);
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -111,7 +98,7 @@ button { cursor: pointer; }
   left: 1rem;
   z-index: 9999;
   background: var(--ink);
-  color: var(--cream);
+  color: var(--bg);
   padding: 0.75rem 1.25rem;
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -132,13 +119,13 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: var(--bg);
+  background: var(--nav-bg);
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s, background 0.3s;
 }
 nav.scrolled {
   border-color: var(--border);
-  background: rgba(var(--bg-rgb), 0.96);
+  background: var(--nav-scrolled);
   backdrop-filter: blur(8px);
 }
 .nav-logo {
@@ -168,7 +155,7 @@ nav.scrolled {
   position: absolute;
   bottom: -2px; left: 0;
   width: 0; height: 1.5px;
-  background: var(--rust);
+  background: var(--accent);
   transition: width 0.3s var(--ease-out-expo);
 }
 .nav-links a:hover { color: var(--ink); }
@@ -197,21 +184,18 @@ nav.scrolled {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--accent);
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeUp 0.8s var(--ease-out-expo) 0.2s forwards;
 }
 .hero-eyebrow::before {
   content: '';
   display: block;
   width: 2rem;
   height: 1px;
-  background: var(--rust);
+  background: var(--accent);
 }
 h1.hero-name {
   font-family: var(--font-display);
@@ -219,13 +203,10 @@ h1.hero-name {
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--ink);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.9s var(--ease-out-expo) 0.35s forwards;
 }
 h1.hero-name em {
   font-style: italic;
-  color: var(--rust);
+  color: var(--accent);
 }
 .hero-tagline {
   margin-top: 2rem;
@@ -233,25 +214,19 @@ h1.hero-name em {
   line-height: 1.65;
   color: var(--ink-soft);
   max-width: 38ch;
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeUp 0.9s var(--ease-out-expo) 0.5s forwards;
 }
 .hero-ctas {
   margin-top: 2.75rem;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeUp 0.9s var(--ease-out-expo) 0.65s forwards;
 }
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: var(--ink);
-  color: var(--cream);
+  color: var(--bg);
   padding: 0.875rem 1.75rem;
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -262,8 +237,8 @@ h1.hero-name em {
   transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 .btn-primary:hover {
-  background: var(--rust-dark);
-  border-color: var(--rust-dark);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
   transform: translateY(-1px);
 }
 .btn-secondary {
@@ -291,9 +266,6 @@ h1.hero-name em {
   margin-top: 4rem;
   display: flex;
   gap: 2.5rem;
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeUp 0.9s var(--ease-out-expo) 0.8s forwards;
 }
 .stat-item .stat-num {
   font-family: var(--font-display);
@@ -314,10 +286,7 @@ h1.hero-name em {
   position: relative;
   overflow: hidden;
   background: var(--bg-mid);
-  opacity: 0;
-  animation: fadeIn 1.2s var(--ease-out-expo) 0.4s forwards;
   /* Fallback: if animation blocked, ensure visible */
-  animation-fill-mode: forwards;
 }
 .hero-photo-wrap {
   position: absolute;
@@ -355,7 +324,7 @@ h1.hero-name em {
   top: 2.5rem;
   right: 2.5rem;
   z-index: 2;
-  background: var(--rust);
+  background: var(--accent);
   color: white;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -378,7 +347,7 @@ h1.hero-name em {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--ink-rgb), 0.92);
+  background: rgba(13,43,53,0.92);
   border: 1px solid var(--border);
   padding: 0.375rem 0.75rem;
   font-size: 0.75rem;
@@ -387,17 +356,16 @@ h1.hero-name em {
   color: var(--ink);
   border-radius: 2px;
   backdrop-filter: blur(4px);
-  opacity: 0;
   transform: translateX(-12px);
 }
-.hero-tag:nth-child(1) { animation: slideInLeft 0.6s var(--ease-out-expo) 1.0s forwards; }
-.hero-tag:nth-child(2) { animation: slideInLeft 0.6s var(--ease-out-expo) 1.1s forwards; }
-.hero-tag:nth-child(3) { animation: slideInLeft 0.6s var(--ease-out-expo) 1.2s forwards; }
+
+
+
 .hero-tag::before {
   content: '';
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--accent);
 }
 
 /* ═══════════════════════════════════════════
@@ -405,7 +373,7 @@ h1.hero-name em {
 ═══════════════════════════════════════════ */
 .marquee-strip {
   background: var(--ink);
-  color: var(--cream);
+  color: var(--bg);
   padding: 0.875rem 0;
   overflow: hidden;
   white-space: nowrap;
@@ -422,7 +390,7 @@ h1.hero-name em {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 0 2rem;
-  color: var(--cream);
+  color: var(--bg);
   display: inline-flex;
   align-items: center;
   gap: 1.5rem;
@@ -431,7 +399,7 @@ h1.hero-name em {
   display: inline-block;
   width: 4px; height: 4px;
   border-radius: 50%;
-  background: var(--rust);
+  background: var(--accent);
 }
 
 /* ═══════════════════════════════════════════
@@ -443,7 +411,7 @@ section { padding: 7rem 3rem; }
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--accent);
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
@@ -454,7 +422,7 @@ section { padding: 7rem 3rem; }
   flex: 1;
   max-width: 3rem;
   height: 1px;
-  background: var(--rust);
+  background: var(--accent);
 }
 h2.section-title {
   font-family: var(--font-display);
@@ -464,7 +432,7 @@ h2.section-title {
   color: var(--ink);
   max-width: 20ch;
 }
-h2.section-title em { font-style: italic; color: var(--rust); }
+h2.section-title em { font-style: italic; color: var(--accent); }
 
 /* ═══════════════════════════════════════════
    APPROACH / PHILOSOPHY
@@ -490,7 +458,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   gap: 1.5rem;
 }
 .approach-card {
-  background: var(--cream);
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 2rem;
   border-radius: 4px;
@@ -507,7 +475,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--rust);
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s var(--ease-out-expo);
@@ -516,13 +484,13 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 .card-icon {
   width: 2.25rem;
   height: 2.25rem;
-  background: var(--teal-light);
+  background: var(--accent-light);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
-  color: var(--teal);
+  color: var(--accent);
   font-size: 1rem;
 }
 .approach-card h3 {
@@ -541,7 +509,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
    WORK / CASE STUDIES
 ═══════════════════════════════════════════ */
 #work {
-  background: var(--cream);
+  background: var(--bg);
 }
 .work-header {
   display: flex;
@@ -581,14 +549,14 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   text-decoration: none;
   color: inherit;
 }
-.case-card:hover { background: var(--cream); }
+.case-card:hover { background: var(--bg); }
 .case-card-featured { min-height: 440px; }
 .case-card__tag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--accent);
   margin-bottom: 1.5rem;
 }
 .case-card h3 {
@@ -637,8 +605,8 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.3s var(--ease-out-expo);
 }
 .case-card:hover .case-card__arrow {
-  background: var(--rust);
-  border-color: var(--rust);
+  background: var(--accent);
+  border-color: var(--accent);
   color: white;
   transform: rotate(45deg);
 }
@@ -651,8 +619,8 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   font-size: 0.625rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--teal);
-  border: 1px solid var(--teal);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   padding: 0.25rem 0.625rem;
   border-radius: 2px;
 }
@@ -662,18 +630,18 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 ═══════════════════════════════════════════ */
 #process {
   background: var(--ink);
-  color: var(--cream);
+  color: var(--bg);
   padding: 7rem 3rem;
   overflow: hidden;
 }
 #process .section-label { color: #e8a896; }
 #process .section-label::after { background: #e8a896; }
-#process h2.section-title { color: var(--cream); max-width: 30ch; }
+#process h2.section-title { color: var(--bg); max-width: 30ch; }
 #process h2.section-title em { color: #e8a896; }
 .process-intro {
   margin-top: 1.25rem;
   font-size: 1rem;
-  color: rgba(var(--ink-rgb), 0.65);
+  color: rgba(13,43,53,0.65);
   max-width: 48ch;
   line-height: 1.7;
 }
@@ -690,7 +658,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   left: 1.5rem;
   right: 1.5rem;
   height: 1px;
-  background: rgba(var(--ink-rgb), 0.15);
+  background: rgba(13,43,53,0.15);
 }
 .process-step {
   padding: 0 1.25rem;
@@ -699,14 +667,14 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 .step-num {
   width: 3rem;
   height: 3rem;
-  border: 1px solid rgba(var(--ink-rgb), 0.25);
+  border: 1px solid rgba(13,43,53,0.25);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: rgba(var(--ink-rgb), 0.5);
+  color: rgba(13,43,53,0.5);
   margin-bottom: 1.75rem;
   background: var(--ink);
   position: relative;
@@ -714,19 +682,19 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 .process-step:hover .step-num {
-  background: var(--rust);
-  border-color: var(--rust);
+  background: var(--accent);
+  border-color: var(--accent);
   color: white;
 }
 .process-step h4 {
   font-family: var(--font-display);
   font-size: 1.0625rem;
-  color: var(--cream);
+  color: var(--bg);
   margin-bottom: 0.625rem;
 }
 .process-step p {
   font-size: 0.8125rem;
-  color: rgba(var(--ink-rgb), 0.55);
+  color: rgba(13,43,53,0.55);
   line-height: 1.65;
 }
 .step-tag {
@@ -780,7 +748,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 }
 .skill-bar-fill {
   height: 100%;
-  background: var(--rust);
+  background: var(--accent);
   border-radius: 999px;
   transform: scaleX(0);
   transform-origin: left;
@@ -802,7 +770,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   margin-top: 3rem;
 }
 .tool-chip {
-  background: var(--cream);
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 0.375rem 0.875rem;
   font-size: 0.8125rem;
@@ -812,16 +780,16 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 .tool-chip:hover {
-  background: var(--teal-light);
-  border-color: var(--teal);
-  color: var(--teal);
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ═══════════════════════════════════════════
    ABOUT
 ═══════════════════════════════════════════ */
 #about {
-  background: var(--cream);
+  background: var(--bg);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
@@ -871,7 +839,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   font-size: 0.625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--accent);
   margin-bottom: 0.5rem;
 }
 .about-card-value {
@@ -899,7 +867,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 ═══════════════════════════════════════════ */
 #contact {
   background: var(--ink);
-  color: var(--cream);
+  color: var(--bg);
   text-align: center;
   padding: 8rem 3rem;
   position: relative;
@@ -930,7 +898,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 }
 #contact h2 em { font-style: italic; color: #e8a896; }
 #contact p {
-  color: rgba(var(--ink-rgb), 0.6);
+  color: rgba(13,43,53,0.6);
   font-size: 1rem;
   max-width: 38ch;
   margin: 0 auto 2.75rem;
@@ -946,19 +914,19 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--rust);
+  background: var(--accent);
   color: white;
   padding: 1rem 2rem;
   font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  border: 2px solid var(--rust);
+  border: 2px solid var(--accent);
   border-radius: 2px;
   transition: background 0.2s, transform 0.2s;
 }
 .btn-contact-primary:hover {
-  background: var(--rust-dark);
-  border-color: var(--rust-dark);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
   transform: translateY(-2px);
 }
 .btn-contact-ghost {
@@ -966,17 +934,17 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--cream);
+  color: var(--bg);
   padding: 1rem 2rem;
   font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  border: 2px solid rgba(var(--ink-rgb), 0.25);
+  border: 2px solid rgba(13,43,53,0.25);
   border-radius: 2px;
   transition: border-color 0.2s, transform 0.2s;
 }
 .btn-contact-ghost:hover {
-  border-color: var(--cream);
+  border-color: var(--bg);
   transform: translateY(-2px);
 }
 
@@ -985,7 +953,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 ═══════════════════════════════════════════ */
 footer {
   background: var(--ink);
-  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+  border-top: 1px solid rgba(13,43,53,0.08);
   padding: 2rem 3rem;
   display: flex;
   align-items: center;
@@ -998,7 +966,7 @@ footer .footer-name {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(var(--ink-rgb), 0.4);
+  color: rgba(13,43,53,0.4);
 }
 footer .footer-links {
   display: flex;
@@ -1009,10 +977,10 @@ footer .footer-links a {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(var(--ink-rgb), 0.4);
+  color: rgba(13,43,53,0.4);
   transition: color 0.2s;
 }
-footer .footer-links a:hover { color: var(--cream); }
+footer .footer-links a:hover { color: var(--bg); }
 
 /* ═══════════════════════════════════════════
    ANIMATIONS
@@ -1129,17 +1097,14 @@ footer .footer-links a:hover { color: var(--cream); }
 
 </style>
 </head>
+
+</head>
 <body>
 
 <!-- Skip navigation — WCAG 2.4.1 -->
 <button id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
-  <svg id="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M13.5 9.5A6 6 0 017 3a6 6 0 100 10 6 6 0 006.5-3.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <svg id="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:none">
-    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
-    <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.22 3.22l1.41 1.41M11.36 11.36l1.41 1.41M3.22 12.78l1.41-1.41M11.36 4.64l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-  </svg>
+  <svg id="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 9.5A6 6 0 017 3a6 6 0 100 10 6 6 0 006.5-3.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <svg id="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.22 3.22l1.41 1.41M11.36 11.36l1.41 1.41M3.22 12.78l1.41-1.41M11.36 4.64l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
 </button>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -1499,19 +1464,19 @@ footer .footer-links a:hover { color: var(--cream); }
 <section id="earlier-work" aria-labelledby="earlier-work-title" style="background:var(--paper);padding:5rem 3rem;border-top:1px solid var(--border);">
   <div style="max-width:1100px;margin:0 auto;">
     <div style="margin-bottom:3rem;">
-      <p class="section-label reveal" style="display:flex;align-items:center;gap:.75rem;font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);">
+      <p class="section-label reveal" style="display:flex;align-items:center;gap:.75rem;font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);">
         Earlier Work
-        <span style="display:inline-block;width:3rem;height:1px;background:var(--rust);"></span>
+        <span style="display:inline-block;width:3rem;height:1px;background:var(--accent);"></span>
       </p>
       <h2 class="section-title reveal reveal-delay-1" id="earlier-work-title" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.02em;margin-top:.75rem;">
-        Where the <em style="font-style:italic;color:var(--rust);">foundations</em> were built
+        Where the <em style="font-style:italic;color:var(--accent);">foundations</em> were built
       </h2>
       <p class="reveal reveal-delay-2" style="margin-top:1rem;font-size:1rem;color:var(--ink-soft);max-width:52ch;line-height:1.7;">
         Learning projects from the Google UX Design Certificate and a UX Design Fellowship — included to show where the process started and how it has evolved.
       </p>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);border:1.5px solid var(--border);">
-      <a href="case-study-movie-theater.html" class="case-card reveal" aria-label="Learning project: Kasanova Theater Mobile Ticketing App" style="background:var(--cream);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
+      <a href="case-study-movie-theater.html" class="case-card reveal" aria-label="Learning project: Kasanova Theater Mobile Ticketing App" style="background:var(--bg);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
         <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;flex-wrap:wrap;">
           <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light,#fdf3dc);background:var(--amber,#7a5c1e);padding:.25rem .625rem;border-radius:2px;">Google Certificate</span>
           <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);">iOS App</span>
@@ -1527,7 +1492,7 @@ footer .footer-links a:hover { color: var(--cream); }
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </a>
-      <a href="case-study-learning-platform.html" class="case-card reveal reveal-delay-1" aria-label="Learning project: Integrated Online Learning Platform" style="background:var(--cream);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
+      <a href="case-study-learning-platform.html" class="case-card reveal reveal-delay-1" aria-label="Learning project: Integrated Online Learning Platform" style="background:var(--bg);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
         <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;flex-wrap:wrap;">
           <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light,#fdf3dc);background:var(--amber,#7a5c1e);padding:.25rem .625rem;border-radius:2px;">UX Bootcamp</span>
           <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);">Desktop Web</span>
@@ -1558,7 +1523,7 @@ footer .footer-links a:hover { color: var(--cream); }
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);border:1px solid var(--border);">
 
-      <a href="case-study-movie-theater.html" class="reveal" style="background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;"  >
+      <a href="case-study-movie-theater.html" class="reveal" style="background:var(--bg);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;"  >
         <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">Google UX Certificate</span>
         <h3 style="font-family:var(--font-display);font-size:1.25rem;color:var(--ink);line-height:1.2;">Kasanova Theater — Mobile Ticketing App</h3>
         <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">End-to-end iOS app design for a local cinema — screen reader–friendly, WCAG compliant, with digital ticketing and saved checkout state.</p>
@@ -1567,7 +1532,7 @@ footer .footer-links a:hover { color: var(--cream); }
         </div>
       </a>
 
-      <a href="case-study-learning-platform.html" class="reveal reveal-delay-1" style="background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;"  >
+      <a href="case-study-learning-platform.html" class="reveal reveal-delay-1" style="background:var(--bg);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;"  >
         <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">UX Bootcamp</span>
         <h3 style="font-family:var(--font-display);font-size:1.25rem;color:var(--ink);line-height:1.2;">Unified Online Learning Platform</h3>
         <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">A desktop platform consolidating fragmented remote-education tools into one integrated workspace for educators and students.</p>
@@ -1649,40 +1614,32 @@ skillBars.forEach(bar => {
 </script>
 <script>
 (function(){
-  var btn  = document.getElementById('theme-toggle');
-  var sun  = document.getElementById('icon-sun');
-  var moon = document.getElementById('icon-moon');
-  var root = document.documentElement;
-
-  function applyTheme(t) {
-    if (t === 'dark') {
+  var btn=document.getElementById('theme-toggle');
+  var sun=document.getElementById('icon-sun');
+  var moon=document.getElementById('icon-moon');
+  var root=document.documentElement;
+  function applyTheme(t){
+    if(t==='dark'){
       root.setAttribute('data-theme','dark');
-      sun.style.display  = 'block';
-      moon.style.display = 'none';
+      if(sun)sun.style.display='block';
+      if(moon)moon.style.display='none';
       btn.setAttribute('aria-label','Switch to light mode');
-      btn.title = 'Switch to light mode';
+      btn.title='Switch to light mode';
     } else {
       root.removeAttribute('data-theme');
-      sun.style.display  = 'none';
-      moon.style.display = 'block';
+      if(sun)sun.style.display='none';
+      if(moon)moon.style.display='block';
       btn.setAttribute('aria-label','Switch to dark mode');
-      btn.title = 'Switch to dark mode';
+      btn.title='Switch to dark mode';
     }
   }
-
-  var saved  = localStorage.getItem('krg-theme');
-  var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  applyTheme(saved || system);
-
-  btn.addEventListener('click', function(){
-    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  var saved=localStorage.getItem('krg-theme');
+  var sys=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  applyTheme(saved||sys);
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
     applyTheme(next);
-    localStorage.setItem('krg-theme', next);
-  });
-
-  // Keep toggle colors live when theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
-    if (!localStorage.getItem('krg-theme')) applyTheme(e.matches ? 'dark' : 'light');
+    localStorage.setItem('krg-theme',next);
   });
 })();
 </script>

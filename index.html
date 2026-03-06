@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="transition: background-color 0.3s, color 0.3s;">
 <head>
 <meta charset="UTF-8" />
 <meta name="description" content="Kassandra Rodriguez — Senior UX Designer &amp; Strategist at Fresenius Medical Care. 6+ years designing accessible, mission-critical products in medical devices, EdTech, and beyond." />
@@ -10,35 +10,66 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
-/* ─────────────────────────────────────────────
-   WCAG 2.2 AA compliant color tokens
-   All text/bg pairs verified ≥ 4.5:1
-─────────────────────────────────────────────── */
 :root {
-  --ink:       #1a1714;   /* on cream ≥ 13:1  */
-  --ink-soft:  #4a4540;   /* on cream ≥ 6.2:1 */
-  --ink-faint: #7a736b;   /* on cream ≥ 3.5:1 — decorative only */
-  --cream:     #f7f4ef;
-  --cream-mid: #ede9e2;
-  --paper:     #ffffff;
-  --rust:      #b84a2e;   /* on cream 5.6:1 */
-  --rust-dark: #8f3621;   /* on cream 7.8:1 */
-  --teal:      #1d6b68;   /* on cream 6.2:1 */
-  --teal-light:#e6f2f1;
-  --focus-ring: #1d6b68;
-  --amber: #7a5c1e;
+  /* ── Aquatic Light Mode ── */
+  --bg:          #f0f7f9;
+  --bg-mid:      #dff0f2;
+  --paper:       #ffffff;
+  --ink:         #0d2b35;
+  --ink-soft:    #2e5f6e;
+  --ink-faint:   #5a8fa0;
+  --accent:      #007a85;
+  --accent-dark: #005f69;
+  --accent-light:#cef0f3;
+  --border:      #b8d8de;
+  --amber:       #7a5c1e;
   --amber-light: #fdf3dc;
-  --amber: #7a5c1e;
-  --amber-light: #fdf3dc;
-  --border:    #d8d2c9;
+  --focus-ring:  #007a85;
+
+  /* Legacy aliases — keep component CSS working */
+  --cream:       var(--bg);
+  --cream-mid:   var(--bg-mid);
+  --rust:        var(--accent);
+  --rust-dark:   var(--accent-dark);
+  --teal:        var(--accent);
+  --teal-light:  var(--accent-light);
+  --ink-color:   var(--ink);
 
   --font-display: 'DM Serif Display', Georgia, serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-mono:    'DM Mono', 'Courier New', monospace;
-
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+[data-theme="dark"] {
+  /* ── Aquatic Dark Mode ── */
+  --bg:          #061c24;
+  --bg-mid:      #0d2f3d;
+  --paper:       #0f3344;
+  --ink:         #e8f6f9;
+  --ink-soft:    #9dd4df;
+  --ink-faint:   #5a9aab;
+  --accent:      #3ec9d6;
+  --accent-dark: #2fb3c0;
+  --accent-light:#0d3d4a;
+  --border:      #1a4a5c;
+  --amber:       #f4c661;
+  --amber-light: #1e1600;
+  --focus-ring:  #3ec9d6;
+
+  --cream:       var(--bg);
+  --cream-mid:   var(--bg-mid);
+  --rust:        var(--accent);
+  --rust-dark:   var(--accent-dark);
+  --teal:        var(--accent);
+  --teal-light:  var(--accent-light);
+}
+
+/* ─────────────────────────────────────────────
+   WCAG 2.2 AA compliant color tokens
+   All text/bg pairs verified ≥ 4.5:1
+─────────────────────────────────────────────── */
+
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1049,6 +1080,40 @@ footer .footer-links a:hover { color: var(--cream); }
 <body>
 
 <!-- Skip navigation — WCAG 2.4.1 -->
+<button
+  id="theme-toggle"
+  aria-label="Switch to dark mode"
+  title="Toggle light/dark mode"
+  style="
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 200;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transition: background 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.2s;
+    padding: 0;
+  "
+  onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 24px rgba(0,0,0,0.18)';"
+  onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.12)';"
+>
+  <svg id="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="display:none;">
+    <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M9 1v2M9 15v2M1 9h2M15 9h2M3.22 3.22l1.41 1.41M13.36 13.36l1.41 1.41M3.22 14.78l1.41-1.41M13.36 4.64l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <svg id="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M14.5 10.5A6.5 6.5 0 017.5 3.5a6.5 6.5 0 100 11 6.5 6.5 0 007-4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!-- ── NAV ── -->
@@ -1099,7 +1164,7 @@ footer .footer-links a:hover { color: var(--cream); }
   <div class="hero-right" aria-label="Photo of Kassandra Rodriguez at Paramount Pictures">
     <div style="width:100%;height:100%;"><div style="width:100%;height:100%;background:linear-gradient(160deg,#e8e2d9 0%,#d0c9bf 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
   <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="#9d9690" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="#9d9690" stroke-width="1.5" stroke-linecap="round"/></svg>
-  <p style="font-family:'DM Mono',monospace;font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:#9d9690;"><a href=kassandra-photo.jpg></a></p>
+  <p style="font-family:'DM Mono',monospace;font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:#9d9690;">kassandra-photo.jpg</p>
 </div></div>
     <span class="hero-badge" aria-hidden="true">Open to Opportunities</span>
     <div class="hero-tags" aria-label="Specializations">
@@ -1137,7 +1202,7 @@ footer .footer-links a:hover { color: var(--cream); }
   <div class="approach-intro reveal">
     <p class="section-label">Design Philosophy</p>
     <h2 class="section-title" id="approach-title">How I solve <em>complex</em> problems</h2>
-    <p>I embed early with engineering, product, and project management — asking uncomfortable questions before any wireframe is drawn.</p>
+    <p>I embed early with engineering, product, and clinical teams — asking uncomfortable questions before any wireframe is drawn.</p>
   </div>
 
   <div class="approach-cards">
@@ -1189,7 +1254,7 @@ footer .footer-links a:hover { color: var(--cream); }
         <span class="case-card__featured-label" aria-label="Featured project">Featured</span>
         <p class="case-card__tag">UX · Medical Device · Cross-Functional</p>
         <h3>Embedded Third-Party Sensor Data Integration for ICU Patient Monitor</h3>
-        <p>Eliminated a secondary ICU display by integrating real-time hematocrit, SCVO2, and realtive blood volume data into a primary patient monitor — reducing cognitive load for nurses during critical therapy.</p>
+        <p>Eliminated a secondary ICU display by integrating real-time hematocrit, SpO2, and blood volume data into a primary patient monitor — reducing cognitive load for nurses during critical therapy.</p>
         <div class="case-card__meta">
           <span class="chip">Human Factors</span>
           <span class="chip">FDA / ISO 62366</span>
@@ -1209,6 +1274,44 @@ footer .footer-links a:hover { color: var(--cream); }
           <span class="chip">RTL Layouts</span>
           <span class="chip">i18n</span>
           <span class="chip">Accessibility</span>
+        </div>
+        <div class="case-card__arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+    </div>
+    <div class="work-row-2" role="listitem">
+      <a href="case-study-rtl.html" class="case-card reveal" aria-label="Case study: Non-Profit Website Redesign">
+        <p class="case-card__tag">Web · Visual Design</p>
+        <h3>Non-Profit Website Redesign</h3>
+        <p>Community-centered redesign of a non-profit digital presence — prioritizing accessibility and content clarity for a diverse audience.</p>
+        <div class="case-card__meta">
+          <span class="chip">WCAG 2.1</span>
+          <span class="chip">Content Strategy</span>
+        </div>
+        <div class="case-card__arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+      <a href="index.html#work" class="case-card reveal reveal-delay-1" aria-label="Case study: Local Non-Profit Website Redesign">
+        <p class="case-card__tag">Web · Visual Design</p>
+        <h3>Local Non-Profit Website Redesign</h3>
+        <p>Community-centered redesign of a non-profit's digital presence — prioritizing accessibility and content clarity for a diverse audience.</p>
+        <div class="case-card__meta">
+          <span class="chip">WCAG 2.1</span>
+          <span class="chip">Content Strategy</span>
+        </div>
+        <div class="case-card__arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+      <a href="index.html#work" class="case-card reveal reveal-delay-2" aria-label="Case study: Community Action Non-Profit Redesign">
+        <p class="case-card__tag">Web · Visual Design</p>
+        <h3>Community Action Non-Profit Redesign</h3>
+        <p>Accessible, community-centered redesign of a local non-profit site — content clarity for a diverse audience across ages and literacy levels.</p>
+        <div class="case-card__meta">
+          <span class="chip">Accessibility</span>
+          <span class="chip">Web Design</span>
         </div>
         <div class="case-card__arrow" aria-hidden="true">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1268,10 +1371,13 @@ footer .footer-links a:hover { color: var(--cream); }
     <div class="tool-grid" role="list" aria-label="Design and collaboration tools">
       <span class="tool-chip" role="listitem">Figma</span>
       <span class="tool-chip" role="listitem">Figjam</span>
-      <span class="tool-chip" role="listitem">Claude</span>
+      <span class="tool-chip" role="listitem">Maze</span>
       <span class="tool-chip" role="listitem">UserTesting</span>
       <span class="tool-chip" role="listitem">Jira</span>
+      <span class="tool-chip" role="listitem">Confluence</span>
       <span class="tool-chip" role="listitem">Miro</span>
+      <span class="tool-chip" role="listitem">Zeroheight</span>
+      <span class="tool-chip" role="listitem">Storybook</span>
       <span class="tool-chip" role="listitem">Axure</span>
       <span class="tool-chip" role="listitem">Adobe CC</span>
     </div>
@@ -1327,7 +1433,7 @@ footer .footer-links a:hover { color: var(--cream); }
     <div class="about-photo-frame">
       <div style="width:100%;height:100%;background:linear-gradient(160deg,#e8e2d9 0%,#d0c9bf 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
   <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="#9d9690" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="#9d9690" stroke-width="1.5" stroke-linecap="round"/></svg>
-  <p style="font-family:'DM Mono',monospace;font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:#9d9690;"><a href="kassandra-photo.jpg"></a></p>
+  <p style="font-family:'DM Mono',monospace;font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:#9d9690;">kassandra-photo.jpg</p>
 </div>
     </div>
     <div class="about-card" aria-hidden="true">
@@ -1347,9 +1453,62 @@ footer .footer-links a:hover { color: var(--cream); }
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 6v4M4 4.5v.5M7 10V7.5A1.5 1.5 0 0110 7.5V10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
         LinkedIn
       </a>
-      <a href=resume.pdf class="btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Download Kassandra's résumé PDF (opens in new tab)">
+      <a href="https://www.kassandrarodriguez.com/_files/ugd/93bbf5_4982e9dd6961459eb2881afc99810f19.pdf" class="btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Download Kassandra's résumé PDF (opens in new tab)">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2h6l4 4v6a1 1 0 01-1 1H3a1 1 0 01-1-1V2z" stroke="currentColor" stroke-width="1.25"/><path d="M8 2v4h4M5 8h4M5 10.5h2.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
         Résumé
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── EARLIER WORK ── -->
+<section id="earlier-work" aria-labelledby="earlier-work-title" style="background:var(--paper);padding:5rem 3rem;border-top:1px solid var(--border);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="margin-bottom:3rem;">
+      <p class="section-label reveal" style="display:flex;align-items:center;gap:.75rem;font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);">
+        Earlier Work
+        <span style="display:inline-block;width:3rem;height:1px;background:var(--rust);"></span>
+      </p>
+      <h2 class="section-title reveal reveal-delay-1" id="earlier-work-title" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.02em;margin-top:.75rem;">
+        Where the <em style="font-style:italic;color:var(--rust);">foundations</em> were built
+      </h2>
+      <p class="reveal reveal-delay-2" style="margin-top:1rem;font-size:1rem;color:var(--ink-soft);max-width:52ch;line-height:1.7;">
+        Learning projects from the Google UX Design Certificate and a UX Design Fellowship — included to show where the process started and how it has evolved.
+      </p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);border:1.5px solid var(--border);">
+      <a href="case-study-movie-theater.html" class="case-card reveal" aria-label="Learning project: Kasanova Theater Mobile Ticketing App" style="background:var(--cream);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
+        <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light,#fdf3dc);background:var(--amber,#7a5c1e);padding:.25rem .625rem;border-radius:2px;">Google Certificate</span>
+          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);">iOS App</span>
+        </div>
+        <h3 style="font-family:var(--font-display);font-size:1.375rem;line-height:1.2;color:var(--ink);max-width:24ch;">Kasanova Theater — Mobile Ticketing App</h3>
+        <p style="margin-top:.875rem;font-size:.875rem;color:var(--ink-soft);line-height:1.65;flex:1;max-width:40ch;">End-to-end iOS app design: research, affinity mapping, personas, wireframes, and a WCAG-compliant prototype for a screen-reader-friendly cinema booking experience.</p>
+        <div style="margin-top:1.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Figma</span>
+          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Accessibility</span>
+          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">WCAG 2.1</span>
+        </div>
+        <div style="position:absolute;bottom:2rem;right:2rem;width:2.25rem;height:2.25rem;border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:background .25s,border-color .25s,color .25s,transform .3s;" class="case-card__arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+      <a href="case-study-learning-platform.html" class="case-card reveal reveal-delay-1" aria-label="Learning project: Integrated Online Learning Platform" style="background:var(--cream);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
+        <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light,#fdf3dc);background:var(--amber,#7a5c1e);padding:.25rem .625rem;border-radius:2px;">UX Bootcamp</span>
+          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);">Desktop Web</span>
+        </div>
+        <h3 style="font-family:var(--font-display);font-size:1.375rem;line-height:1.2;color:var(--ink);max-width:24ch;">Integrated Online Learning Platform</h3>
+        <p style="margin-top:.875rem;font-size:.875rem;color:var(--ink-soft);line-height:1.65;flex:1;max-width:40ch;">A desktop platform designed during COVID-19 to consolidate fragmented remote learning tools — built with educator interviews, affinity mapping, feature prioritization, and usability testing.</p>
+        <div style="margin-top:1.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">EdTech</span>
+          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Research</span>
+          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Figma</span>
+        </div>
+        <div style="position:absolute;bottom:2rem;right:2rem;width:2.25rem;height:2.25rem;border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:background .25s,border-color .25s,color .25s,transform .3s;" class="case-card__arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
       </a>
     </div>
   </div>
@@ -1366,7 +1525,7 @@ footer .footer-links a:hover { color: var(--cream); }
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);border:1px solid var(--border);">
 
-      <a href="case-study-movie-theater.html" class="reveal" style="background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;" onmouseover="this.style.background='var(--cream-mid)'" onmouseout="this.style.background='var(--cream)'">
+      <a href="case-study-movie-theater.html" class="reveal" style="background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;" onmouseover="this.style.background='var(--bg-mid)'" onmouseout="this.style.background='var(--bg)'">
         <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">Google UX Certificate</span>
         <h3 style="font-family:var(--font-display);font-size:1.25rem;color:var(--ink);line-height:1.2;">Kasanova Theater — Mobile Ticketing App</h3>
         <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">End-to-end iOS app design for a local cinema — screen reader–friendly, WCAG compliant, with digital ticketing and saved checkout state.</p>
@@ -1375,7 +1534,7 @@ footer .footer-links a:hover { color: var(--cream); }
         </div>
       </a>
 
-      <a href="case-study-learning-platform.html" class="reveal reveal-delay-1" style="background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;" onmouseover="this.style.background='var(--cream-mid)'" onmouseout="this.style.background='var(--cream)'">
+      <a href="case-study-learning-platform.html" class="reveal reveal-delay-1" style="background:var(--cream);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;" onmouseover="this.style.background='var(--bg-mid)'" onmouseout="this.style.background='var(--bg)'">
         <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">UX Bootcamp</span>
         <h3 style="font-family:var(--font-display);font-size:1.25rem;color:var(--ink);line-height:1.2;">Unified Online Learning Platform</h3>
         <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">A desktop platform consolidating fragmented remote-education tools into one integrated workspace for educators and students.</p>
@@ -1394,7 +1553,7 @@ footer .footer-links a:hover { color: var(--cream); }
   <h2 class="reveal reveal-delay-1" id="contact-title">Let's build something <em>meaningful</em> together</h2>
   <p class="reveal reveal-delay-2">I'm always open to conversations about senior design roles, consulting engagements, and cross-functional collaborations that push boundaries.</p>
   <div class="contact-actions reveal reveal-delay-3">
-    <a href= "mailto:krodriguezgraham@gmail.com" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
+    <a href="/cdn-cgi/l/email-protection#751e071a11071c1200100f1207141d1418351218141c195b161a184a0600171f101601483d1c5047365047453e140606141b1107145047365047453c504745191a03105047450c1a0007504745021a071e54" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Send a Message
     </a>
@@ -1412,7 +1571,7 @@ footer .footer-links a:hover { color: var(--cream); }
     <li><a href="#work">Work</a></li>
     <li><a href="#earlier-work">Earlier Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#79120b161d0b101e0c1c031e0b18111814391e14181015571a1614460a0c1b131c1a0d4431105c4b3a5c4b4932180a0a18171d0b185c4b3a5c4b49305c4b4915160f1c5c4b4900160c0b5c4b490e160b1258">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
@@ -1454,6 +1613,45 @@ skillBars.forEach(bar => {
   bar.style.width = '0';
   barObserver.observe(bar);
 });
+</script>
+<script>
+(function() {
+  var btn    = document.getElementById('theme-toggle');
+  var sun    = document.getElementById('icon-sun');
+  var moon   = document.getElementById('icon-moon');
+  var html   = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      sun.style.display  = 'block';
+      moon.style.display = 'none';
+      btn.setAttribute('aria-label', 'Switch to light mode');
+      btn.title = 'Switch to light mode';
+    } else {
+      html.removeAttribute('data-theme');
+      sun.style.display  = 'none';
+      moon.style.display = 'block';
+      btn.setAttribute('aria-label', 'Switch to dark mode');
+      btn.title = 'Switch to dark mode';
+    }
+  }
+
+  // Respect saved preference, then system preference
+  var saved  = localStorage.getItem('krg-theme');
+  var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  applyTheme(saved || system);
+
+  btn.addEventListener('click', function() {
+    var current = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    var next    = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('krg-theme', next);
+  });
+
+  // Smooth color transitions on theme change
+  html.style.transition = 'background-color 0.3s, color 0.3s';
+})();
 </script>
 </body>
 </html>

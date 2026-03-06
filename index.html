@@ -170,6 +170,7 @@ nav.scrolled {
    HERO
 ═══════════════════════════════════════════ */
 #hero {
+  min-height: 100vh;
   min-height: 100svh;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -304,9 +305,11 @@ h1.hero-name em {
 .hero-right {
   position: relative;
   overflow: hidden;
-  background: var(--cream-mid);
+  background: var(--bg-mid);
   opacity: 0;
   animation: fadeIn 1.2s var(--ease-out-expo) 0.4s forwards;
+  /* Fallback: if animation blocked, ensure visible */
+  animation-fill-mode: forwards;
 }
 .hero-photo-wrap {
   position: absolute;
@@ -318,7 +321,7 @@ h1.hero-name em {
 .hero-photo-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(160deg, #e8e2d9 0%, #d4cdc4 100%);
+  background: linear-gradient(160deg, var(--accent-light) 0%, var(--bg-mid) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -602,7 +605,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
   flex-wrap: wrap;
 }
 .chip {
-  background: var(--cream-mid);
+  background: var(--bg-mid);
   border: 1px solid var(--border);
   font-size: 0.6875rem;
   font-weight: 500;
@@ -763,7 +766,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 }
 .skill-bar-track {
   height: 3px;
-  background: var(--cream-mid);
+  background: var(--bg-mid);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -821,7 +824,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 }
 .about-photo-frame {
   aspect-ratio: 4/5;
-  background: var(--cream-mid);
+  background: var(--bg-mid);
   position: relative;
   overflow: hidden;
 }
@@ -836,7 +839,7 @@ h2.section-title em { font-style: italic; color: var(--rust); }
 .about-photo-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(145deg, #e8e2d9 0%, #cfc8be 100%);
+  background: linear-gradient(145deg, var(--accent-light) 0%, #cfc8be 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1039,11 +1042,13 @@ footer .footer-links a:hover { color: var(--cream); }
    REDUCED MOTION — WCAG 2.3.3 AAA
 ═══════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
+
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
+  .hero-right, .hero-left { opacity: 1 !important; animation: none !important; }
+}
   .marquee-track { animation: none; }
 }
 
@@ -1162,10 +1167,16 @@ footer .footer-links a:hover { color: var(--cream); }
   </div>
 
   <div class="hero-right" aria-label="Photo of Kassandra Rodriguez at Paramount Pictures">
-    <div style="width:100%;height:100%;"><div style="width:100%;height:100%;background:linear-gradient(160deg,#e8e2d9 0%,#d0c9bf 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="#9d9690" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="#9d9690" stroke-width="1.5" stroke-linecap="round"/></svg>
-  <p style="font-family:'DM Mono',monospace;font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:#9d9690;">kassandra-photo.jpg</p>
-</div></div>
+    <img
+        src="kassandra-photo.jpg"
+        alt="Kassandra Rodriguez, Senior UX Designer"
+        style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      />
+      <div class="hero-photo-fallback" style="display:none;width:100%;height:100%;background:linear-gradient(160deg,var(--accent-light) 0%,var(--bg-mid) 100%);align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <p style="font-family:var(--font-mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);">Add kassandra-photo.jpg</p>
+      </div>
     <span class="hero-badge" aria-hidden="true">Open to Opportunities</span>
     <div class="hero-tags" aria-label="Specializations">
       <div class="hero-tag">UX Research &amp; Design</div>
@@ -1431,9 +1442,9 @@ footer .footer-links a:hover { color: var(--cream); }
 <section id="about" aria-labelledby="about-title">
   <div class="about-visual reveal">
     <div class="about-photo-frame">
-      <div style="width:100%;height:100%;background:linear-gradient(160deg,#e8e2d9 0%,#d0c9bf 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="#9d9690" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="#9d9690" stroke-width="1.5" stroke-linecap="round"/></svg>
-  <p style="font-family:'DM Mono',monospace;font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:#9d9690;">kassandra-photo.jpg</p>
+      <div style="width:100%;height:100%;background:linear-gradient(160deg,var(--accent-light) 0%,var(--bg-mid) 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <p style="font-family:'DM Mono',monospace;font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);">kassandra-photo.jpg</p>
 </div>
     </div>
     <div class="about-card" aria-hidden="true">

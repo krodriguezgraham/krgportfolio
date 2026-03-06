@@ -10,6 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 :root {
+  /* RGB channel splits for rgba() usage */
+  --bg-rgb: 240, 247, 249;        /* matches --bg: #f0f7f9 */
+  --ink-rgb: 13, 43, 53;          /* matches --ink: #0d2b35 */
+  --paper-rgb: 255, 255, 255;     /* matches --paper: #ffffff */
   /* ── Aquatic Light Mode ── */
   --bg:          #f0f7f9;
   --bg-mid:      #dff0f2;
@@ -41,6 +45,10 @@
 }
 
 [data-theme="dark"] {
+  /* RGB channel splits for dark mode rgba() */
+  --bg-rgb: 6, 28, 36;            /* matches --bg: #061c24 */
+  --ink-rgb: 232, 246, 249;       /* matches --ink: #e8f6f9 */
+  --paper-rgb: 15, 51, 68;        /* matches --paper: #0f3344 */
   /* ── Aquatic Dark Mode ── */
   --bg:          #061c24;
   --bg-mid:      #0d2f3d;
@@ -76,8 +84,8 @@ img { display: block; max-width: 100%; }
 .skip-link:focus { top: 0; }
 
 /* ── NAV ── */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--cream); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
-nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); backdrop-filter: blur(8px); }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+nav.scrolled { border-color: var(--border); background: rgba(var(--bg-rgb), 0.96); backdrop-filter: blur(8px); }
 .nav-logo { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-transform: uppercase; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a { font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); position: relative; transition: color 0.2s; }
@@ -208,16 +216,16 @@ nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); 
 /* ── NEXT ── */
 .cs-next { background: var(--ink); padding: 5rem 3rem; }
 .cs-next-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,244,239,0.4); margin-bottom: 0.75rem; }
+.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(var(--ink-rgb), 0.4); margin-bottom: 0.75rem; }
 .cs-next h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--cream); }
 .btn-next { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--rust); color: white; padding: 1rem 1.75rem; font-size: 0.9375rem; font-weight: 500; border: 2px solid var(--rust); border-radius: 2px; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
 .btn-next:hover { background: var(--rust-dark); border-color: var(--rust-dark); transform: translateY(-2px); }
 
 /* ── FOOTER ── */
-footer { background: var(--ink); border-top: 1px solid rgba(247,244,239,0.08); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.4); }
+footer { background: var(--ink); border-top: 1px solid rgba(var(--ink-rgb), 0.08); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(var(--ink-rgb), 0.4); }
 footer .footer-links { display: flex; gap: 2rem; list-style: none; }
-footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,244,239,0.4); transition: color 0.2s; }
+footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(var(--ink-rgb), 0.4); transition: color 0.2s; }
 footer .footer-links a:hover { color: var(--cream); }
 
 /* ── REVEAL ── */
@@ -241,41 +249,50 @@ footer .footer-links a:hover { color: var(--cream); }
   .cs-next { padding: 3rem 1.5rem; }
   footer { padding: 2rem 1.5rem; }
 }
+
+/* ── Theme Toggle ── */
+#theme-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  transition: background 0.25s, border-color 0.25s, color 0.25s,
+              transform 0.2s, box-shadow 0.2s;
+  padding: 0;
+  outline-offset: 3px;
+}
+#theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+#theme-toggle:focus-visible {
+  outline: 3px solid var(--focus-ring);
+}
+#theme-toggle svg { display: block; pointer-events: none; }
+
 </style>
 </head>
 <body>
-<button
-  id="theme-toggle"
-  aria-label="Switch to dark mode"
-  title="Toggle light/dark mode"
-  style="
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    z-index: 200;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    border: 2px solid var(--border);
-    background: var(--paper);
-    color: var(--ink);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    transition: background 0.25s, border-color 0.25s, transform 0.2s, box-shadow 0.2s;
-    padding: 0;
-  "
-  onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 24px rgba(0,0,0,0.18)';"
-  onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.12)';"
->
-  <svg id="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="display:none;">
-    <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
-    <path d="M9 1v2M9 15v2M1 9h2M15 9h2M3.22 3.22l1.41 1.41M13.36 13.36l1.41 1.41M3.22 14.78l1.41-1.41M13.36 4.64l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<button id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+  <svg id="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M13.5 9.5A6 6 0 017 3a6 6 0 100 10 6 6 0 006.5-3.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
-  <svg id="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <path d="M14.5 10.5A6.5 6.5 0 017.5 3.5a6.5 6.5 0 100 11 6.5 6.5 0 007-4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <svg id="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:none">
+    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.22 3.22l1.41 1.41M11.36 11.36l1.41 1.41M3.22 12.78l1.41-1.41M11.36 4.64l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
 </button>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -750,42 +767,42 @@ const observer = new IntersectionObserver((entries) => {
 revealEls.forEach(el => observer.observe(el));
 </script>
 <script>
-(function() {
-  var btn    = document.getElementById('theme-toggle');
-  var sun    = document.getElementById('icon-sun');
-  var moon   = document.getElementById('icon-moon');
-  var html   = document.documentElement;
+(function(){
+  var btn  = document.getElementById('theme-toggle');
+  var sun  = document.getElementById('icon-sun');
+  var moon = document.getElementById('icon-moon');
+  var root = document.documentElement;
 
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      html.setAttribute('data-theme', 'dark');
+  function applyTheme(t) {
+    if (t === 'dark') {
+      root.setAttribute('data-theme','dark');
       sun.style.display  = 'block';
       moon.style.display = 'none';
-      btn.setAttribute('aria-label', 'Switch to light mode');
+      btn.setAttribute('aria-label','Switch to light mode');
       btn.title = 'Switch to light mode';
     } else {
-      html.removeAttribute('data-theme');
+      root.removeAttribute('data-theme');
       sun.style.display  = 'none';
       moon.style.display = 'block';
-      btn.setAttribute('aria-label', 'Switch to dark mode');
+      btn.setAttribute('aria-label','Switch to dark mode');
       btn.title = 'Switch to dark mode';
     }
   }
 
-  // Respect saved preference, then system preference
   var saved  = localStorage.getItem('krg-theme');
   var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   applyTheme(saved || system);
 
-  btn.addEventListener('click', function() {
-    var current = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-    var next    = current === 'dark' ? 'light' : 'dark';
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     applyTheme(next);
     localStorage.setItem('krg-theme', next);
   });
 
-  // Smooth color transitions on theme change
-  html.style.transition = 'background-color 0.3s, color 0.3s';
+  // Keep toggle colors live when theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+    if (!localStorage.getItem('krg-theme')) applyTheme(e.matches ? 'dark' : 'light');
+  });
 })();
 </script>
 </body>

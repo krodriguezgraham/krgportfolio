@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="description" content="RTL Language Screen Design for Medical Device — UX Case Study by Kassandra Rodriguez" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RTL Language Screen Design — Kassandra Rodriguez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink:        #1a1714;
+  --ink-soft:   #4a4540;
+  --ink-faint:  #7a736b;
+  --cream:      #f7f4ef;
+  --cream-mid:  #ede9e2;
+  --paper:      #ffffff;
+  --rust:       #b84a2e;
+  --rust-dark:  #8f3621;
+  --teal:       #1d6b68;
+  --teal-light: #e6f2f1;
+  --focus-ring: #1d6b68;
+  --border:     #d8d2c9;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--cream); color: var(--ink); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: 2px; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.skip-link { position: fixed; top: -100%; left: 1rem; z-index: 9999; background: var(--ink); color: var(--cream); padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 500; border-radius: 0 0 6px 6px; transition: top 0.2s; }
+.skip-link:focus { top: 0; }
+
+/* ── NAV ── */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--cream); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); backdrop-filter: blur(8px); }
+.nav-logo { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-transform: uppercase; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); position: relative; transition: color 0.2s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: var(--rust); transition: width 0.3s var(--ease-out-expo); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); transition: color 0.2s; }
+.nav-back:hover { color: var(--ink); }
+.nav-back svg { transition: transform 0.2s var(--ease-out-expo); }
+.nav-back:hover svg { transform: translateX(-3px); }
+
+/* ── HERO ── */
+.cs-hero { padding: 9rem 3rem 5rem; background: var(--paper); border-bottom: 1px solid var(--border); }
+.cs-hero-inner { max-width: 860px; margin: 0 auto; }
+.cs-breadcrumb { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 0.625rem; }
+.cs-breadcrumb span { color: var(--rust); }
+.cs-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 24ch; }
+.cs-hero h1 em { font-style: italic; color: var(--rust); }
+.cs-hero-sub { margin-top: 1.25rem; font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.7; max-width: 58ch; }
+.cs-tags { margin-top: 1.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.cs-tag { background: var(--cream); border: 1px solid var(--border); padding: 0.3rem 0.75rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.03em; color: var(--ink-soft); border-radius: 2px; }
+.cs-tag.highlight { background: var(--teal-light); border-color: var(--teal); color: var(--teal); }
+.cs-hero-meta { margin-top: 2.5rem; display: flex; gap: 3rem; flex-wrap: wrap; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+.meta-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.375rem; }
+.meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+
+/* ── STATUS BANNER ── */
+.status-banner { background: var(--cream-mid); border: 1px solid var(--border); border-left: 3px solid var(--rust); padding: 1rem 1.5rem; margin: 2.5rem auto 0; max-width: 860px; display: flex; gap: 1rem; align-items: flex-start; border-radius: 0 2px 2px 0; }
+.status-banner svg { flex-shrink: 0; margin-top: 2px; color: var(--rust); }
+.status-banner p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.6; }
+.status-banner strong { color: var(--ink); }
+
+/* ── LAYOUT ── */
+.cs-body { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start; }
+.cs-content { min-width: 0; }
+.cs-sidebar { position: sticky; top: 7rem; }
+
+/* ── SIDEBAR ── */
+.sidebar-card { background: var(--paper); border: 1px solid var(--border); padding: 1.75rem; margin-bottom: 1.5rem; }
+.sidebar-card h3 { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 1.25rem; }
+.sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 0.625rem; }
+.sidebar-list li { font-size: 0.875rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.5; }
+.sidebar-list li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 4px; height: 4px; border-radius: 50%; background: var(--rust); }
+.sidebar-toc { list-style: none; display: flex; flex-direction: column; }
+.sidebar-toc li a { display: block; font-size: 0.8125rem; color: var(--ink-soft); padding: 0.5rem 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
+.sidebar-toc li:last-child a { border-bottom: none; }
+.sidebar-toc li a:hover { color: var(--rust); padding-left: 4px; }
+
+/* ── CONTENT ── */
+.cs-section { margin-bottom: 4.5rem; }
+.cs-section:last-child { margin-bottom: 0; }
+.section-eyebrow { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-eyebrow::after { content: ''; flex: 1; max-width: 2.5rem; height: 1px; background: var(--rust); }
+.cs-section h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
+.cs-section h2 em { font-style: italic; color: var(--rust); }
+.cs-section h3 { font-family: var(--font-display); font-size: 1.1875rem; color: var(--ink); margin: 2.5rem 0 0.875rem; }
+.cs-section p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.25rem; }
+.cs-section p:last-child { margin-bottom: 0; }
+
+/* ── PULL QUOTE ── */
+.pull-quote { border-left: 3px solid var(--rust); padding: 1.5rem 2rem; margin: 2.5rem 0; background: var(--paper); }
+.pull-quote p { font-family: var(--font-display); font-size: 1.1875rem; font-style: italic; color: var(--ink); line-height: 1.5; margin: 0; }
+
+/* ── CALLOUT ── */
+.callout { background: var(--teal-light); border: 1px solid rgba(29,107,104,0.2); border-left: 3px solid var(--teal); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 2px 2px 0; }
+.callout p { font-size: 0.9375rem; color: var(--teal); line-height: 1.65; margin: 0; font-weight: 500; }
+
+/* ── 2-COL GRID ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+
+/* ── FINDING CARDS ── */
+.finding-card { background: var(--paper); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s; }
+.finding-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,23,20,0.07); }
+.finding-num { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.75rem; }
+.finding-card h4 { font-family: var(--font-display); font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.finding-card p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+/* ── RULE CARDS (design decisions) ── */
+.rule-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; border-radius: 2px; overflow: hidden; }
+.rule-card { background: var(--paper); padding: 1.75rem 2rem; display: grid; grid-template-columns: 4rem 1fr; gap: 1.5rem; align-items: start; transition: background 0.2s; }
+.rule-card:hover { background: var(--cream); }
+.rule-num { font-family: var(--font-display); font-size: 2.25rem; color: var(--cream-mid); line-height: 1; user-select: none; }
+.rule-card h4 { font-weight: 500; font-size: 0.9375rem; color: var(--ink); margin-bottom: 0.375rem; }
+.rule-card p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; margin: 0; }
+.rule-badge { display: inline-flex; margin-top: 0.625rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--teal-light); color: var(--teal); border: 1px solid rgba(29,107,104,0.25); padding: 0.2rem 0.5rem; border-radius: 2px; }
+
+/* ── COMPARE GRID ── */
+.compare-wrap { margin: 2.5rem 0; }
+.compare-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+.compare-cell { background: var(--paper); overflow: hidden; }
+.compare-cell img { width: 100%; height: auto; display: block; }
+.compare-caption { padding: 0.875rem 1rem; }
+.compare-caption strong { display: block; font-size: 0.8125rem; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
+.compare-caption p { font-size: 0.75rem; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+
+/* ── SCREEN COMPARE ── */
+.screen-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2.5rem 0; align-items: start; }
+.screen-wrap { display: flex; flex-direction: column; gap: 0.75rem; }
+.screen-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); display: flex; align-items: center; gap: 0.5rem; }
+.screen-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--rust); flex-shrink: 0; }
+.screen-img { border: 1px solid var(--border); border-radius: 2px; overflow: hidden; background: var(--cream-mid); }
+.screen-img img { width: 100%; height: auto; display: block; }
+.screen-annotations { list-style: none; display: flex; flex-direction: column; gap: 0.375rem; margin-top: 0.5rem; }
+.screen-annotations li { font-size: 0.8rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.5; }
+.screen-annotations li::before { content: '→'; position: absolute; left: 0; color: var(--rust); font-size: 0.75rem; }
+
+/* ── COLLAB CARDS ── */
+.collab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+.collab-card { background: var(--cream); border: 1px solid var(--border); padding: 1.25rem 1.5rem; border-radius: 2px; }
+.collab-role { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+.collab-card p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+/* ── OUTCOMES ── */
+.outcomes-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; border-radius: 2px; overflow: hidden; }
+.outcome-cell { background: var(--paper); padding: 2rem 1.5rem; text-align: center; }
+.outcome-icon { width: 2.5rem; height: 2.5rem; background: var(--teal-light); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--teal); }
+.outcome-cell h4 { font-family: var(--font-display); font-size: 1.0625rem; color: var(--ink); margin-bottom: 0.375rem; }
+.outcome-cell p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+
+/* ── LEARNINGS ── */
+.learnings-list { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+.learning-item { display: grid; grid-template-columns: 3rem 1fr; gap: 1.25rem; align-items: start; }
+.learning-num { width: 3rem; height: 3rem; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); flex-shrink: 0; }
+.learning-text h4 { font-weight: 500; font-size: 0.9375rem; color: var(--ink); margin-bottom: 0.375rem; }
+.learning-text p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; margin: 0; }
+
+/* ── NEXT ── */
+.cs-next { background: var(--ink); padding: 5rem 3rem; }
+.cs-next-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,244,239,0.4); margin-bottom: 0.75rem; }
+.cs-next h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--cream); }
+.btn-next { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--rust); color: white; padding: 1rem 1.75rem; font-size: 0.9375rem; font-weight: 500; border: 2px solid var(--rust); border-radius: 2px; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
+.btn-next:hover { background: var(--rust-dark); border-color: var(--rust-dark); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer { background: var(--ink); border-top: 1px solid rgba(247,244,239,0.08); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.4); }
+footer .footer-links { display: flex; gap: 2rem; list-style: none; }
+footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,244,239,0.4); transition: color 0.2s; }
+footer .footer-links a:hover { color: var(--cream); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 1.5rem; }
+  .cs-hero { padding: 8rem 1.5rem 4rem; }
+  .cs-body { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
+  .cs-sidebar { position: static; }
+  .two-col, .collab-grid, .compare-grid, .screen-compare { grid-template-columns: 1fr; }
+  .outcomes-row { grid-template-columns: 1fr; }
+  .rule-card { grid-template-columns: 1fr; gap: 0.5rem; }
+  .rule-num { font-size: 1.5rem; }
+  .cs-next { padding: 3rem 1.5rem; }
+  footer { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Kassandra Rodriguez — home">KR</a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="about.html">>About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+<!-- ── HERO ── -->
+<header class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-breadcrumb">
+      <a href="index.html#work" class="nav-back" aria-label="Back to all work">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+      <span aria-hidden="true">/</span>
+      <span>Internationalization &amp; Accessibility</span>
+    </p>
+    <h1>Screen Design for <em>Right-to-Left Languages</em> on a Medical Device</h1>
+    <p class="cs-hero-sub">Adapting an FDA-regulated step-by-step device interface for global market release — 13 languages, two RTL scripts, and zero margin for clinical misinterpretation.</p>
+    <div class="cs-tags" aria-label="Project disciplines">
+      <span class="cs-tag highlight">Internationalization</span>
+      <span class="cs-tag highlight">Inclusive Design</span>
+      <span class="cs-tag">Arabic &amp; Hebrew</span>
+      <span class="cs-tag">Medical Device UX</span>
+      <span class="cs-tag">FDA Regulated</span>
+      <span class="cs-tag">Usability Testing</span>
+      <span class="cs-tag">Figma</span>
+    </div>
+    <div class="cs-hero-meta" role="list" aria-label="Project details">
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Sole Designer, End-to-End</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Company</div>
+        <div class="meta-value">Fresenius Medical Care</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">2 Months</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Languages</div>
+        <div class="meta-value">13 Total · 2 RTL</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Collaborators</div>
+        <div class="meta-value">1 HF Engineer · 1 Developer · PM</div>
+      </div>
+    </div>
+  </div>
+  <div class="status-banner" role="note" aria-label="NDA notice">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.5v4M9 11.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>NDA Project:</strong> Proprietary device screens are omitted. Mockups shown are illustrative stand-ins created for portfolio purposes only, consistent with the originals in layout and logic.</p>
+  </div>
+</header>
+
+<!-- ── BODY ── -->
+<div class="cs-body">
+<article class="cs-content" aria-label="Case study content">
+
+  <!-- OVERVIEW -->
+  <section class="cs-section reveal" id="overview" aria-labelledby="overview-h2">
+    <p class="section-eyebrow">The Brief</p>
+    <h2 id="overview-h2">A fully-shipped product. A global market. A design system <em>built for one direction.</em></h2>
+    <p>A Fresenius Medical Care device with an established, FDA-cleared interface was being prepared for international release across 13 languages. The device guides users through critical step-by-step therapy procedures using on-screen text, imagery, and interactive elements — making clear communication a patient safety requirement, not a nice-to-have.</p>
+    <p>Two of those 13 languages — Arabic and Hebrew — are read right-to-left. The existing design system had been built entirely around left-to-right reading patterns. Every layout, every navigation arrow, every progress indicator, every piece of directional logic needed to be re-examined and, in many cases, fundamentally inverted.</p>
+
+    <div class="pull-quote">
+      <p>"This wasn't a translation project. It was a systems problem — every layout assumption baked into the original design had to be interrogated, not just mirrored."</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="cs-section reveal" id="problem" aria-labelledby="problem-h2">
+    <p class="section-eyebrow">Problem Definition</p>
+    <h2 id="problem-h2">Three compounding design challenges — <em>all patient-safety critical.</em></h2>
+    <p>RTL adaptation in a general consumer context carries design risk. In a regulated medical device context, that risk is amplified: a misread instruction, an ambiguous directional cue, or a mistranslated term can directly affect patient outcomes. The challenges were distinct and each required its own solution.</p>
+
+    <div class="two-col" role="list" aria-label="Core design challenges">
+      <div class="finding-card" role="listitem">
+        <p class="finding-num">Challenge 01</p>
+        <h4>Structural Mirroring Logic</h4>
+        <p>Every spatial assumption in the LTR design — text alignment, progress flow, navigation placement, step sequencing — needed a principled RTL equivalent. Not every element mirrors; knowing which ones do, and why, required a rule system, not a blanket flip.</p>
+      </div>
+      <div class="finding-card" role="listitem">
+        <p class="finding-num">Challenge 02</p>
+        <h4>Cultural Nuance Beyond Directionality</h4>
+        <p>RTL is not merely horizontal inversion. Icon meaning, imagery composition, and interface metaphors carry cultural weight. Adapting them required understanding which elements are universal and which are culturally specific to Arabic and Hebrew contexts.</p>
+      </div>
+      <div class="finding-card" role="listitem">
+        <p class="finding-num">Challenge 03</p>
+        <h4>Medical Terminology Precision</h4>
+        <p>Clinical instructions must survive translation without ambiguity. In a device that guides users through safety-critical procedures, any loss of precision in Arabic or Hebrew copy is a regulatory and patient safety issue — not merely a localization concern.</p>
+      </div>
+      <div class="finding-card" role="listitem">
+        <p class="finding-num">Challenge 04</p>
+        <h4>Maintaining a Single Codebase</h4>
+        <p>The solution couldn't fork into parallel design systems. RTL support had to be implemented as a scalable overlay on the existing component architecture — meaning every design decision needed to be technically legible to a single development team.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="cs-section reveal" id="research" aria-labelledby="research-h2">
+    <p class="section-eyebrow">Research &amp; Discovery</p>
+    <h2 id="research-h2">Before designing RTL, I <em>learned to read it.</em></h2>
+    <p>The most significant early insight was methodological: I couldn't design for a reading experience I'd never inhabited. Before mapping a single screen, I reconfigured my own iPhone to Arabic and Hebrew — not as a token gesture, but as a structured immersion exercise. Navigating a device you use daily in an unfamiliar script forces an intuitive understanding of disorientation, flow, and where spatial assumptions break down.</p>
+
+    <div class="callout" role="note">
+      <p>Setting my iPhone to Arabic wasn't a cute anecdote. It was the fastest way to experience the precise moments where LTR design assumptions create friction — and to build the muscle memory of RTL spatial logic before touching a design file.</p>
+    </div>
+
+    <h3>Competitive Benchmarking</h3>
+    <p>The research extended to auditing established RTL digital products against usability standards — identifying where existing solutions succeeded, and where they revealed unresolved tensions between global design consistency and local cultural expectations.</p>
+
+    <div class="compare-wrap">
+      <p class="compare-label">Benchmarking: Arabic Facebook Login (2017) vs. English equivalent</p>
+      <div class="compare-grid" role="img" aria-label="Side-by-side comparison of Arabic and English Facebook login screens, illustrating RTL layout behavior including right-aligned text fields, mirrored navigation, and repositioned logos">
+        <div class="compare-cell">
+          <img
+            src="https://static.wixstatic.com/media/93bbf5_f2e03ec60dd24fb2a20cb4e3c07981c3~mv2.png/v1/fill/w_650,h_377,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Facebook%202017%20Arabic.png"
+            alt="Arabic Facebook login page from 2017 showing right-aligned text, RTL layout, and repositioned navigation elements"
+            loading="lazy"
+          />
+          <div class="compare-caption">
+            <strong>Arabic (RTL)</strong>
+            <p>Text pre-filled right-aligned · Numbers remain LTR · Logo not reflected (Latin characters) · Images and emojis flip position but not orientation</p>
+          </div>
+        </div>
+        <div class="compare-cell">
+          <img
+            src="https://static.wixstatic.com/media/93bbf5_72d1b8c3bfdb456190166b4025d94b62~mv2.png/v1/fill/w_560,h_325,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Facebook%202017.png"
+            alt="English Facebook login page from 2017 showing standard left-to-right layout for direct comparison"
+            loading="lazy"
+          />
+          <div class="compare-caption">
+            <strong>English (LTR)</strong>
+            <p>Standard left-to-right layout used as baseline comparison point for benchmarking key structural differences</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Immersive Device Testing</h3>
+    <p>Switching a personal device to Arabic and Hebrew provided hands-on insight into how layout, navigation gestures, and interface metaphors behave under RTL conditions — and which of those behaviors would transfer to the device's constrained, step-by-step UI context.</p>
+
+    <div class="compare-wrap">
+      <p class="compare-label">iPhone set to Arabic — immersive RTL environment research</p>
+      <div class="compare-grid" role="img" aria-label="iPhone screenshots comparing English and Arabic interface to understand RTL navigation behavior and spatial flow">
+        <div class="compare-cell">
+          <img
+            src="https://static.wixstatic.com/media/93bbf5_0814ddace2b442949b74a4bf2c79ec91~mv2.png/v1/fill/w_271,h_540,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/iPhone%20English.png"
+            alt="iPhone in English showing left-to-right navigation layout as baseline"
+            loading="lazy"
+            style="max-height:420px;object-fit:contain;margin:0 auto;"
+          />
+          <div class="compare-caption">
+            <strong>English baseline</strong>
+            <p>Familiar LTR navigation, gesture flow, and spatial anchoring — the assumed defaults that RTL disrupts</p>
+          </div>
+        </div>
+        <div class="compare-cell">
+          <img
+            src="https://static.wixstatic.com/media/93bbf5_30f377c8963a4a2dad4618ac4681f7dc~mv2.png/v1/fill/w_271,h_540,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/93bbf5_30f377c8963a4a2dad4618ac4681f7dc~mv2.png"
+            alt="iPhone set to Arabic showing right-to-left interface layout, mirrored navigation, and Arabic script throughout"
+            loading="lazy"
+            style="max-height:420px;object-fit:contain;margin:0 auto;"
+          />
+          <div class="compare-caption">
+            <strong>Arabic RTL environment</strong>
+            <p>Full system RTL experience — revealing where spatial logic inverts and where universal affordances hold</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USABILITY TESTING -->
+  <section class="cs-section reveal" id="testing" aria-labelledby="testing-h2">
+    <p class="section-eyebrow">Usability Testing</p>
+    <h2 id="testing-h2">Native speakers, conflicting feedback, <em>and a decision that had to be made.</em></h2>
+    <p>Four moderated usability sessions were conducted virtually — two in Arabic, two in Hebrew — with native readers evaluating a visual simulator of the device software. Linguistic experts were engaged in parallel to validate text rendering, script recognition, and typographic details specific to each script.</p>
+    <p>The sessions surfaced an unexpected tension: the first two sessions generated directly conflicting feedback on icon orientation. Participants disagreed on whether certain directional iconography should be mirrored. When the final sessions were complete, the data was inconclusive — and the decision fell to the lead Human Factors engineer and me to define the testing path forward.</p>
+
+    <div class="callout" role="note">
+      <p>Inconclusive usability data is not a failure — it's a signal. Our job was to resolve ambiguity through principled decision-making, not to wait for consensus that wasn't coming.</p>
+    </div>
+
+    <h3>Usability Study Findings</h3>
+    <p>Three definitive rules emerged from synthesis across all four sessions and expert consultation — forming the foundational logic of the RTL design system.</p>
+
+    <div class="rule-cards" role="list" aria-label="RTL design rules derived from usability testing">
+      <div class="rule-card" role="listitem">
+        <div class="rule-num" aria-hidden="true">01</div>
+        <div>
+          <h4>Progress flows right to left</h4>
+          <p>Forward movement in the interface — stepping through a procedure, advancing to the next screen — is represented spatially from right to left. Navigation arrows pointing right indicate going <em>back</em>; arrows pointing left indicate moving <em>forward</em>. Progress bars fill from right to left.</p>
+          <span class="rule-badge">Confirmed across all 4 sessions</span>
+        </div>
+      </div>
+      <div class="rule-card" role="listitem">
+        <div class="rule-num" aria-hidden="true">02</div>
+        <div>
+          <h4>Universal icons do not flip — directional icons do</h4>
+          <p>A clock, a checkmark, a warning symbol — these carry meaning independent of directionality and must not be mirrored. Directional icons (arrows, progress indicators, swipe cues) are spatially anchored and must be reversed to preserve their intended meaning in an RTL reading context.</p>
+          <span class="rule-badge">Resolved conflicting feedback · Engineer + Designer decision</span>
+        </div>
+      </div>
+      <div class="rule-card" role="listitem">
+        <div class="rule-num" aria-hidden="true">03</div>
+        <div>
+          <h4>Numbers remain left-to-right</h4>
+          <p>Numerical values — step counts, device readings, dosage figures — are read left-to-right in both Arabic and Hebrew contexts. Inverting them would create dangerous ambiguity in a clinical setting. This rule protected against a well-intentioned but incorrect blanket-mirroring approach.</p>
+          <span class="rule-badge">Critical patient safety rule</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN -->
+  <section class="cs-section reveal" id="solution" aria-labelledby="solution-h2">
+    <p class="section-eyebrow">Design Solution</p>
+    <h2 id="solution-h2">Not a mirror. A <em>considered inversion</em> built on explicit rules.</h2>
+    <p>The final RTL screen designs were not the output of a global "flip horizontal" operation. They were the product of applying a deliberately constructed rule system to every element in the interface — component by component, screen by screen.</p>
+
+    <div class="screen-compare" aria-label="Side-by-side comparison of LTR and RTL screen designs">
+      <div class="screen-wrap">
+        <p class="screen-label" style="--c:var(--ink-soft)">
+          <span style="display:flex;align-items:center;gap:0.5rem;">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--ink-soft);display:inline-block;"></span>
+            English (LTR)
+          </span>
+        </p>
+        <div class="screen-img">
+          <img
+            src="https://static.wixstatic.com/media/93bbf5_074b3eaa4c1f413d8a40de5c4eaa20d2~mv2.png/v1/fill/w_345,h_906,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LTR.png"
+            alt="English LTR device screen showing left-aligned text, left-to-right progress bar, forward arrow pointing right, and step numbers with period to the right"
+            loading="lazy"
+          />
+        </div>
+        <ul class="screen-annotations" aria-label="LTR screen annotations">
+          <li>Text left-aligned throughout</li>
+          <li>Forward arrow points right</li>
+          <li>Progress bar fills left to right</li>
+          <li>Step period to the right of the number</li>
+          <li>Page navigation: forward arrow on right</li>
+        </ul>
+      </div>
+      <div class="screen-wrap">
+        <p class="screen-label">Arabic (RTL)</p>
+        <div class="screen-img">
+          <img
+            src="https://static.wixstatic.com/media/93bbf5_e253d239338b4ad9a3d0fde364e592f9~mv2.png/v1/fill/w_345,h_905,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/RTL.png"
+            alt="Arabic RTL device screen showing right-aligned text, right-to-left progress bar, back arrow pointing right, forward arrow pointing left, and mirrored step numbering"
+            loading="lazy"
+          />
+        </div>
+        <ul class="screen-annotations" aria-label="RTL screen annotations">
+          <li>All text right-aligned</li>
+          <li>Forward arrow points left</li>
+          <li>Progress bar fills right to left</li>
+          <li>Step period to the left of the number</li>
+          <li>Page navigation: forward arrow on left</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size:0.8125rem;color:var(--ink-faint);font-style:italic;text-align:center;margin-top:-1rem;margin-bottom:2rem;">All images are portfolio mockups. Proprietary device screens omitted per NDA.</p>
+
+    <h3>The Rule System</h3>
+    <p>Every component was categorized against three questions: Does this element carry directional meaning? Is its meaning culturally universal or contextual? Does inverting it risk clinical misinterpretation? The answers produced explicit per-component rules documented in Figma and handed off to development as a standalone RTL specification sheet.</p>
+  </section>
+
+  <!-- COLLABORATION -->
+  <section class="cs-section reveal" id="collaboration" aria-labelledby="collab-h2">
+    <p class="section-eyebrow">Cross-Functional Collaboration</p>
+    <h2 id="collab-h2">Three disciplines, <em>one shared specification.</em></h2>
+    <p>The design wouldn't survive contact with development if it existed only as Figma screens. Translating RTL logic into implementation-ready specifications required sustained, structured collaboration across engineering, human factors, and product management from the project's first sprint.</p>
+
+    <div class="collab-grid" role="list" aria-label="Cross-functional collaboration details">
+      <div class="collab-card" role="listitem">
+        <p class="collab-role">Software Developer</p>
+        <p>Engaged from the outset to surface technical constraints before designs were finalized. Regular design-to-development handoff sessions ensured RTL-specific rules — text alignment, directional icons, progress logic — were unambiguous in implementation. Joint reviews flagged mismatches before they became rework.</p>
+      </div>
+      <div class="collab-card" role="listitem">
+        <p class="collab-role">Human Factors Engineer</p>
+        <p>Partnered on resolving the conflicting usability testing data. When sessions produced opposing findings on icon orientation, the HF engineer and I synthesized the evidence together and made a principled, documented decision — rather than leaving the ambiguity for development to interpret.</p>
+      </div>
+      <div class="collab-card" role="listitem">
+        <p class="collab-role">Product Manager</p>
+        <p>Aligned on scope boundaries — specifically, which components required RTL-specific treatment vs. which could be addressed through standard localization. PM involvement ensured the RTL work was sequenced within a realistic sprint timeline without compromising the global release date.</p>
+      </div>
+      <div class="collab-card" role="listitem">
+        <p class="collab-role">Linguistic Experts</p>
+        <p>Consulted to validate Arabic and Hebrew text rendering, script recognition, and typographic nuance. Their input was particularly critical for medical terminology — ensuring clinical instructions survived translation with precision intact.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="cs-section reveal" id="outcomes" aria-labelledby="outcomes-h2">
+    <p class="section-eyebrow">Outcomes</p>
+    <h2 id="outcomes-h2">A scalable RTL system, <em>ready for global release.</em></h2>
+    <p>The project delivered a complete, implementation-ready RTL design system that supported the device's international market release — structured to scale beyond Arabic and Hebrew to any future RTL language requirement.</p>
+
+    <div class="outcomes-row" role="list" aria-label="Project outcomes">
+      <div class="outcome-cell" role="listitem">
+        <div class="outcome-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Global Market Readiness</h4>
+        <p>The device shipped with a culturally validated, linguistically precise interface for Arabic and Hebrew — meeting both regulatory and usability standards for international release.</p>
+      </div>
+      <div class="outcome-cell" role="listitem">
+        <div class="outcome-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="3" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9h4M9 7v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Reusable RTL Specification</h4>
+        <p>A documented, component-level RTL rule system was handed off to development — creating a reusable foundation for future language expansions beyond the initial two RTL scripts.</p>
+      </div>
+      <div class="outcome-cell" role="listitem">
+        <div class="outcome-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Patient Safety Preserved</h4>
+        <p>The three-rule system — directional flow, icon flip logic, and number formatting — ensured clinical instructions remained unambiguous across both RTL scripts in a safety-critical context.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNINGS -->
+  <section class="cs-section reveal" id="learnings" aria-labelledby="learnings-h2">
+    <p class="section-eyebrow">Retrospective</p>
+    <h2 id="learnings-h2">What I'd carry into <em>every future i18n project.</em></h2>
+
+    <div class="learnings-list" role="list" aria-label="Key learnings">
+      <div class="learning-item" role="listitem">
+        <div class="learning-num" aria-hidden="true">01</div>
+        <div class="learning-text">
+          <h4>Immersion beats assumption</h4>
+          <p>Setting my device to Arabic gave me an intuitive, embodied understanding of RTL friction that no amount of documentation could replicate. When designing for an unfamiliar context, the fastest path to insight is to live in it — even imperfectly.</p>
+        </div>
+      </div>
+      <div class="learning-item" role="listitem">
+        <div class="learning-num" aria-hidden="true">02</div>
+        <div class="learning-text">
+          <h4>Conflicting data requires a decision, not a delay</h4>
+          <p>When usability sessions produce opposing findings, the answer is not to run more sessions hoping for consensus. It's to synthesize the existing evidence, make a principled, documented decision, and test that decision — not the original question again.</p>
+        </div>
+      </div>
+      <div class="learning-item" role="listitem">
+        <div class="learning-num" aria-hidden="true">03</div>
+        <div class="learning-text">
+          <h4>Mirroring is a heuristic, not a rule</h4>
+          <p>The instinct to "flip everything" for RTL produces dangerous outputs in medical contexts. Universal symbols, numerical values, and cultural imagery each require individual assessment. The discipline is in building a principled rule system — not applying a blanket transformation.</p>
+        </div>
+      </div>
+      <div class="learning-item" role="listitem">
+        <div class="learning-num" aria-hidden="true">04</div>
+        <div class="learning-text">
+          <h4>Test on real hardware next time</h4>
+          <p>All sessions were conducted using a visual simulator. While effective, simulator-based testing cannot fully replicate the physical interaction context of a medical device — particularly for gesture-based navigation. Future RTL validation should incorporate actual device hardware as early as the testing protocol allows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<!-- ── SIDEBAR ── -->
+<aside class="cs-sidebar" aria-label="Case study navigation and details">
+  <div class="sidebar-card">
+    <h3>Contents</h3>
+    <ul class="sidebar-toc" role="list">
+      <li><a href="#overview">The Brief</a></li>
+      <li><a href="#problem">Problem Definition</a></li>
+      <li><a href="#research">Research &amp; Discovery</a></li>
+      <li><a href="#testing">Usability Testing</a></li>
+      <li><a href="#solution">Design Solution</a></li>
+      <li><a href="#collaboration">Collaboration</a></li>
+      <li><a href="#outcomes">Outcomes</a></li>
+      <li><a href="#learnings">Retrospective</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h3>Methods Used</h3>
+    <ul class="sidebar-list" role="list">
+      <li>Competitive Benchmarking</li>
+      <li>Immersive Self-Research</li>
+      <li>Moderated Usability Testing</li>
+      <li>Linguistic Expert Consultation</li>
+      <li>Component-Level RTL Audit</li>
+      <li>Design Specification &amp; Handoff</li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h3>RTL Rule System</h3>
+    <ul class="sidebar-list" role="list">
+      <li>Progress flows right → left</li>
+      <li>Directional icons flip</li>
+      <li>Universal icons do not flip</li>
+      <li>Numbers stay LTR (1-2-3)</li>
+      <li>Text right-aligned throughout</li>
+      <li>Bullets anchor to the right</li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h3>Languages in Scope</h3>
+    <ul class="sidebar-list" role="list">
+      <li>13 total languages</li>
+      <li>Arabic (RTL)</li>
+      <li>Hebrew (RTL)</li>
+      <li>11 LTR languages</li>
+    </ul>
+  </div>
+</aside>
+
+</div><!-- /cs-body -->
+
+<nav class="cs-next" aria-label="Next case study">
+  <div class="cs-next-inner">
+    <div>
+      <p class="cs-next-label">Next Case Study</p>
+      <h3>Movie Theater App</h3>
+    </div>
+    <a href="index.html#work" class="btn-next" aria-label="View next case study: Movie Theater App">
+      View Case Study
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</nav>
+
+</main>
+
+<!-- ── NEXT ── -->
+
+<footer>
+  <span class="footer-name">©2025 Kassandra Rodriguez</span>
+  <ul class="footer-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">>About</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

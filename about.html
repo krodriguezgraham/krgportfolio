@@ -1,63 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" style="transition:background-color 0.3s,color 0.3s;">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="About Kassandra Rodriguez — Senior UX Designer &amp; Strategist at Fresenius Medical Care." />
 <title>About — Kassandra Rodriguez</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 :root {
-  --bg:           #f7f4ef;
-  --bg-mid:       #ede9e2;
-  --paper:        #ffffff;
-  --ink:          #1a1714;
-  --ink-soft:     #4a4540;
-  --ink-faint:    #7a736b;
-  --accent:       #b84a2e;
-  --accent-dark:  #8f3621;
-  --accent-light: #fdf3dc;
+  /* ── Original palette ── */
+  --bg:           #f7f4ef;   /* cream — 16.3:1 vs ink  */
+  --bg-mid:       #ede9e2;   /* mid cream — 14.8:1 vs ink */
+  --paper:        #ffffff;   /* white — 17.8:1 vs ink */
+  --ink:          #1a1714;   /* near-black */
+  --ink-soft:     #4a4540;   /* 8.6:1 on cream */
+  --ink-faint:    #7a736b;   /* 4.3:1 on cream — large text/decorative only */
+  --accent:       #b84a2e;   /* rust — 4.7:1 on cream, 5.2:1 on white */
+  --accent-dark:  #8f3621;   /* rust dark — 7.7:1 on white */
+  --accent-light: #fdf3dc;   /* pale amber tint */
   --border:       #d8d2c9;
-  --amber:        #7a5c1e;
+  --amber:        #7a5c1e;   /* 5.6:1 on amber-light */
   --amber-light:  #fdf3dc;
-  --focus-ring:   #1d6b68;
-  --teal:         #1d6b68;
+  --teal:         #1d6b68;   /* 5.7:1 on cream, 6.3:1 on white */
   --teal-light:   #e6f2f1;
-  --nav-bg:       #f7f4ef;
-  --nav-scrolled: rgba(247,244,239,0.95);
-  --footer-text:  rgba(247,244,239,0.4);
-  --footer-text-hi: rgba(247,244,239,0.8);
+  --focus-ring:   #1d6b68;
   --font-display: 'DM Serif Display', Georgia, serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-mono:    'DM Mono', 'Courier New', monospace;
-  --ease:         cubic-bezier(0.16,1,0.3,1);
-  --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
-  --ease-in-out:  cubic-bezier(0.4,0,0.2,1);
+  --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo:cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ═══════════════════════════════════════════════════
+   SECTION BACKGROUND ALTERNATION
+   hero    → --bg    (cream)
+   marquee → --ink   (dark)
+   approach→ --paper (white)
+   work    → --bg    (cream)
+   process → --ink   (dark)
+   skills  → --paper (white)
+   about   → --bg    (cream)
+   contact → --ink   (dark)
+   footer  → --ink   (dark)
+════════════════════════════════════════════════════ */
+#hero        { background: var(--bg); }
+.marquee-strip { background: var(--ink); }
+#approach    { background: var(--paper); }
+#work        { background: var(--bg); }
+#process     { background: var(--ink); }
+#skills      { background: var(--paper); }
+#about       { background: var(--bg); }
+#contact     { background: var(--ink); }
+#earlier-work { background: var(--bg-mid); }
+footer       { background: var(--ink); }
 
-[data-theme="dark"] {
-  --bg:           #1a1714;
-  --bg-mid:       #252220;
-  --paper:        #2a2623;
-  --ink:          #f7f4ef;
-  --ink-soft:     #c8c2b8;
-  --ink-faint:    #8a8278;
-  --accent:       #e06040;
-  --accent-dark:  #c84e30;
-  --accent-light: #3a2218;
-  --border:       #3a3530;
-  --amber:        #f4c661;
-  --amber-light:  #1e1600;
-  --focus-ring:   #5dc8c4;
-  --teal:         #5dc8c4;
-  --teal-light:   #0d2f2e;
-  --nav-bg:       #1a1714;
-  --nav-scrolled: rgba(26,23,20,0.95);
-  --footer-text:  rgba(247,244,239,0.4);
-  --footer-text-hi: rgba(247,244,239,0.8);
-}
+
+
+
 
 
 
@@ -114,7 +116,6 @@ nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdr
 .aside-nav li:last-child a{border-bottom:none;}
 .aside-nav li a:hover{color:var(--accent);padding-left:4px;}
 .story-blocks{display:flex;flex-direction:column;gap:5rem;}
-.s-block{}
 .s-eyebrow{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;}
 .s-eyebrow::after{content:'';flex:1;max-width:2.5rem;height:1px;background:var(--accent);}
 .s-block h2{font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,2rem);line-height:1.15;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.5rem;}
@@ -165,7 +166,6 @@ nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdr
 .btn-c:hover{background:var(--accent-dark);border-color:var(--accent-dark);transform:translateY(-2px);}
 .btn-cg{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--bg);padding:1rem 2rem;font-size:.9375rem;font-weight:500;border:2px solid rgba(13,43,53,.25);border-radius:2px;transition:border-color .2s,transform .2s;}
 .btn-cg:hover{border-color:var(--bg);transform:translateY(-2px);}
-footer{background:var(--ink);border-top:1px solid rgba(13,43,53,.08);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 footer .fn{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(13,43,53,.4);}
 footer .fl{display:flex;gap:2rem;list-style:none;}
 footer .fl a{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(13,43,53,.4);transition:color .2s;}
@@ -178,48 +178,14 @@ footer .fl a:hover{color:var(--bg);}
 @media(max-width:1024px){.hero-inner{grid-template-columns:1fr;}.hero-photo{display:none;}.story-wrap{grid-template-columns:1fr;gap:3rem;padding:4rem 1.5rem;}.story-aside{position:static;}}
 @media(max-width:640px){nav{padding:1.25rem 1.5rem;}.about-hero{padding:8rem 1.5rem 0;}.hero-text{padding-bottom:3rem;}.edu-grid,.fun-grid{grid-template-columns:1fr;}.t-item{grid-template-columns:1fr;gap:.5rem;}.t-item::before{display:none;}.t-body{padding-left:0;}.contact-strip{padding:4rem 1.5rem;}footer{padding:2rem 1.5rem;}}
 
-/* ── Theme Toggle ── */
-#theme-toggle {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  z-index: 999;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background: var(--paper);
-  color: var(--ink);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-  transition: background 0.25s, border-color 0.25s, color 0.25s,
-              transform 0.2s, box-shadow 0.2s;
-  padding: 0;
-  outline-offset: 3px;
-}
-#theme-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-#theme-toggle:focus-visible {
-  outline: 3px solid var(--focus-ring);
-}
-#theme-toggle svg { display: block; pointer-events: none; }
+
+
+
+
 
 </style>
 </head>
-
-</head>
 <body>
-<button id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
-  <svg id="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 9.5A6 6 0 017 3a6 6 0 100 10 6 6 0 006.5-3.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  <svg id="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display:none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.22 3.22l1.41 1.41M11.36 11.36l1.41 1.41M3.22 12.78l1.41-1.41M11.36 4.64l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-</button>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <a href="index.html" class="nav-logo" aria-label="Kassandra Rodriguez — home">KR</a>
@@ -244,7 +210,7 @@ footer .fl a:hover{color:var(--bg);}
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 6v4M4 4.5v.5M7 10V7.5A1.5 1.5 0 0110 7.5V10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
           LinkedIn
         </a>
-        <a href="https://www.kassandrarodriguez.com/_files/ugd/93bbf5_4982e9dd6961459eb2881afc99810f19.pdf" target="_blank" rel="noopener noreferrer" class="btn-s" aria-label="Download résumé PDF (opens in new tab)">
+        <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-s" aria-label="Download résumé PDF (opens in new tab)">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2h6l4 4v6a1 1 0 01-1 1H3a1 1 0 01-1-1V2z" stroke="currentColor" stroke-width="1.25"/><path d="M8 2v4h4M5 8h4M5 10.5h2.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
           Résumé
         </a>
@@ -254,7 +220,7 @@ footer .fl a:hover{color:var(--bg);}
     <div class="hero-photo" aria-hidden="true">
       <div class="photo-frame">
         <img
-      src="kassandra-photo.jpg"
+      src="kassandra-photo-2.JPG"
       alt="Kassandra Rodriguez, Senior UX Designer"
       style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -309,7 +275,7 @@ footer .fl a:hover{color:var(--bg);}
       <p class="s-eyebrow">The Story</p>
       <h2>Started in print. Ended up designing <em>ICU monitors.</em></h2>
       <p>My design career started in graphic and print production — typography, color theory, and the discipline of working within rigid constraints. That foundation shaped everything that came after. When I moved into UX, I brought the same precision I'd applied to printed materials: every element earns its space, every decision has a reason.</p>
-      <p>Over six years I've moved across domains — EdTech, e-commerce, non-profit, and now medical devices — each one adding a new layer of complexity and a new set of stakeholders to navigate. Today I work as a UX Designer III at Fresenius Medical Care, designing Class II and III medical devices for global clinical teams. I sit on a Human Factors &amp; Usability Engineering team, which means I'm equally comfortable in a usability testing session and an FDA design review.</p>
+      <p>Over six years I've moved across domains — Web Development, e-commerce, non-profit, and now medical devices — each one adding a new layer of complexity and a new set of stakeholders to navigate. Today I work as a UX Designer III at Fresenius Medical Care, designing Class II and III medical devices for global clinical teams. I sit on a Human Factors &amp; Usability Engineering team, which means I'm equally comfortable in a usability testing session and an FDA design review.</p>
       <p>The thread running through all of it: I build bridges. Between design and engineering. Between clinical experts and product managers. Between what users need and what's technically feasible. That cross-functional fluency is the most valuable thing I bring to a team.</p>
     </div>
 
@@ -484,36 +450,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => observer.observe(el));
 </script>
-<script>
-(function(){
-  var btn=document.getElementById('theme-toggle');
-  var sun=document.getElementById('icon-sun');
-  var moon=document.getElementById('icon-moon');
-  var root=document.documentElement;
-  function applyTheme(t){
-    if(t==='dark'){
-      root.setAttribute('data-theme','dark');
-      if(sun)sun.style.display='block';
-      if(moon)moon.style.display='none';
-      btn.setAttribute('aria-label','Switch to light mode');
-      btn.title='Switch to light mode';
-    } else {
-      root.removeAttribute('data-theme');
-      if(sun)sun.style.display='none';
-      if(moon)moon.style.display='block';
-      btn.setAttribute('aria-label','Switch to dark mode');
-      btn.title='Switch to dark mode';
-    }
-  }
-  var saved=localStorage.getItem('krg-theme');
-  var sys=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
-  applyTheme(saved||sys);
-  btn.addEventListener('click',function(){
-    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
-    applyTheme(next);
-    localStorage.setItem('krg-theme',next);
-  });
-})();
-</script>
+
 </body>
 </html>

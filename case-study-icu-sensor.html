@@ -55,7 +55,13 @@
 #about       { background: var(--bg); }
 #contact     { background: var(--ink); }
 #earlier-work { background: var(--bg-mid); }
-footer       { background: var(--ink); }
+footer       { background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  gap: 2rem;
+}
 
 
 
@@ -77,7 +83,7 @@ img { display: block; max-width: 100%; }
 .skip-link:focus { top: 0; }
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+nav#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
 nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); backdrop-filter: blur(8px); }
 .nav-logo { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-transform: uppercase; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -194,16 +200,16 @@ nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); 
 /* NEXT CASE STUDY */
 .cs-next { background: var(--ink); padding: 5rem 3rem; }
 .cs-next-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(13,43,53,0.4); margin-bottom: 0.75rem; }
+.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,244,239,0.65); margin-bottom: 0.75rem; }
 .cs-next h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--bg); }
 .btn-next { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: white; padding: 1rem 1.75rem; font-size: 0.9375rem; font-weight: 500; border: 2px solid var(--accent); border-radius: 2px; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
 .btn-next:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
 
 /* FOOTER */
 footer{ }
-footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(13,43,53,0.4); }
+footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.65); }
 footer .footer-links { display: flex; gap: 2rem; list-style: none; }
-footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(13,43,53,0.4); transition: color 0.2s; }
+footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,244,239,0.65); transition: color 0.2s; }
 footer .footer-links a:hover { color: var(--bg); }
 
 /* REVEAL */
@@ -231,6 +237,11 @@ footer .footer-links a:hover { color: var(--bg); }
 
 
 
+
+@media (max-width: 640px) {
+  footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; gap: 1rem; }
+  footer .footer-links { flex-wrap: wrap; gap: 1rem; }
+}
 </style>
 </head>
 <body>

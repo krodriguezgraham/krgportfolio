@@ -56,6 +56,7 @@
 #contact     { background: var(--ink); }
 #earlier-work { background: var(--bg-mid); }
 footer       { background: var(--ink); }
+footer{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:2rem 3rem;flex-wrap:wrap;}
 
 
 
@@ -72,7 +73,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-hei
 a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
 .skip-link{position:fixed;top:-100%;left:1rem;z-index:9999;background:var(--ink);color:var(--bg);padding:.75rem 1.25rem;font-size:.875rem;font-weight:500;border-radius:0 0 6px 6px;transition:top .2s;}.skip-link:focus{top:0;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:var(--bg);border-bottom:1px solid transparent;transition:border-color .3s,background .3s;}
-nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdrop-filter:blur(8px);}
+nav.scrolled{border-color:var(--border);background:rgba(247,244,239,0.95);backdrop-filter:blur(8px);}
 .nav-logo{font-family:var(--font-mono);font-size:.8125rem;font-weight:500;letter-spacing:.06em;color:var(--ink);text-transform:uppercase;}
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);position:relative;transition:color .2s;}
@@ -138,7 +139,7 @@ nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdr
 .skills-cluster{display:flex;flex-direction:column;gap:1.5rem;margin:2rem 0;}
 .sk-label{font-family:var(--font-mono);font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.75rem;}
 .sk-pills{display:flex;flex-wrap:wrap;gap:.5rem;}
-.sk-pill{background:var(--paper);border:1px solid var(--border);padding:.375rem .875rem;font-size:.8125rem;font-weight:500;color:var(--ink-soft);border-radius:2px;transition:background .2s,border-color .2s,color .2s;}
+.sk-pill{background:var(--bg);border:1px solid var(--border);padding:.375rem .875rem;font-size:.8125rem;font-weight:500;color:var(--ink-soft);border-radius:2px;transition:background .2s,border-color .2s,color .2s;}
 .sk-pill:hover{background:var(--accent-light);border-color:var(--accent);color:var(--accent);}
 .sk-pill.hi{background:var(--accent-light);border-color:rgba(29,107,104,.3);color:var(--accent);}
 /* EDUCATION */
@@ -167,7 +168,7 @@ nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdr
 .btn-c:hover{background:var(--accent-dark);border-color:var(--accent-dark);transform:translateY(-2px);}
 .btn-cg{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--bg);padding:1rem 2rem;font-size:.9375rem;font-weight:500;border:2px solid rgba(13,43,53,.25);border-radius:2px;transition:border-color .2s,transform .2s;}
 .btn-cg:hover{border-color:var(--bg);transform:translateY(-2px);}
-footer{}
+
 footer .fn{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,244,239,0.65);}
 footer .fl{display:flex;gap:2rem;list-style:none;}
 footer .fl a{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,244,239,0.65);transition:color .2s;}
@@ -178,7 +179,7 @@ footer .fl a:hover{color:var(--bg);}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}.marquee-track{animation:none;}}
 @media(max-width:1024px){.hero-inner{grid-template-columns:1fr;}.hero-photo{display:none;}.story-wrap{grid-template-columns:1fr;gap:3rem;padding:4rem 1.5rem;}.story-aside{position:static;}}
-@media(max-width:640px){nav{padding:1.25rem 1.5rem;}.about-hero{padding:8rem 1.5rem 0;}.hero-text{padding-bottom:3rem;}.edu-grid,.fun-grid{grid-template-columns:1fr;}.t-item{grid-template-columns:1fr;gap:.5rem;}.t-item::before{display:none;}.t-body{padding-left:0;}.contact-strip{padding:4rem 1.5rem;}footer{padding:2rem 1.5rem;}}
+@media(max-width:640px){nav{padding:1.25rem 1.5rem;}.about-hero{padding:8rem 1.5rem 0;}.hero-text{padding-bottom:3rem;}.edu-grid,.fun-grid{grid-template-columns:1fr;}.t-item{grid-template-columns:1fr;gap:.5rem;}.t-item::before{display:none;}.t-body{padding-left:0;}.contact-strip{padding:4rem 1.5rem;}footer{flex-direction:column;align-items:flex-start;padding:1.5rem;gap:1rem;}}
 
 
 
@@ -195,6 +196,7 @@ footer .fl a:hover{color:var(--bg);}
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#process">Process</a></li>
     <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#earlier-work">Earlier Work</a></li>
     <li><a href="about.html" aria-current="page">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -212,7 +214,7 @@ footer .fl a:hover{color:var(--bg);}
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 6v4M4 4.5v.5M7 10V7.5A1.5 1.5 0 0110 7.5V10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
           LinkedIn
         </a>
-        <a href="https://www.kassandrarodriguez.com/_files/ugd/93bbf5_4982e9dd6961459eb2881afc99810f19.pdf" target="_blank" rel="noopener noreferrer" class="btn-s" aria-label="Download résumé PDF (opens in new tab)">
+        <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-s" aria-label="Download résumé PDF (opens in new tab)">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2h6l4 4v6a1 1 0 01-1 1H3a1 1 0 01-1-1V2z" stroke="currentColor" stroke-width="1.25"/><path d="M8 2v4h4M5 8h4M5 10.5h2.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
           Résumé
         </a>
@@ -222,7 +224,7 @@ footer .fl a:hover{color:var(--bg);}
     <div class="hero-photo" aria-hidden="true">
       <div class="photo-frame">
         <img
-      src="kassandra-photo.jpg"
+      src="kassandra-about-photo.jpg"
       alt="Kassandra Rodriguez, Senior UX Designer"
       style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -257,6 +259,7 @@ footer .fl a:hover{color:var(--bg);}
       <span class="m-item">Cross-Functional Collaboration <span class="m-dot"></span></span>
     </div>
   </div>
+</div>
 </section>
 
 <div class="story-wrap">
@@ -416,7 +419,7 @@ footer .fl a:hover{color:var(--bg);}
   <h2 id="contact-h2">Let's build something <em>meaningful</em> together</h2>
   <p>Open to senior design roles, consulting engagements, and cross-functional collaborations that push boundaries.</p>
   <div class="cs-actions">
-    <a href="/cdn-cgi/l/email-protection#adc6dfc2c9dfc4cad8c8d7cadfccc5ccc0edcac0ccc4c183cec2c092ded8cfc7c8ced990e5c4889fee889f9de6ccdedeccc3c9dfcc889fee889f9de4889f9dc1c2dbc8889f9dd4c2d8df889f9ddac2dfc68c" class="btn-c" aria-label="Email Kassandra">
+    <a href="/cdn-cgi/l/email-protection#4229302d26302b253727382530232a232f02252f232b2e6c212d2f" class="btn-c" aria-label="Email Kassandra">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Send a Message
     </a>
@@ -430,7 +433,7 @@ footer .fl a:hover{color:var(--bg);}
   <ul class="fl" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#aac1d8c5ced8c3cddfcfd0cdd8cbc2cbc7eacdc7cbc3c684c9c5c7">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#c6adb4a9a2b4afa1b3a3bca1b4a7aea7ab86a1aba7afaae8a5a9ab">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>

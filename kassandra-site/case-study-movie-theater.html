@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Kasanova Theater App — Google UX Certificate Project by Kassandra Rodriguez." />
+<title>Kasanova Theater App — Kassandra Rodriguez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  /* ── Original palette ── */
+  --bg:           #f7f4ef;   /* cream — 16.3:1 vs ink  */
+  --bg-mid:       #ede9e2;   /* mid cream — 14.8:1 vs ink */
+  --paper:        #ffffff;   /* white — 17.8:1 vs ink */
+  --ink:          #1a1714;   /* near-black */
+  --ink-soft:     #4a4540;   /* 8.6:1 on cream */
+  --ink-faint:    #7a736b;   /* 4.3:1 on cream — large text/decorative only */
+  --accent:       #b84a2e;   /* rust — 4.7:1 on cream, 5.2:1 on white */
+  --accent-dark:  #8f3621;   /* rust dark — 7.7:1 on white */
+  --accent-light: #fdf3dc;   /* pale amber tint */
+  --border:       #d8d2c9;
+  --amber:        #7a5c1e;   /* 5.6:1 on amber-light */
+  --amber-light:  #fdf3dc;
+  --teal:         #1d6b68;   /* 5.7:1 on cream, 6.3:1 on white */
+  --teal-light:   #e6f2f1;
+  --focus-ring:   #1d6b68;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+  --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo:cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION BACKGROUND ALTERNATION
+   hero    → --bg    (cream)
+   marquee → --ink   (dark)
+   approach→ --paper (white)
+   work    → --bg    (cream)
+   process → --ink   (dark)
+   skills  → --paper (white)
+   about   → --bg    (cream)
+   contact → --ink   (dark)
+   footer  → --ink   (dark)
+════════════════════════════════════════════════════ */
+#hero        { background: var(--bg); }
+.marquee-strip { background: var(--ink); }
+#approach    { background: var(--paper); }
+#work        { background: var(--bg); }
+#process     { background: var(--ink); }
+#skills      { background: var(--paper); }
+#about       { background: var(--bg); }
+#contact     { background: var(--ink); }
+#earlier-work { background: var(--bg-mid); }
+footer       { background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  gap: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+:focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;border-radius:2px;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+.skip-link{position:fixed;top:-100%;left:1rem;z-index:9999;background:var(--ink);color:var(--bg);padding:.75rem 1.25rem;font-size:.875rem;font-weight:500;border-radius:0 0 6px 6px;transition:top .2s;}
+.skip-link:focus{top:0;}
+
+nav#nav {position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:var(--bg);border-bottom:1px solid transparent;transition:border-color .3s,background .3s;}
+nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdrop-filter:blur(8px);}
+.nav-logo{font-family:var(--font-mono);font-size:.8125rem;font-weight:500;letter-spacing:.06em;color:var(--ink);text-transform:uppercase;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);position:relative;transition:color .2s;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--accent);transition:width .3s var(--ease);}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a:hover::after{width:100%;}
+.nav-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);transition:color .2s;}
+.nav-back:hover{color:var(--ink);}
+.nav-back svg{transition:transform .2s var(--ease);}
+.nav-back:hover svg{transform:translateX(-3px);}
+
+/* HERO */
+.cs-hero{padding:9rem 3rem 5rem;background:var(--paper);border-bottom:1px solid var(--border);}
+.cs-hero-inner{max-width:860px;margin:0 auto;}
+.cs-breadcrumb{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1.75rem;display:flex;align-items:center;gap:.625rem;}
+.cs-breadcrumb span{color:var(--accent);}
+.cs-hero h1{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.25rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink);max-width:24ch;}
+.cs-hero h1 em{font-style:italic;color:var(--accent);}
+.cs-hero-sub{margin-top:1.25rem;font-size:1.0625rem;color:var(--ink-soft);line-height:1.7;max-width:56ch;}
+.cs-tags{margin-top:1.75rem;display:flex;gap:.5rem;flex-wrap:wrap;}
+.cs-tag{background:var(--bg);border:1px solid var(--border);padding:.3rem .75rem;font-size:.75rem;font-weight:500;letter-spacing:.03em;color:var(--ink-soft);border-radius:2px;}
+.cs-tag.amber{background:var(--amber-light);border-color:rgba(122,92,30,.3);color:var(--amber);}
+.cs-tag.teal{background:var(--accent-light);border-color:rgba(29,107,104,.3);color:var(--accent);}
+.cs-hero-meta{margin-top:2.5rem;display:flex;gap:3rem;flex-wrap:wrap;padding-top:2.5rem;border-top:1px solid var(--border);}
+.meta-label{font-family:var(--font-mono);font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.375rem;}
+.meta-value{font-size:.9375rem;font-weight:500;color:var(--ink);}
+
+/* LEARNING BADGE */
+.learning-banner{background:var(--amber-light);border:1px solid rgba(122,92,30,.25);border-left:3px solid var(--amber);padding:1rem 1.5rem;margin:2.5rem auto 0;max-width:860px;display:flex;gap:1rem;align-items:flex-start;border-radius:0 2px 2px 0;}
+.learning-banner svg{flex-shrink:0;margin-top:2px;color:var(--amber);}
+.learning-banner p{font-size:.875rem;color:var(--ink-soft);line-height:1.6;}
+.learning-banner strong{color:var(--amber);}
+
+/* LAYOUT */
+.cs-body{max-width:1100px;margin:0 auto;padding:5rem 3rem;display:grid;grid-template-columns:1fr 280px;gap:5rem;align-items:start;}
+.cs-content{min-width:0;}
+.cs-sidebar{position:sticky;top:7rem;}
+
+/* SIDEBAR */
+.sidebar-card{background:var(--paper);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem;}
+.sidebar-card h3{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;}
+.sidebar-list{list-style:none;display:flex;flex-direction:column;gap:.625rem;}
+.sidebar-list li{font-size:.875rem;color:var(--ink-soft);padding-left:1rem;position:relative;line-height:1.5;}
+.sidebar-list li::before{content:'';position:absolute;left:0;top:.55em;width:4px;height:4px;border-radius:50%;background:var(--accent);}
+.sidebar-toc{list-style:none;display:flex;flex-direction:column;}
+.sidebar-toc li a{display:block;font-size:.8125rem;color:var(--ink-soft);padding:.5rem 0;border-bottom:1px solid var(--border);transition:color .2s,padding-left .2s;}
+.sidebar-toc li:last-child a{border-bottom:none;}
+.sidebar-toc li a:hover{color:var(--accent);padding-left:4px;}
+
+/* CONTENT */
+.cs-section{margin-bottom:4.5rem;}
+.cs-section:last-child{margin-bottom:0;}
+.section-eyebrow{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;}
+.section-eyebrow::after{content:'';flex:1;max-width:2.5rem;height:1px;background:var(--accent);}
+.cs-section h2{font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,2rem);line-height:1.15;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.5rem;}
+.cs-section h2 em{font-style:italic;color:var(--accent);}
+.cs-section h3{font-family:var(--font-display);font-size:1.1875rem;color:var(--ink);margin:2.5rem 0 .875rem;}
+.cs-section p{font-size:1rem;color:var(--ink-soft);line-height:1.8;margin-bottom:1.25rem;}
+.cs-section p:last-child{margin-bottom:0;}
+
+.callout{background:var(--accent-light);border:1px solid rgba(29,107,104,.2);border-left:3px solid var(--accent);padding:1.25rem 1.5rem;margin:2rem 0;border-radius:0 2px 2px 0;}
+.callout p{font-size:.9375rem;color:var(--accent);line-height:1.65;margin:0;font-weight:500;}
+
+.pull-quote{border-left:3px solid var(--accent);padding:1.5rem 2rem;margin:2.5rem 0;background:var(--paper);}
+.pull-quote p{font-family:var(--font-display);font-size:1.1875rem;font-style:italic;color:var(--ink);line-height:1.5;margin:0;}
+.pull-quote cite{display:block;margin-top:.75rem;font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-style:normal;}
+
+/* PAIN POINT CARDS */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0;}
+.pain-card{background:var(--paper);border:1px solid var(--border);padding:1.5rem;border-radius:2px;transition:transform .25s var(--ease),box-shadow .25s;}
+.pain-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,23,20,.07);}
+.pain-num{font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+.pain-card h4{font-family:var(--font-display);font-size:1rem;color:var(--ink);margin-bottom:.5rem;}
+.pain-card p{font-size:.8125rem;color:var(--ink-soft);line-height:1.6;margin:0;}
+
+/* PERSONAS */
+.persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;}
+.persona-card{background:var(--paper);border:1px solid var(--border);padding:2rem;border-radius:2px;}
+.persona-name{font-family:var(--font-display);font-size:1.25rem;color:var(--ink);margin-bottom:.25rem;}
+.persona-role{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;}
+.persona-section-label{font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin:.875rem 0 .375rem;}
+.persona-list{list-style:none;display:flex;flex-direction:column;gap:.375rem;}
+.persona-list li{font-size:.8125rem;color:var(--ink-soft);padding-left:1rem;position:relative;line-height:1.5;}
+.persona-list li::before{content:'';position:absolute;left:0;top:.55em;width:4px;height:4px;border-radius:50%;background:var(--border);}
+
+/* IMAGES */
+.img-full{margin:2rem 0;border:1px solid var(--border);border-radius:2px;overflow:hidden;}
+.img-full img{width:100%;height:auto;display:block;}
+.img-caption{font-size:.8125rem;color:var(--ink-faint);text-align:center;margin-top:.75rem;font-style:italic;}
+
+.img-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;}
+.img-row .img-full{margin:0;}
+
+/* FINDING CARDS */
+.finding-cards{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0;border-radius:2px;overflow:hidden;}
+.finding-card{background:var(--paper);padding:1.5rem 2rem;display:grid;grid-template-columns:3.5rem 1fr;gap:1.25rem;align-items:start;transition:background .2s;}
+.finding-card:hover{background:var(--bg);}
+.finding-num{font-family:var(--font-display);font-size:2rem;color:var(--bg-mid);line-height:1;user-select:none;}
+.finding-card h4{font-weight:500;font-size:.9375rem;color:var(--ink);margin-bottom:.375rem;}
+.finding-card p{font-size:.875rem;color:var(--ink-soft);line-height:1.65;margin:0;}
+
+/* OUTCOMES */
+.outcomes-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0;border-radius:2px;overflow:hidden;}
+.outcome-cell{background:var(--paper);padding:2rem 1.5rem;text-align:center;}
+.outcome-icon{width:2.5rem;height:2.5rem;background:var(--accent-light);border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:var(--accent);}
+.outcome-cell h4{font-family:var(--font-display);font-size:1.0625rem;color:var(--ink);margin-bottom:.375rem;}
+.outcome-cell p{font-size:.8125rem;color:var(--ink-soft);line-height:1.5;margin:0;}
+
+/* LEARNINGS */
+.learnings-list{display:flex;flex-direction:column;gap:1rem;margin:2rem 0;}
+.learning-item{display:grid;grid-template-columns:3rem 1fr;gap:1.25rem;align-items:start;}
+.learning-num{width:3rem;height:3rem;border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.75rem;color:var(--ink-faint);flex-shrink:0;}
+.learning-text h4{font-weight:500;font-size:.9375rem;color:var(--ink);margin-bottom:.375rem;}
+.learning-text p{font-size:.875rem;color:var(--ink-soft);line-height:1.65;margin:0;}
+
+/* LINKS ROW */
+.project-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;}
+.btn-link{display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:var(--bg);padding:.75rem 1.5rem;font-size:.875rem;font-weight:500;border:2px solid var(--ink);border-radius:2px;transition:background .2s,transform .2s;}
+.btn-link:hover{background:var(--accent-dark);border-color:var(--accent-dark);transform:translateY(-1px);}
+.btn-link.ghost{background:transparent;color:var(--ink);border-color:var(--border);}
+.btn-link.ghost:hover{border-color:var(--ink);transform:translateY(-1px);}
+
+/* NEXT */
+.cs-next{background:var(--ink);padding:5rem 3rem;}
+.cs-next-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.cs-next-label{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,244,239,0.65);margin-bottom:.75rem;}
+.cs-next h3{font-family:var(--font-display);font-size:1.625rem;color:var(--bg);}
+.btn-next{display:inline-flex;align-items:center;gap:.75rem;background:var(--accent);color:white;padding:1rem 1.75rem;font-size:.9375rem;font-weight:500;border:2px solid var(--accent);border-radius:2px;white-space:nowrap;transition:background .2s,transform .2s;}
+.btn-next:hover{background:var(--accent-dark);border-color:var(--accent-dark);transform:translateY(-2px);}
+
+footer{}
+footer .footer-name{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,244,239,0.65);}
+footer .footer-links{display:flex;gap:2rem;list-style:none;}
+footer .footer-links a{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,244,239,0.65);transition:color .2s;}
+footer .footer-links a:hover{color:var(--bg);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+@media(max-width:900px){
+  nav{padding:1.25rem 1.5rem;}
+  .cs-hero{padding:8rem 1.5rem 4rem;}
+  .cs-body{grid-template-columns:1fr;gap:3rem;padding:3rem 1.5rem;}
+  .cs-sidebar{position:static;}
+  .pain-grid,.persona-grid,.img-row,.outcomes-row{grid-template-columns:1fr;}
+  .finding-card{grid-template-columns:1fr;gap:.5rem;}
+  .cs-next{padding:3rem 1.5rem;}
+  footer{padding:2rem 1.5rem;}
+}
+
+
+
+
+
+
+
+@media (max-width: 640px) {
+  footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; gap: 1rem; }
+  footer .footer-links { flex-wrap: wrap; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Kassandra Rodriguez — home">KR</a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="about.html">>About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+<header class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-breadcrumb">
+      <a href="index.html#work" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+      <span aria-hidden="true">/</span>
+      <span>Learning Project</span>
+    </p>
+    <h1>Kasanova Theater — <em>Mobile Ticketing App</em></h1>
+    <p class="cs-hero-sub">An end-to-end iOS app design for a local cinema — built to make digital ticketing accessible, fast, and screen-reader friendly. Completed as part of the Google UX Design Professional Certificate.</p>
+    <div class="cs-tags" aria-label="Project disciplines">
+      <span class="cs-tag amber">Google UX Certificate</span>
+      <span class="cs-tag amber">Learning Project</span>
+      <span class="cs-tag">iOS Mobile</span>
+      <span class="cs-tag">Accessibility</span>
+      <span class="cs-tag">WCAG 2.1</span>
+      <span class="cs-tag">Figma</span>
+      <span class="cs-tag">Usability Testing</span>
+    </div>
+    <div class="cs-hero-meta" role="list">
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Context</div>
+        <div class="meta-value">Google UX Design Certificate</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Sole Designer &amp; Researcher</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">2 Months</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">iOS Mobile</div>
+      </div>
+    </div>
+  </div>
+  <div class="learning-banner" role="note">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2l1.8 5.4H17l-5 3.6 1.9 5.8L9 13.4l-4.9 3.4 1.9-5.8-5-3.6h6.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <p><strong>Learning Project:</strong> Completed as part of the Google UX Design Professional Certificate. This project represents foundational UX methodology — research, synthesis, prototyping, and testing — applied to a hypothetical brief. It's included here to show where the craft started.</p>
+  </div>
+</header>
+
+<div class="cs-body">
+<article class="cs-content">
+
+  <section class="cs-section reveal" id="overview">
+    <p class="section-eyebrow">The Brief</p>
+    <h2>A local theater with a <em>paper ticket problem</em> — and a bigger accessibility one.</h2>
+    <p>Kasanova Theater, a hypothetical local cinema in the tri-state area, had two problems worth solving. The first was operational: they still required printed tickets, which frustrated digitally-native moviegoers and created friction at the door. The second was deeper: their existing site was incompatible with screen readers, locking out an entire segment of users — including those with visual impairments — from booking independently.</p>
+    <p>The goal was to design a mobile app that solved both: a fast, accessible, digital-first ticketing experience that felt native to how people actually plan spontaneous entertainment on their phones.</p>
+    <div class="callout" role="note">
+      <p>Accessibility wasn't a checkbox on this project — it was built into the brief from day one. Designing for a screen-reader-friendly experience early shaped every layout and navigation decision that followed.</p>
+    </div>
+  </section>
+
+  <section class="cs-section reveal" id="research">
+    <p class="section-eyebrow">Research</p>
+    <h2>What frequent moviegoers actually <em>need from their phones.</em></h2>
+    <p>User interviews and affinity mapping surfaced a primary user group: frequent moviegoers who plan ahead and want the entire purchase flow to happen on mobile without interruption. But research also revealed something the initial brief hadn't foregrounded — last-minute plans are common, and the cognitive cost of switching from a phone to a desktop just to buy tickets was genuinely deterring attendance.</p>
+
+    <div class="img-full">
+      <img
+        src="https://static.wixstatic.com/media/93bbf5_2ff308e39f3f4e6283eb97dd9d7cdc04~mv2.png/v1/fill/w_716,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Affinity%20Mapping.png"
+        alt="Affinity mapping exercise showing clustered user research insights organized into themes around accessibility, checkout speed, digital tickets, and mobile usability"
+        loading="lazy"
+      />
+    </div>
+    <p class="img-caption">Affinity mapping — research insights organized into themes to identify design priorities</p>
+
+    <h3>User Pain Points</h3>
+    <div class="pain-grid" role="list">
+      <div class="pain-card" role="listitem">
+        <p class="pain-num">Pain Point 01</p>
+        <h4>No Mobile Ticketing</h4>
+        <p>Users wanted to buy and store tickets entirely on their phone — no printing, no desktop required. The existing paper ticket system felt anachronistic and wasteful.</p>
+      </div>
+      <div class="pain-card" role="listitem">
+        <p class="pain-num">Pain Point 02</p>
+        <h4>Screen Reader Inaccessibility</h4>
+        <p>The existing site was incompatible with assistive technology, making it functionally unusable for vision-impaired users. This wasn't a minor usability issue — it was a complete access barrier.</p>
+      </div>
+      <div class="pain-card" role="listitem">
+        <p class="pain-num">Pain Point 03</p>
+        <h4>Slow, Stateless Checkout</h4>
+        <p>Frequent buyers had to re-enter payment and personal information on every purchase. No saved state, no remembered preferences — a friction point that worsened with group bookings.</p>
+      </div>
+      <div class="pain-card" role="listitem">
+        <p class="pain-num">Pain Point 04</p>
+        <h4>Mobile Site Instability</h4>
+        <p>The mobile site lagged and occasionally crashed mid-checkout — forcing users to restart the entire purchase flow. On opening weekends, this was enough to abandon the attempt entirely.</p>
+      </div>
+    </div>
+
+    <h3>Competitive Audit</h3>
+    <p>Four direct and indirect competitors were audited through the lens of mobile ticket purchasing — evaluating checkout flow, accessibility support, digital ticket storage, and information density. The goal was to identify what the market had already solved and where a deliberate design could improve on existing patterns.</p>
+
+    <div class="img-full">
+      <img src="https://static.wixstatic.com/media/93bbf5_d4403a316b3544ab898b2c0b8c912ce9~mv2.png/v1/fill/w_970,h_277,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Competitive%20Audit%201.png" alt="Competitive audit matrix comparing four ticketing apps across mobile experience, accessibility, checkout speed, and digital ticket support" loading="lazy"/>
+    </div>
+    <div class="img-full">
+      <img src="https://static.wixstatic.com/media/93bbf5_48acb9b8b8c54405aeea76a36ad3d5b2~mv2.png/v1/fill/w_600,h_294,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Competitive%20Audit%202.png" alt="Second row of competitive audit data" loading="lazy"/>
+    </div>
+    <div class="img-full">
+      <img src="https://static.wixstatic.com/media/93bbf5_9edd4dc480ac4776866c6c41c6a19ac6~mv2.png/v1/fill/w_970,h_264,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Competitive%20Audit%203.png" alt="Third row of competitive audit data" loading="lazy"/>
+    </div>
+    <div class="img-full">
+      <img src="https://static.wixstatic.com/media/93bbf5_b36b5487a9014e40ae6d337a1d678495~mv2.png/v1/fill/w_800,h_266,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Competitive%20Audit%204.png" alt="Fourth row of competitive audit data" loading="lazy"/>
+    </div>
+    <p class="img-caption">Competitive audit across four ticketing apps — identifying gaps and best practices to inform design decisions</p>
+  </section>
+
+  <section class="cs-section reveal" id="define">
+    <p class="section-eyebrow">Define &amp; Ideate</p>
+    <h2>Two users. Very different needs. <em>One design serving both.</em></h2>
+    <p>Research crystallized around two distinct user archetypes whose needs, while different in origin, pointed to the same design solutions: fast checkout, digital tickets, and a screen that works with assistive technology.</p>
+
+    <div class="persona-grid" role="list">
+      <div class="persona-card" role="listitem">
+        <p class="persona-name">Vanessa T.</p>
+        <p class="persona-role">Pediatrician · Visual Impairment · Screen Reader User</p>
+        <p class="persona-section-label">Frustrations</p>
+        <ul class="persona-list">
+          <li>Site incompatible with screen reader — can only book on desktop</li>
+          <li>Limited time off makes every friction point feel costly</li>
+          <li>Misses opening weekends because mobile booking is unusable</li>
+        </ul>
+        <p class="persona-section-label">Goals</p>
+        <ul class="persona-list">
+          <li>Book tickets independently on mobile with screen reader</li>
+          <li>Fast, uninterrupted checkout that doesn't crash or reset</li>
+          <li>Experience opening weekends like everyone else</li>
+        </ul>
+      </div>
+      <div class="persona-card" role="listitem">
+        <p class="persona-name">Oliver S.</p>
+        <p class="persona-role">Accountant · Frequent Moviegoer · Group Ticket Buyer</p>
+        <p class="persona-section-label">Frustrations</p>
+        <ul class="persona-list">
+          <li>Required to print tickets — wasteful and unnecessary</li>
+          <li>Re-entering payment info on every purchase</li>
+          <li>Ordering for groups of 7+ is slow and error-prone</li>
+        </ul>
+        <p class="persona-section-label">Goals</p>
+        <ul class="persona-list">
+          <li>Digital ticket scanning — no printing, no paper</li>
+          <li>Saved account info for repeat purchases</li>
+          <li>Self-serve kiosk check-in to skip staff interaction</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="img-row">
+      <div class="img-full">
+        <img src="https://static.wixstatic.com/media/93bbf5_68d0b358428e486f9db87a284bdc7173~mv2.png/v1/fill/w_475,h_267,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Vanessa%20User%20Journey%20Map.png" alt="User journey map for Vanessa showing her experience booking tickets with a screen reader, highlighting frustration points and opportunities" loading="lazy"/>
+      </div>
+      <div class="img-full">
+        <img src="https://static.wixstatic.com/media/93bbf5_96f298c037ee4d4cb495fa864cd18855~mv2.png/v1/fill/w_475,h_267,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Oliver%20User%20Journey%20Map.png" alt="User journey map for Oliver showing his group ticket booking experience and the friction points around printing and repeated data entry" loading="lazy"/>
+      </div>
+    </div>
+    <p class="img-caption">Journey maps for Vanessa and Oliver — surfacing the moments where the current experience loses each user</p>
+  </section>
+
+  <section class="cs-section reveal" id="sketch">
+    <p class="section-eyebrow">Sketching &amp; Wireframing</p>
+    <h2>From paper sketches to <em>digital structure.</em></h2>
+    <p>Early sketches explored the home screen's core hierarchy — movie posters, showtimes, and a bottom navigation bar — keeping the interface sparse enough for screen reader compatibility. Storyboarding helped map the full ticket purchase flow in context, not just screen by screen.</p>
+
+    <div class="img-row">
+      <div class="img-full">
+        <img src="https://static.wixstatic.com/media/93bbf5_c666ce08d7154980b3de26f9280cbd05~mv2.png/v1/fill/w_475,h_267,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Storyboard%20Close%20Up.png" alt="Close-up storyboard showing the step-by-step ticket purchase flow from browsing to digital ticket confirmation" loading="lazy"/>
+      </div>
+      <div class="img-full">
+        <img src="https://static.wixstatic.com/media/93bbf5_36e8687b37ae4cdcadbced17b1147439~mv2.png/v1/fill/w_475,h_267,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Storyboard%20Big%20Picture.png" alt="Big picture storyboard showing the broader context of a user's evening — planning, purchasing, and attending the movie" loading="lazy"/>
+      </div>
+    </div>
+    <p class="img-caption">Storyboards — close-up flow and big-picture context to keep the design grounded in real use scenarios</p>
+
+    <div class="img-full">
+      <img src="https://static.wixstatic.com/media/93bbf5_d73641ebd2b2406a9c9668733276b207~mv2.png/v1/fill/w_675,h_244,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Low-Fi%201.png" alt="Low-fidelity wireframes showing the home screen, movie detail, seat selection, and checkout screens with basic layout structure" loading="lazy"/>
+    </div>
+    <p class="img-caption">Low-fidelity wireframes — establishing layout structure before visual design</p>
+  </section>
+
+  <section class="cs-section reveal" id="testing">
+    <p class="section-eyebrow">Testing &amp; Iterating</p>
+    <h2>A usability study that confirmed simplicity — <em>and revealed one blind spot.</em></h2>
+    <p>A usability study on the low-fidelity prototype produced clear, actionable findings. Users responded positively to the app's focused, low-cognitive-load structure — but two friction points emerged that shaped the high-fidelity iteration significantly.</p>
+
+    <div class="finding-cards" role="list">
+      <div class="finding-card" role="listitem">
+        <div class="finding-num" aria-hidden="true">01</div>
+        <div>
+          <h4>Preserve the simplicity — it's a feature</h4>
+          <p>Users consistently noted the app's clean, low-distraction interface. The instinct to add more was actively resisted — simplicity wasn't a design gap, it was the design working as intended.</p>
+        </div>
+      </div>
+      <div class="finding-card" role="listitem">
+        <div class="finding-num" aria-hidden="true">02</div>
+        <div>
+          <h4>Seat selection needed clearer affordance</h4>
+          <p>The seat picker screen lacked obvious instruction — users understood the concept but hesitated before interacting. Instructions and visual state changes were made more explicit in the next iteration.</p>
+        </div>
+      </div>
+      <div class="finding-card" role="listitem">
+        <div class="finding-num" aria-hidden="true">03</div>
+        <div>
+          <h4>Home and back navigation weren't obvious enough</h4>
+          <p>Bottom navigation and back buttons lacked sufficient visual weight. Increased icon clarity and tap target size resolved the issue — a direct application of WCAG 2.5.5 target size guidance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal" id="result">
+    <p class="section-eyebrow">End Result</p>
+    <h2>Low-fi to hi-fi — and a <em>style system to hold it together.</em></h2>
+
+    <div class="img-row">
+      <div class="img-full">
+        <img src="https://static.wixstatic.com/media/93bbf5_70efd3d598ec4ccdaff2acb45721fd4d~mv2.png/v1/crop/x_171,y_0,w_1707,h_1342/fill/w_451,h_355,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Low-Fi%202.png" alt="Refined low-fidelity wireframes showing improved seat selection, clearer navigation, and updated home screen layout" loading="lazy"/>
+      </div>
+      <div class="img-full">
+        <img src="https://static.wixstatic.com/media/93bbf5_ad3f7dff9dff4402b9ec85b48c5eb477~mv2.png/v1/fill/w_512,h_355,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screen%20Shot%202022-09-15%20at%2012_08_25%20PM.png" alt="High-fidelity prototype screens showing the final polished app design with color, typography, and visual hierarchy applied" loading="lazy"/>
+      </div>
+    </div>
+    <p class="img-caption">Low-fidelity (post-iteration) and high-fidelity prototype — the same core structure, elevated with visual design</p>
+
+    <div class="img-full">
+      <img src="https://static.wixstatic.com/media/93bbf5_5ec4494d4e5644fdad9082ce79bbce0f~mv2.png/v1/fill/w_950,h_695,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Sticker%20Sheet.png" alt="Design style sheet showing color palette, typography scale, button states, and component library for the Kasanova Theater app" loading="lazy"/>
+    </div>
+    <p class="img-caption">Style sheet — color, typography, and components documented for visual consistency across the prototype</p>
+
+    <h3>Accessibility Decisions</h3>
+    <div class="outcomes-row" role="list">
+      <div class="outcome-cell" role="listitem">
+        <div class="outcome-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 15c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Screen Reader Compatible</h4>
+        <p>Semantic structure and alt text applied throughout — designed from the start to work with iOS VoiceOver, not retrofitted after.</p>
+      </div>
+      <div class="outcome-cell" role="listitem">
+        <div class="outcome-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>WCAG Color Contrast</h4>
+        <p>All text and interactive element color pairs pass WCAG 2.1 AA contrast requirements — validated against the full style sheet.</p>
+      </div>
+      <div class="outcome-cell" role="listitem">
+        <div class="outcome-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="3" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 9h6M9 6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Icon-Supported Navigation</h4>
+        <p>Icons paired with labels throughout — reducing reliance on text-only affordances and supporting users across language and literacy levels.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"The app made it so easy to order multiple tickets and the process was so fast, I didn't have to think about rushing to the theater!"</p>
+      <cite>— Peer feedback, usability study</cite>
+    </div>
+
+    <div class="project-links">
+      <a href="https://www.figma.com/proto/znvfw9lS5IQhJjLtXU4oZf/Google-UX?page-id=0%3A1&node-id=45%3A1057&viewport=468%2C157%2C0.1&scaling=scale-down&starting-point-node-id=45%3A1057" target="_blank" rel="noopener noreferrer" class="btn-link" aria-label="View interactive Figma prototype (opens in new tab)">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        View Prototype
+      </a>
+      <a href="https://www.kassandrarodriguez.com/_files/ugd/93bbf5_56d19313c8d64adbbb40604078a8d7ad.pdf" target="_blank" rel="noopener noreferrer" class="btn-link ghost" aria-label="Download project deck PDF (opens in new tab)">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2h6l4 4v6a1 1 0 01-1 1H3a1 1 0 01-1-1V2z" stroke="currentColor" stroke-width="1.25"/><path d="M8 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+        Project Deck
+      </a>
+    </div>
+  </section>
+
+  <section class="cs-section reveal" id="learnings">
+    <p class="section-eyebrow">What I Learned</p>
+    <h2>The foundational lessons that <em>still shape how I work.</em></h2>
+
+    <div class="learnings-list" role="list">
+      <div class="learning-item" role="listitem">
+        <div class="learning-num" aria-hidden="true">01</div>
+        <div class="learning-text">
+          <h4>Apps are not websites — scope is a feature</h4>
+          <p>Designing a focused mobile app forced a discipline I've carried into every project since: a product with a clear, singular purpose produces a better user experience than one that tries to do everything. Constraints are clarifying.</p>
+        </div>
+      </div>
+      <div class="learning-item" role="listitem">
+        <div class="learning-num" aria-hidden="true">02</div>
+        <div class="learning-text">
+          <h4>Accessibility designed in is better than accessibility bolted on</h4>
+          <p>Building for VoiceOver compatibility from the first wireframe meant the accessibility decisions shaped the layout — not the other way around. This project made accessibility feel like design thinking, not compliance work.</p>
+        </div>
+      </div>
+      <div class="learning-item" role="listitem">
+        <div class="learning-num" aria-hidden="true">03</div>
+        <div class="learning-text">
+          <h4>Usability testing changes what you think you know</h4>
+          <p>I didn't expect the seat picker to be the primary friction point — I thought navigation would be. Testing surfaced the real issue. That lesson in staying curious rather than attached to assumptions has been foundational.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<aside class="cs-sidebar" aria-label="Case study navigation">
+  <div class="sidebar-card">
+    <h3>Contents</h3>
+    <ul class="sidebar-toc" role="list">
+      <li><a href="#overview">The Brief</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#define">Define &amp; Ideate</a></li>
+      <li><a href="#sketch">Wireframing</a></li>
+      <li><a href="#testing">Testing</a></li>
+      <li><a href="#result">End Result</a></li>
+      <li><a href="#learnings">What I Learned</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h3>Methods</h3>
+    <ul class="sidebar-list" role="list">
+      <li>User Interviews</li>
+      <li>Affinity Mapping</li>
+      <li>Competitive Audit</li>
+      <li>Personas &amp; Journey Maps</li>
+      <li>Storyboarding</li>
+      <li>Lo-Fi Wireframing</li>
+      <li>Usability Testing</li>
+      <li>Hi-Fi Prototyping</li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h3>Accessibility</h3>
+    <ul class="sidebar-list" role="list">
+      <li>Screen reader compatible</li>
+      <li>WCAG 2.1 AA contrast</li>
+      <li>Icon + label navigation</li>
+      <li>44px min touch targets</li>
+    </ul>
+  </div>
+</aside>
+</div>
+
+<nav class="cs-next" aria-label="Next case study">
+  <div class="cs-next-inner">
+    <div>
+      <p class="cs-next-label">Next Learning Project</p>
+      <h3>Unified Online Learning Platform</h3>
+    </div>
+    <a href="case-study-learning-platform.html" class="btn-next" aria-label="View next project: Online Learning Platform">
+      View Case Study
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</nav>
+
+</main>
+
+<footer>
+  <span class="footer-name">©2025 Kassandra Rodriguez</span>
+  <ul class="footer-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">>About</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#39524b565d4b505e4c5c435e4b58515854795e54585055175a5654">Email</a></li>
+    <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

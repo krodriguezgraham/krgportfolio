@@ -629,7 +629,7 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
 .process-intro  {
   margin-top: 1.25rem;
   font-size: 1rem;
-  color: rgba(13,43,53,0.65);
+  color: rgba(247,244,239,0.82);
   max-width: 48ch;
   line-height: 1.7;
 }
@@ -646,7 +646,7 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
   left: 1.5rem;
   right: 1.5rem;
   height: 1px;
-  background: rgba(13,43,53,0.15);
+  background: rgba(247,244,239,0.15);
 }
 .process-step  {
   padding: 0 1.25rem;
@@ -655,14 +655,14 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
 .step-num  {
   width: 3rem;
   height: 3rem;
-  border: 1px solid rgba(13,43,53,0.25);
+  border: 1px solid rgba(247,244,239,0.25);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: rgba(13,43,53,0.5);
+  color: rgba(247,244,239,0.75);
   margin-bottom: 1.75rem;
   background: var(--ink);
   position: relative;
@@ -682,7 +682,7 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
 }
 .process-step p  {
   font-size: 0.8125rem;
-  color: rgba(13,43,53,0.55);
+  color: rgba(247,244,239,0.72);
   line-height: 1.65;
 }
 .step-tag  {
@@ -775,7 +775,11 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
    ABOUT
 ═══════════════════════════════════════════ */
 #about {
-  }
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 5rem;
+  align-items: start;
+}
 .about-visual  {
   position: relative;
 }
@@ -881,7 +885,7 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
 #contact p  {
   color: rgba(247,244,239,0.82);
   font-size: 1rem;
-  max-width: 48ch;
+  max-width: 38ch;
   margin: 0 auto 2.75rem;
   line-height: 1.65;
 }
@@ -933,13 +937,18 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
    FOOTER
 ═══════════════════════════════════════════ */
 footer{
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  gap: 2rem;
+}
 footer .footer-name  {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(13,43,53,0.4);
+  color: rgba(247,244,239,0.65);
 }
 footer .footer-links  {
   display: flex;
@@ -950,7 +959,7 @@ footer .footer-links a  {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(13,43,53,0.4);
+  color: rgba(247,244,239,0.65);
   transition: color 0.2s;
 }
 footer .footer-links a:hover { color: var(--bg); }
@@ -1183,7 +1192,6 @@ footer .footer-links a:hover { color: var(--bg); }
       <p class="section-label reveal">Selected Work</p>
       <h2 class="section-title reveal reveal-delay-1" id="work-title">Case studies that <em>moved</em> the needle</h2>
     </div>
-    <a href="#contact" class="btn-secondary reveal reveal-delay-2" style="align-self:flex-end">View All Projects</a>
   </div>
 
   <div class="work-grid" role="list">
@@ -1213,44 +1221,6 @@ footer .footer-links a:hover { color: var(--bg); }
           <span class="chip">RTL Layouts</span>
           <span class="chip">i18n</span>
           <span class="chip">Accessibility</span>
-        </div>
-        <div class="case-card__arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </a>
-    </div>
-    <div class="work-row-2" role="listitem">
-      <a href="case-study-rtl.html" class="case-card reveal" aria-label="Case study: Non-Profit Website Redesign">
-        <p class="case-card__tag">Web · Visual Design</p>
-        <h3>Non-Profit Website Redesign</h3>
-        <p>Community-centered redesign of a non-profit digital presence — prioritizing accessibility and content clarity for a diverse audience.</p>
-        <div class="case-card__meta">
-          <span class="chip">WCAG 2.1</span>
-          <span class="chip">Content Strategy</span>
-        </div>
-        <div class="case-card__arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </a>
-      <a href="index.html#work" class="case-card reveal reveal-delay-1" aria-label="Case study: Local Non-Profit Website Redesign">
-        <p class="case-card__tag">Web · Visual Design</p>
-        <h3>Local Non-Profit Website Redesign</h3>
-        <p>Community-centered redesign of a non-profit's digital presence — prioritizing accessibility and content clarity for a diverse audience.</p>
-        <div class="case-card__meta">
-          <span class="chip">WCAG 2.1</span>
-          <span class="chip">Content Strategy</span>
-        </div>
-        <div class="case-card__arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </a>
-      <a href="index.html#work" class="case-card reveal reveal-delay-2" aria-label="Case study: Community Action Non-Profit Redesign">
-        <p class="case-card__tag">Web · Visual Design</p>
-        <h3>Community Action Non-Profit Redesign</h3>
-        <p>Accessible, community-centered redesign of a local non-profit site — content clarity for a diverse audience across ages and literacy levels.</p>
-        <div class="case-card__meta">
-          <span class="chip">Accessibility</span>
-          <span class="chip">Web Design</span>
         </div>
         <div class="case-card__arrow" aria-hidden="true">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1310,38 +1280,35 @@ footer .footer-links a:hover { color: var(--bg); }
     <div class="tool-grid" role="list" aria-label="Design and collaboration tools">
       <span class="tool-chip" role="listitem">Figma</span>
       <span class="tool-chip" role="listitem">Figjam</span>
-      <span class="tool-chip" role="listitem">Maze</span>
       <span class="tool-chip" role="listitem">UserTesting</span>
-      <span class="tool-chip" role="listitem">Jira</span>
-      <span class="tool-chip" role="listitem">Confluence</span>
       <span class="tool-chip" role="listitem">Miro</span>
-      <span class="tool-chip" role="listitem">Zeroheight</span>
-      <span class="tool-chip" role="listitem">Storybook</span>
       <span class="tool-chip" role="listitem">Axure</span>
-      <span class="tool-chip" role="listitem">Adobe CC</span>
+      <span class="tool-chip" role="listitem">Adobe Creative Suite</span>
+      <span class="tool-chip" role="listitem">Claude</span>
+      <span class="tool-chip" role="listitem">Balsamiq</span>
     </div>
   </div>
 
   <div class="skills-right reveal reveal-delay-1" role="list" aria-label="Core skill proficiencies">
     <div class="skill-row" role="listitem">
       <span class="skill-name">UX Research</span>
-      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.95" data-width="0.95"></div></div>
-      <span class="skill-level" aria-label="Expert">Expert</span>
+      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.82" data-width="0.82"></div></div>
+      <span class="skill-level" aria-label="Advanced">Advanced</span>
     </div>
     <div class="skill-row" role="listitem">
       <span class="skill-name">Interaction Design</span>
-      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.92" data-width="0.92"></div></div>
-      <span class="skill-level" aria-label="Expert">Expert</span>
+      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.82" data-width="0.82"></div></div>
+      <span class="skill-level" aria-label="Advanced">Advanced</span>
     </div>
     <div class="skill-row" role="listitem">
       <span class="skill-name">Design Systems</span>
-      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.90" data-width="0.90"></div></div>
-      <span class="skill-level" aria-label="Expert">Expert</span>
+      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.82" data-width="0.82"></div></div>
+      <span class="skill-level" aria-label="Advanced">Advanced</span>
     </div>
     <div class="skill-row" role="listitem">
       <span class="skill-name">Visual Design</span>
-      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.88" data-width="0.88"></div></div>
-      <span class="skill-level" aria-label="Advanced">Advanced</span>
+      <div class="skill-bar-track" aria-hidden="true"><div class="skill-bar-fill" style="--w:0.95" data-width="0.95"></div></div>
+      <span class="skill-level" aria-label="Expert">Expert</span>
     </div>
     <div class="skill-row" role="listitem">
       <span class="skill-name">Accessibility</span>
@@ -1371,14 +1338,14 @@ footer .footer-links a:hover { color: var(--bg); }
   <div class="about-visual reveal">
     <div class="about-photo-frame">
       <img
-        src="kassandra-photo.jpg"
+        src="kassandra-photo-2.jpg"
         alt="Kassandra Rodriguez, Senior UX Designer"
         style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
       />
       <div style="display:none;width:100%;height:100%;background:linear-gradient(160deg,var(--accent-light) 0%,var(--bg-mid) 100%);align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <p style="font-family:var(--font-mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);">Add kassandra-photo.jpg</p>
+        <p style="font-family:var(--font-mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);"></p>
       </div>
     </div>
     <div class="about-card" aria-hidden="true">
@@ -1388,7 +1355,7 @@ footer .footer-links a:hover { color: var(--bg); }
   </div>
 
   <div class="about-text reveal reveal-delay-2">
-    <p class="section-label">About</p>
+    <p class="section-label">Behind the scenes</p>
     <h2 class="section-title" id="about-title">Designer, <em>bridge builder</em>, film enthusiast</h2>
     <p style="margin-top:1.75rem">I'm Kassandra — a Lead UX Designer &amp; Strategist with 6+ years designing mission-critical products in highly regulated environments. I'm currently a UX Designer III at Fresenius Medical Care in Lawrence, MA, where I drive design strategy for Class II/III medical devices and software platforms serving global clinical teams.</p>
     <p>I've architected design systems that reduced time-to-market by 40%, instituted continuous user research loops that cut critical task errors by 25%, and led cross-functional teams through FDA and ISO 62366 compliance — all while keeping the human at the center of every decision.</p>
@@ -1398,62 +1365,9 @@ footer .footer-links a:hover { color: var(--bg); }
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 6v4M4 4.5v.5M7 10V7.5A1.5 1.5 0 0110 7.5V10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
         LinkedIn
       </a>
-      <a href="https://www.kassandrarodriguez.com/_files/ugd/93bbf5_4982e9dd6961459eb2881afc99810f19.pdf" class="btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Download Kassandra's résumé PDF (opens in new tab)">
+      <a href="resume.pdf" class="btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Download Kassandra's résumé PDF (opens in new tab)">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2h6l4 4v6a1 1 0 01-1 1H3a1 1 0 01-1-1V2z" stroke="currentColor" stroke-width="1.25"/><path d="M8 2v4h4M5 8h4M5 10.5h2.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
         Résumé
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ── EARLIER WORK ── -->
-<section id="earlier-work" aria-labelledby="earlier-work-title" style="background:var(--paper);padding:5rem 3rem;border-top:1px solid var(--border);">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div style="margin-bottom:3rem;">
-      <p class="section-label reveal" style="display:flex;align-items:center;gap:.75rem;font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);">
-        Earlier Work
-        <span style="display:inline-block;width:3rem;height:1px;background:var(--accent);"></span>
-      </p>
-      <h2 class="section-title reveal reveal-delay-1" id="earlier-work-title" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.02em;margin-top:.75rem;">
-        Where the <em style="font-style:italic;color:var(--accent);">foundations</em> were built
-      </h2>
-      <p class="reveal reveal-delay-2" style="margin-top:1rem;font-size:1rem;color:var(--ink-soft);max-width:52ch;line-height:1.7;">
-        Learning projects from the Google UX Design Certificate and a UX Design Fellowship — included to show where the process started and how it has evolved.
-      </p>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);border:1.5px solid var(--border);">
-      <a href="case-study-movie-theater.html" class="case-card reveal" aria-label="Learning project: Kasanova Theater Mobile Ticketing App" style="background:var(--bg);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
-        <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;flex-wrap:wrap;">
-          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light,#fdf3dc);background:var(--amber,#7a5c1e);padding:.25rem .625rem;border-radius:2px;">Google Certificate</span>
-          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);">iOS App</span>
-        </div>
-        <h3 style="font-family:var(--font-display);font-size:1.375rem;line-height:1.2;color:var(--ink);max-width:24ch;">Kasanova Theater — Mobile Ticketing App</h3>
-        <p style="margin-top:.875rem;font-size:.875rem;color:var(--ink-soft);line-height:1.65;flex:1;max-width:40ch;">End-to-end iOS app design: research, affinity mapping, personas, wireframes, and a WCAG-compliant prototype for a screen-reader-friendly cinema booking experience.</p>
-        <div style="margin-top:1.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
-          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Figma</span>
-          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Accessibility</span>
-          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">WCAG 2.1</span>
-        </div>
-        <div style="position:absolute;bottom:2rem;right:2rem;width:2.25rem;height:2.25rem;border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:background .25s,border-color .25s,color .25s,transform .3s;" class="case-card__arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </a>
-      <a href="case-study-learning-platform.html" class="case-card reveal reveal-delay-1" aria-label="Learning project: Integrated Online Learning Platform" style="background:var(--bg);display:flex;flex-direction:column;min-height:280px;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;">
-        <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;flex-wrap:wrap;">
-          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light,#fdf3dc);background:var(--amber,#7a5c1e);padding:.25rem .625rem;border-radius:2px;">UX Bootcamp</span>
-          <span style="font-family:var(--font-mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);">Desktop Web</span>
-        </div>
-        <h3 style="font-family:var(--font-display);font-size:1.375rem;line-height:1.2;color:var(--ink);max-width:24ch;">Integrated Online Learning Platform</h3>
-        <p style="margin-top:.875rem;font-size:.875rem;color:var(--ink-soft);line-height:1.65;flex:1;max-width:40ch;">A desktop platform designed during COVID-19 to consolidate fragmented remote learning tools — built with educator interviews, affinity mapping, feature prioritization, and usability testing.</p>
-        <div style="margin-top:1.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
-          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">EdTech</span>
-          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Research</span>
-          <span style="background:var(--bg-mid);border:1px solid var(--border);font-size:.6875rem;font-weight:500;padding:.25rem .625rem;border-radius:999px;color:var(--ink-soft);">Figma</span>
-        </div>
-        <div style="position:absolute;bottom:2rem;right:2rem;width:2.25rem;height:2.25rem;border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:background .25s,border-color .25s,color .25s,transform .3s;" class="case-card__arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
       </a>
     </div>
   </div>
@@ -1498,7 +1412,7 @@ footer .footer-links a:hover { color: var(--bg); }
   <h2 class="reveal reveal-delay-1" id="contact-title">Let's build something <em>meaningful</em> together</h2>
   <p class="reveal reveal-delay-2">I'm always open to conversations about senior design roles, consulting engagements, and cross-functional collaborations that push boundaries.</p>
   <div class="contact-actions reveal reveal-delay-3">
-    <a href="/cdn-cgi/l/email-protection#751e071a11071c1200100f1207141d1418351218141c195b161a184a0600171f101601483d1c5047365047453e140606141b1107145047365047453c504745191a03105047450c1a0007504745021a071e54" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
+    <a href="mailto:krodriguezgraham@gmail.com" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Send a Message
     </a>
@@ -1511,12 +1425,12 @@ footer .footer-links a:hover { color: var(--bg); }
 
 <!-- ── FOOTER ── -->
 <footer>
-  <span class="footer-name">©2025 Kassandra Rodriguez</span>
+  <span class="footer-name">©2026 Kassandra Rodriguez</span>
   <ul class="footer-links" role="list">
     <li><a href="#work">Work</a></li>
     <li><a href="#earlier-work">Earlier Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#79120b161d0b101e0c1c031e0b18111814391e14181015571a1614460a0c1b131c1a0d4431105c4b3a5c4b4932180a0a18171d0b185c4b3a5c4b49305c4b4915160f1c5c4b4900160c0b5c4b490e160b1258">Email</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ICU Patient Monitor Sensor Integration — UX Case Study by Kassandra Rodriguez." />
+<title>ICU Sensor Integration — Kassandra Rodriguez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  /* ── Original palette ── */
+  --bg:           #f7f4ef;   /* cream — 16.3:1 vs ink  */
+  --bg-mid:       #ede9e2;   /* mid cream — 14.8:1 vs ink */
+  --paper:        #ffffff;   /* white — 17.8:1 vs ink */
+  --ink:          #1a1714;   /* near-black */
+  --ink-soft:     #4a4540;   /* 8.6:1 on cream */
+  --ink-faint:    #7a736b;   /* 4.3:1 on cream — large text/decorative only */
+  --accent:       #b84a2e;   /* rust — 4.7:1 on cream, 5.2:1 on white */
+  --accent-dark:  #8f3621;   /* rust dark — 7.7:1 on white */
+  --accent-light: #fdf3dc;   /* pale amber tint */
+  --border:       #d8d2c9;
+  --amber:        #7a5c1e;   /* 5.6:1 on amber-light */
+  --amber-light:  #fdf3dc;
+  --teal:         #1d6b68;   /* 5.7:1 on cream, 6.3:1 on white */
+  --teal-light:   #e6f2f1;
+  --focus-ring:   #1d6b68;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+  --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo:cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION BACKGROUND ALTERNATION
+   hero    → --bg    (cream)
+   marquee → --ink   (dark)
+   approach→ --paper (white)
+   work    → --bg    (cream)
+   process → --ink   (dark)
+   skills  → --paper (white)
+   about   → --bg    (cream)
+   contact → --ink   (dark)
+   footer  → --ink   (dark)
+════════════════════════════════════════════════════ */
+#hero        { background: var(--bg); }
+.marquee-strip { background: var(--ink); }
+#approach    { background: var(--paper); }
+#work        { background: var(--bg); }
+#process     { background: var(--ink); }
+#skills      { background: var(--paper); }
+#about       { background: var(--bg); }
+#contact     { background: var(--ink); }
+#earlier-work { background: var(--bg-mid); }
+footer       { background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  gap: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: 2px; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.skip-link { position: fixed; top: -100%; left: 1rem; z-index: 9999; background: var(--ink); color: var(--bg); padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 500; border-radius: 0 0 6px 6px; transition: top 0.2s; }
+.skip-link:focus { top: 0; }
+
+/* NAV */
+nav#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); backdrop-filter: blur(8px); }
+.nav-logo { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-transform: uppercase; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); position: relative; transition: color 0.2s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s var(--ease-out-expo); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); transition: color 0.2s; }
+.nav-back:hover { color: var(--ink); }
+.nav-back svg { transition: transform 0.2s var(--ease-out-expo); }
+.nav-back:hover svg { transform: translateX(-3px); }
+
+/* HERO */
+.cs-hero { padding: 9rem 3rem 5rem; background: var(--paper); border-bottom: 1px solid var(--border); }
+.cs-hero-inner { max-width: 860px; margin: 0 auto; }
+.cs-breadcrumb { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 0.625rem; }
+.cs-breadcrumb span { color: var(--accent); }
+.cs-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 22ch; }
+.cs-hero h1 em { font-style: italic; color: var(--accent); }
+.cs-hero-meta { margin-top: 2.5rem; display: flex; gap: 3rem; flex-wrap: wrap; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+.meta-item { }
+.meta-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.375rem; }
+.meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+.cs-tags { margin-top: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.cs-tag { background: var(--bg); border: 1px solid var(--border); padding: 0.3rem 0.75rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.03em; color: var(--ink-soft); border-radius: 2px; }
+.cs-tag.highlight { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+
+/* STATUS BANNER */
+.status-banner { background: var(--bg-mid); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 1rem 1.5rem; margin: 3rem auto 0; max-width: 860px; display: flex; gap: 1rem; align-items: flex-start; border-radius: 0 2px 2px 0; }
+.status-banner svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+.status-banner p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.6; }
+.status-banner strong { color: var(--ink); }
+
+/* LAYOUT */
+.cs-body { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start; }
+.cs-content { min-width: 0; }
+.cs-sidebar { position: sticky; top: 7rem; }
+
+/* SIDEBAR */
+.sidebar-card { background: var(--paper); border: 1px solid var(--border); padding: 1.75rem; margin-bottom: 1.5rem; }
+.sidebar-card h3 { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+.sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 0.625rem; }
+.sidebar-list li { font-size: 0.875rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.5; }
+.sidebar-list li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+.sidebar-toc { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.sidebar-toc li a { display: block; font-size: 0.8125rem; color: var(--ink-soft); padding: 0.5rem 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
+.sidebar-toc li:last-child a { border-bottom: none; }
+.sidebar-toc li a:hover { color: var(--accent); padding-left: 4px; }
+
+/* CONTENT SECTIONS */
+.cs-section { margin-bottom: 4.5rem; }
+.cs-section:last-child { margin-bottom: 0; }
+.section-eyebrow { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-eyebrow::after { content: ''; flex: 1; max-width: 2.5rem; height: 1px; background: var(--accent); }
+.cs-section h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
+.cs-section h2 em { font-style: italic; color: var(--accent); }
+.cs-section h3 { font-family: var(--font-display); font-size: 1.1875rem; color: var(--ink); margin: 2.5rem 0 0.875rem; }
+.cs-section p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.25rem; }
+.cs-section p:last-child { margin-bottom: 0; }
+
+/* CALLOUT */
+.callout { background: var(--accent-light); border: 1px solid rgba(29,107,104,0.2); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 2px 2px 0; }
+.callout p { font-size: 0.9375rem; color: var(--accent); line-height: 1.65; margin: 0; font-weight: 500; }
+
+/* FINDING CARDS */
+.findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+.finding-card { background: var(--paper); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s; }
+.finding-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,23,20,0.07); }
+.finding-num { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.finding-card h4 { font-family: var(--font-display); font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.finding-card p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+/* COLLAB GRID */
+.collab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+.collab-card { background: var(--bg); border: 1px solid var(--border); padding: 1.25rem 1.5rem; border-radius: 2px; }
+.collab-role { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.collab-card p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+/* VIEW CARDS */
+.view-cards { display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0; }
+.view-card { background: var(--paper); border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden; border-radius: 2px; }
+.view-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--accent); }
+.view-card-num { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.625rem; }
+.view-card h4 { font-family: var(--font-display); font-size: 1.1875rem; color: var(--ink); margin-bottom: 0.75rem; }
+.view-card p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 0.75rem; }
+.view-card p:last-child { margin-bottom: 0; }
+.view-card ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.view-card ul li { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.6; }
+
+/* OUTCOME STATS */
+.outcomes-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; border-radius: 2px; overflow: hidden; }
+.outcome-cell { background: var(--paper); padding: 2rem 1.5rem; text-align: center; }
+.outcome-icon { width: 2.5rem; height: 2.5rem; background: var(--accent-light); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--accent); }
+.outcome-cell h4 { font-family: var(--font-display); font-size: 1.0625rem; color: var(--ink); margin-bottom: 0.375rem; }
+.outcome-cell p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+
+/* LEARNINGS */
+.learnings-list { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; counter-reset: learning; }
+.learning-item { display: grid; grid-template-columns: 3rem 1fr; gap: 1.25rem; align-items: start; }
+.learning-num { width: 3rem; height: 3rem; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); flex-shrink: 0; }
+.learning-text h4 { font-weight: 500; font-size: 0.9375rem; color: var(--ink); margin-bottom: 0.375rem; }
+.learning-text p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; margin: 0; }
+
+/* QUOTE */
+.pull-quote { border-left: 3px solid var(--accent); padding: 1.5rem 2rem; margin: 2.5rem 0; background: var(--paper); }
+.pull-quote p { font-family: var(--font-display); font-size: 1.1875rem; font-style: italic; color: var(--ink); line-height: 1.5; margin: 0; }
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder { background: var(--bg-mid); border: 1px solid var(--border); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin: 2rem 0; border-radius: 2px; }
+.img-placeholder-inner { text-align: center; color: var(--ink-faint); }
+.img-placeholder-inner p { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem; }
+.img-caption { font-size: 0.8125rem; color: var(--ink-faint); text-align: center; margin-top: -1.25rem; margin-bottom: 2rem; font-style: italic; }
+
+/* NEXT CASE STUDY */
+.cs-next { background: var(--ink); padding: 5rem 3rem; }
+.cs-next-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,244,239,0.65); margin-bottom: 0.75rem; }
+.cs-next h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--bg); }
+.btn-next { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: white; padding: 1rem 1.75rem; font-size: 0.9375rem; font-weight: 500; border: 2px solid var(--accent); border-radius: 2px; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
+.btn-next:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
+
+/* FOOTER */
+footer{ }
+footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.65); }
+footer .footer-links { display: flex; gap: 2rem; list-style: none; }
+footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,244,239,0.65); transition: color 0.2s; }
+footer .footer-links a:hover { color: var(--bg); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 1.5rem; }
+  .cs-hero { padding: 8rem 1.5rem 4rem; }
+  .cs-body { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
+  .cs-sidebar { position: static; }
+  .findings-grid, .collab-grid { grid-template-columns: 1fr; }
+  .outcomes-row { grid-template-columns: 1fr; }
+  .cs-next { padding: 3rem 1.5rem; }
+  footer { padding: 2rem 1.5rem; }
+}
+
+
+
+
+
+
+
+@media (max-width: 640px) {
+  footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; gap: 1rem; }
+  footer .footer-links { flex-wrap: wrap; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Back to Kassandra Rodriguez homepage">KR</a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+<!-- HERO -->
+<header class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-breadcrumb">
+      <a href="index.html#work" class="nav-back" aria-label="Back to all work">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+      <span aria-hidden="true">/</span>
+      <span>Medical Device UX</span>
+    </p>
+    <h1>Embedded Third-Party Sensor Data Integration for <em>ICU Patient Monitor</em></h1>
+    <div class="cs-tags" aria-label="Project disciplines">
+      <span class="cs-tag highlight">Medical Device UX</span>
+      <span class="cs-tag highlight">Cross-Functional Design</span>
+      <span class="cs-tag">Class II/III Device</span>
+      <span class="cs-tag">Human Factors</span>
+      <span class="cs-tag">FDA / ISO 62366</span>
+      <span class="cs-tag">WCAG 2.2</span>
+      <span class="cs-tag">Agile / Sprint-Based</span>
+    </div>
+    <div class="cs-hero-meta" role="list" aria-label="Project details">
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Lead UX Designer</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Company</div>
+        <div class="meta-value">Fresenius Medical Care</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">Apr 2023 – Dec 2024</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">Embedded ICU Patient Monitor</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Team</div>
+        <div class="meta-value">3 HF Eng · 2 Sys Eng · 2 Dev · 1 PM</div>
+      </div>
+    </div>
+  </div>
+  <div class="status-banner" role="note" aria-label="Project status note">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.5v4M9 11.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>NDA Project:</strong> Visual assets are omitted to protect proprietary information. This case study presents process, methodology, and outcomes. Software development completed to specification; project was paused prior to clinical validation due to program-level decisions.</p>
+  </div>
+</header>
+
+<!-- BODY -->
+<div class="cs-body">
+  <article class="cs-content" aria-label="Case study content">
+
+    <!-- OVERVIEW -->
+    <section class="cs-section reveal" id="overview" aria-labelledby="overview-h2">
+      <p class="section-eyebrow">Executive Summary</p>
+      <h2 id="overview-h2">Two screens. One nurse. A critical <em>workflow problem.</em></h2>
+      <p>During Continuous Renal Replacement Therapy (CRRT) in the ICU, nurses were forced to manage two separate, non-integrated displays simultaneously. A primary monitor displayed core therapy data while a secondary third-party sensor displayed real-time hematocrit, oxygen saturation, and blood volume change — critical values with no physical or digital connection to the primary system.</p>
+      <p>The cognitive cost was real: nurses had to mentally cross-reference two screens in real time, in one of medicine's most demanding environments. The objective was unambiguous — eliminate the secondary display entirely by integrating its data stream directly into the primary monitor's interface.</p>
+
+      <div class="pull-quote">
+        <p>"The goal wasn't to add a feature. It was to remove a screen from a place where every square inch and every second of cognitive load counts."</p>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="cs-section reveal" id="problem" aria-labelledby="problem-h2">
+      <p class="section-eyebrow">Problem Definition</p>
+      <h2 id="problem-h2">Physical clutter and cognitive friction in a <em>high-stakes environment</em></h2>
+      <p>The dual-screen configuration created two distinct, compounding problems that directly impacted patient safety risk:</p>
+
+      <div class="findings-grid" role="list" aria-label="Core problems identified">
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Problem 01</p>
+          <h4>Physical Clutter</h4>
+          <p>The secondary sensor display occupied physical space on an already-crowded IV pole, creating an obstacle in a clinical environment where spatial real estate is safety-critical.</p>
+        </div>
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Problem 02</p>
+          <h4>Cognitive Friction</h4>
+          <p>Nurses were required to mentally cross-reference numerical and trending data between two non-integrated screens to form a complete picture of patient status — increasing risk of missed information and delayed response.</p>
+        </div>
+      </div>
+
+      <div class="callout" role="note">
+        <p>The core design challenge: integrate a new data stream into an established interface without disrupting existing workflows or compromising the visual hierarchy that nurses depend on under pressure.</p>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="cs-section reveal" id="research" aria-labelledby="research-h2">
+      <p class="section-eyebrow">Research &amp; Discovery</p>
+      <h2 id="research-h2">Understanding the clinical environment <em>before designing anything</em></h2>
+      <p>Research was conducted in a simulated ICU environment using a multi-method approach designed to surface real workflow patterns, not just stated preferences.</p>
+
+      <h3>Methods</h3>
+      <div class="collab-grid" role="list" aria-label="Research methods used">
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Contextual Inquiry</p>
+          <p>Observed baseline workflows and environmental factors in a simulated ICU setting to understand how nurses physically interact with equipment during active therapy.</p>
+        </div>
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Semi-Structured Interviews</p>
+          <p>Interviewed 5 ICU nurses and 2 nephrologists to gather qualitative data on usage patterns, pain points, and the mental models nurses use to interpret sensor data.</p>
+        </div>
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Workflow Mapping</p>
+          <p>Documented existing workflows to identify the exact moments where the secondary screen was consulted — pinpointing friction points and decision nodes.</p>
+        </div>
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Heuristic Analysis</p>
+          <p>Evaluated the primary monitor's existing interface against established medical device usability standards to understand integration constraints and opportunities.</p>
+        </div>
+      </div>
+
+      <h3>Key Findings</h3>
+      <div class="findings-grid" role="list" aria-label="Key research findings">
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 01</p>
+          <h4>The Vigilant Observer Pattern</h4>
+          <p>Nurses spend most of their time in a monitoring state — glancing at screens while performing other tasks. Any new data must be visible on the default screen. Navigation to find it is clinically unacceptable.</p>
+        </div>
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 02</p>
+          <h4>Contextual Data Deficit</h4>
+          <p>A single numerical value was insufficient. Nurses needed trend data over time to differentiate between a gradual drift and a rapid, clinically significant change requiring immediate action.</p>
+        </div>
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 03</p>
+          <h4>Alarm Hierarchy &amp; Trust</h4>
+          <p>Alerts from the primary monitor were trusted above those from the secondary device. Any new alerts needed to inherit the primary system's visual and behavioral language to be acted upon.</p>
+        </div>
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 04</p>
+          <h4>Physical Device Rejection</h4>
+          <p>The secondary screen was universally cited as unwanted clutter. This reinforced that full integration — not reduction — was the only solution nurses would accept and trust.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLABORATION -->
+    <section class="cs-section reveal" id="collaboration" aria-labelledby="collab-h2">
+      <p class="section-eyebrow">Cross-Functional Collaboration</p>
+      <h2 id="collab-h2">Five disciplines, one shared <em>understanding</em></h2>
+      <p>Operating on two-week Agile sprint cycles, the design process required continuous, deep collaboration with every discipline on the team. Each partnership shaped the design in fundamental ways.</p>
+
+      <div class="collab-grid" role="list" aria-label="Cross-functional collaborations">
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Systems Engineers</p>
+          <p>Mapped sensor behavior states: signal acquisition, stable transmission, signal loss, and recovery. These technical states were directly translated into distinct UI conditions communicating data reliability to nurses.</p>
+        </div>
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Clinical Experts</p>
+          <p>Conducted iterative prototype reviews to validate design assumptions and ensure clinical accuracy. Clinical feedback directly drove revisions to alert verbiage and trend visualization thresholds.</p>
+        </div>
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Human Factors Engineers</p>
+          <p>Validated touch target sizes for gloved hands, assessed visual hierarchy against peripheral vision studies, and verified cognitive load implications of every new screen state.</p>
+        </div>
+        <div class="collab-card" role="listitem">
+          <p class="collab-role">Software Developers</p>
+          <p>Delivered detailed design specs mid-sprint to minimize implementation ambiguity. Maintained open communication throughout to address technical constraints before they became costly rework.</p>
+        </div>
+      </div>
+
+      <div class="callout" role="note">
+        <p>The most robust solutions emerged from embedding with engineers and clinicians early — not presenting designs to them late. Shared understanding of constraints is itself a design output.</p>
+      </div>
+    </section>
+
+    <!-- DESIGN SOLUTION -->
+    <section class="cs-section reveal" id="solution" aria-labelledby="solution-h2">
+      <p class="section-eyebrow">Design Solution</p>
+      <h2 id="solution-h2">Three interaction states. Zero <em>new paradigms to learn.</em></h2>
+      <p>The final design was organized around the three distinct contexts in which a nurse would encounter the integrated sensor data — each designed to meet the nurse where they already were, not redirect them somewhere new.</p>
+
+      <div class="view-cards" role="list" aria-label="Three interaction states designed">
+        <div class="view-card" role="listitem">
+          <p class="view-card-num">State 01 — Always Visible</p>
+          <h4>Vigilance View (Default Screen)</h4>
+          <p>The most critical design decision of the project: integrating sensor data into the always-visible default screen without displacing primary therapy data. A dedicated zone was created within the existing card-based layout, utilizing space previously allocated to lower-priority auxiliary data.</p>
+          <ul aria-label="Design decisions for Vigilance View">
+            <li>Preserved the legacy sensor's cyan color and line style for blood volume trend — leveraging existing nurse recognition and reducing relearning.</li>
+            <li>Adapted backgrounds, axes, and gridlines to conform to the primary monitor's established dark palette for visual cohesion.</li>
+            <li>Used the system's existing high-contrast font set to ensure readability at clinical viewing distances.</li>
+          </ul>
+        </div>
+        <div class="view-card" role="listitem">
+          <p class="view-card-num">State 02 — On Demand</p>
+          <h4>Analysis View (Full-Screen Trends)</h4>
+          <p>Detailed historical trend access, integrated into the monitor's existing Trends screen — placing new data within a familiar container that required zero additional learning from clinical staff.</p>
+          <ul aria-label="Components of Analysis View">
+            <li>Blood volume change trend graph with supporting HCT and SpO2 numerical data.</li>
+            <li>Standard timeline scrubber for historical data review, consistent with existing interaction patterns.</li>
+            <li>Alarm limit settings panel matching the visual and behavioral language of all other device settings.</li>
+          </ul>
+        </div>
+        <div class="view-card" role="listitem">
+          <p class="view-card-num">State 03 — Interruption</p>
+          <h4>Alert View (Interruption State)</h4>
+          <p>New alerts designed to be visually and behaviorally indistinguishable from native monitor alerts — because clinical trust is established through consistency, not novelty.</p>
+          <ul aria-label="Alert design specifications">
+            <li>Critical alerts appear in the identical red banner placement at the top of screen as all native alerts.</li>
+            <li>All alerts routed to the centralized alarm tray — no parallel or competing alert systems.</li>
+            <li>Alert verbiage uses the same concise clinical voice as the host system: <em>"Rapid Blood Volume Change. Assess Patient."</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="img-placeholder" role="img" aria-label="Design mockup placeholder — visual assets omitted under NDA">
+        <div class="img-placeholder-inner" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="2" stroke="var(--ink-faint)" stroke-width="1.5"/><circle cx="14" cy="17" r="3" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M4 28l8-6 6 5 6-8 12 9" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Visual assets omitted — NDA</p>
+        </div>
+      </div>
+      <p class="img-caption">Design specifications were delivered to development in full. Visual assets are withheld under NDA.</p>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="cs-section reveal" id="outcomes" aria-labelledby="outcomes-h2">
+      <p class="section-eyebrow">Outcomes</p>
+      <h2 id="outcomes-h2">Development complete. <em>Impact delivered</em> before clinical validation.</h2>
+      <p>The design phase concluded with a complete specification handoff. Software was coded to specification before the project was paused at the program level prior to clinical validation. Despite the pause, the work delivered measurable value across three dimensions.</p>
+
+      <div class="outcomes-row" role="list" aria-label="Project outcomes">
+        <div class="outcome-cell" role="listitem">
+          <div class="outcome-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Development Efficiency</h4>
+          <p>Sprint-aligned specifications reduced engineering ambiguity and rework — an outcome of intentional mid-sprint communication with developers.</p>
+        </div>
+        <div class="outcome-cell" role="listitem">
+          <div class="outcome-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Product Strategy</h4>
+          <p>The comprehensive design provided a tangible, clinical-validated vision for eliminating a known source of physical clutter and cognitive load from the ICU environment.</p>
+        </div>
+        <div class="outcome-cell" role="listitem">
+          <div class="outcome-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" stroke="currentColor" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Cross-Functional Alignment</h4>
+          <p>Established a shared understanding of user needs and technical constraints across Human Factors, Engineering, and Clinical teams — a foundation ready for clinical validation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARNINGS -->
+    <section class="cs-section reveal" id="learnings" aria-labelledby="learnings-h2">
+      <p class="section-eyebrow">Retrospective</p>
+      <h2 id="learnings-h2">What this project <em>taught me</em></h2>
+      <p>Four principles reinforced through this project that now shape how I approach every complex design problem.</p>
+
+      <div class="learnings-list" role="list" aria-label="Key learnings">
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">01</div>
+          <div class="learning-text">
+            <h4>Integration Over Addition</h4>
+            <p>Successful design in complex environments requires not just adding features, but seamlessly integrating them into existing workflows and mental models. The goal is a unified system — not a collection of parts.</p>
+          </div>
+        </div>
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">02</div>
+          <div class="learning-text">
+            <h4>Leverage Cross-Functional Expertise Early</h4>
+            <p>The most robust solutions emerged from close collaboration with Systems and Human Factors Engineers. Understanding technical constraints and cognitive science principles early prevents expensive redesign late.</p>
+          </div>
+        </div>
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">03</div>
+          <div class="learning-text">
+            <h4>Context is the Interface</h4>
+            <p>A number on a screen is insufficient in clinical environments. Providing historical context (trends) and system state (signal quality) is essential for accurate clinical interpretation and confident decision-making.</p>
+          </div>
+        </div>
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">04</div>
+          <div class="learning-text">
+            <h4>Designing for Trust</h4>
+            <p>New features in high-stakes environments must inherit the trust already established by the host system. Visual and behavioral consistency is not an aesthetic preference — it is a patient safety tool.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="cs-sidebar" aria-label="Case study navigation and details">
+    <div class="sidebar-card">
+      <h3>Contents</h3>
+      <ul class="sidebar-toc" role="list">
+        <li><a href="#overview">Executive Summary</a></li>
+        <li><a href="#problem">Problem Definition</a></li>
+        <li><a href="#research">Research &amp; Discovery</a></li>
+        <li><a href="#collaboration">Cross-Functional Work</a></li>
+        <li><a href="#solution">Design Solution</a></li>
+        <li><a href="#outcomes">Outcomes</a></li>
+        <li><a href="#learnings">Retrospective</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>Methods Used</h3>
+      <ul class="sidebar-list" role="list">
+        <li>Contextual Inquiry</li>
+        <li>Semi-Structured Interviews</li>
+        <li>Workflow Mapping</li>
+        <li>Heuristic Analysis</li>
+        <li>Iterative Prototype Review</li>
+        <li>Agile / Sprint-Based Design</li>
+        <li>Design Specifications &amp; Handoff</li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>Collaborators</h3>
+      <ul class="sidebar-list" role="list">
+        <li>Human Factors Engineers (×3)</li>
+        <li>Systems Engineers (×2)</li>
+        <li>Software Developers (×2)</li>
+        <li>Product Manager (×1)</li>
+        <li>ICU Nurses (×5)</li>
+        <li>Nephrologists (×2)</li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>Compliance &amp; Standards</h3>
+      <ul class="sidebar-list" role="list">
+        <li>FDA Design Controls</li>
+        <li>ISO 62366 (Usability Engineering)</li>
+        <li>WCAG 2.2 Accessibility</li>
+        <li>IEC 62133 (Medical Software)</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+
+<nav class="cs-next" aria-label="Next case study">
+  <div class="cs-next-inner">
+    <div>
+      <p class="cs-next-label">Next Case Study</p>
+      <h3>Screen Design for Right-to-Left Languages</h3>
+    </div>
+    <a href="case-study-rtl.html" class="btn-next" aria-label="View next case study: RTL Language Screen Design">
+      View Case Study
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</nav>
+
+</main>
+
+<footer>
+  <span class="footer-name">©2026 Kassandra Rodriguez</span>
+  <ul class="footer-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#452e372a21372c2230203f2237242d2428052228242c296b262a287a3630272f202631780d2c6077066077750e243636242b2137246077066077750c607775292a33206077753c2a3037607775322a372e64">Email</a></li>
+    <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

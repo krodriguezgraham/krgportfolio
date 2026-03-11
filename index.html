@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="icon" href="favicon.ico" sizes="any" />
-<link rel="apple-touch-icon" href="favicon.png" />
+<link rel="icon" type="image/png" href="images/shared/favicon.png" />
+<link rel="icon" href="images/shared/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="images/shared/favicon.png" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Senior UX Designer &amp; Strategist at Fresenius Medical Care. 6+ years designing accessible, mission-critical products." />
@@ -132,12 +132,14 @@ nav.scrolled  {
   backdrop-filter: blur(8px);
 }
 .nav-logo  {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.nav-logo img {
+  height: 32px;
+  width: 32px;
+  display: block;
 }
 .nav-links  {
   display: flex;
@@ -1093,7 +1095,7 @@ footer .footer-links a:hover { color: var(--bg); }
 
 <!-- ── NAV ── -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <a href="#hero" class="nav-logo" aria-label="Kassandra Rodriguez — home">KR</a>
+  <a href="#hero" class="nav-logo" aria-label="Kassandra Rodriguez — home"><img src="images/shared/favicon.png" alt="Kassandra Rodriguez — home" width="32" height="32" /></a>
   <ul class="nav-links" role="list">
     <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
@@ -1540,7 +1542,7 @@ footer .footer-links a:hover { color: var(--bg); }
   <h2 class="reveal reveal-delay-1" id="contact-title">Let's build something <em>meaningful</em> together</h2>
   <p class="reveal reveal-delay-2">I'm always open to conversations about senior design roles, consulting engagements, and cross-functional collaborations that push boundaries.</p>
   <div class="contact-actions reveal reveal-delay-3">
-    <a href="/cdn-cgi/l/email-protection#dbb0a9b4bfa9b2bcaebea1bca9bab3bab69bbcb6bab2b7f5b8b4b6" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
+    <a href="mailto:krodriguezgraham@gmail.com" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Send a Message
     </a>
@@ -1558,7 +1560,7 @@ footer .footer-links a:hover { color: var(--bg); }
     <li><a href="#work">Work</a></li>
     <li><a href="#earlier-work">Earlier Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#553e273a31273c3220302f3227343d3438153238343c397b363a38">Email</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>

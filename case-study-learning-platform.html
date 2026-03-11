@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="icon" href="favicon.ico" sizes="any" />
-<link rel="apple-touch-icon" href="favicon.png" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Online Learning Platform — UX Bootcamp Project by Kassandra Rodriguez." />
 <title>Online Learning Platform — Kassandra Rodriguez</title>
+<link rel="icon" type="image/png" href="images/shared/favicon.png" />
+<link rel="icon" href="images/shared/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="images/shared/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -58,13 +58,7 @@
 #about       { background: var(--bg); }
 #contact     { background: var(--ink); }
 #earlier-work { background: var(--bg-mid); }
-footer       { background: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 3rem;
-  gap: 2rem;
-}
+footer       { background: var(--ink); }
 
 
 
@@ -81,9 +75,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-hei
 :focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;border-radius:2px;}
 a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
 .skip-link{position:fixed;top:-100%;left:1rem;z-index:9999;background:var(--ink);color:var(--bg);padding:.75rem 1.25rem;font-size:.875rem;font-weight:500;border-radius:0 0 6px 6px;transition:top .2s;}.skip-link:focus{top:0;}
-nav#nav {position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:var(--bg);border-bottom:1px solid transparent;transition:border-color .3s,background .3s;}
-nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdrop-filter:blur(8px);}
-.nav-logo{font-family:var(--font-mono);font-size:.8125rem;font-weight:500;letter-spacing:.06em;color:var(--ink);text-transform:uppercase;}
+nav#nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:var(--bg);border-bottom:1px solid transparent;transition:border-color .3s,background .3s;}
+nav#nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdrop-filter:blur(8px);}
+.nav-logo{display:inline-flex;align-items:center;line-height:0;}.nav-logo img{height:32px;width:32px;display:block;}
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);position:relative;transition:color .2s;}
 .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--accent);transition:width .3s var(--ease);}
@@ -164,36 +158,32 @@ nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdr
 .btn-next{display:inline-flex;align-items:center;gap:.75rem;background:var(--accent);color:white;padding:1rem 1.75rem;font-size:.9375rem;font-weight:500;border:2px solid var(--accent);border-radius:2px;white-space:nowrap;transition:background .2s,transform .2s;}
 .btn-next:hover{background:var(--accent-dark);border-color:var(--accent-dark);transform:translateY(-2px);}
 footer{}
-footer .footer-name{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,244,239,0.65);}
+footer .footer-name{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(13,43,53,.4);}
 footer .footer-links{display:flex;gap:2rem;list-style:none;}
-footer .footer-links a{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,244,239,0.65);transition:color .2s;}
+footer .footer-links a{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(13,43,53,.4);transition:color .2s;}
 footer .footer-links a:hover{color:var(--bg);}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
-@media(max-width:900px){nav{padding:1.25rem 1.5rem;}.cs-hero{padding:8rem 1.5rem 4rem;}.cs-body{grid-template-columns:1fr;gap:3rem;padding:3rem 1.5rem;}.cs-sidebar{position:static;}.persona-grid,.img-row,.results-grid{grid-template-columns:1fr;}.finding-row{grid-template-columns:1fr;}.cs-next{padding:3rem 1.5rem;}footer{padding:2rem 1.5rem;}}
+@media(max-width:900px){nav#nav{padding:1.25rem 1.5rem;}.cs-hero{padding:8rem 1.5rem 4rem;}.cs-body{grid-template-columns:1fr;gap:3rem;padding:3rem 1.5rem;}.cs-sidebar{position:static;}.persona-grid,.img-row,.results-grid{grid-template-columns:1fr;}.finding-row{grid-template-columns:1fr;}.cs-next{padding:3rem 1.5rem;}footer{padding:2rem 1.5rem;}}
 
 
 
 
 
 
-
-@media (max-width: 640px) {
-  footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; gap: 1rem; }
-  footer .footer-links { flex-wrap: wrap; gap: 1rem; }
-}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <a href="index.html" class="nav-logo" aria-label="Kassandra Rodriguez — home">KR</a>
+  <a href="index.html" class="nav-logo" aria-label="Kassandra Rodriguez — home"><img src="images/shared/favicon.png" alt="Kassandra Rodriguez — home" width="32" height="32" /></a>
   <ul class="nav-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#process">Process</a></li>
     <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#earlier-work">Earlier Work</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -248,13 +238,13 @@ footer .footer-links a:hover{color:var(--bg);}
     <p>I interviewed educators across levels — elementary, middle, and high school, public and private — and distributed surveys on remote teaching technology. The insider perspective shaped both the questions I asked and my ability to interpret the answers with nuance. The finding was unanimous: the problem wasn't any single tool. It was the fragmentation.</p>
     <div class="callout" role="note"><p>Designing from lived experience is a double-edged advantage: you understand the problem deeply, but you have to work harder to separate your own assumptions from actual user needs. Structured interviews were essential to keeping the research honest.</p></div>
     <div class="img-full">
-      <img src="images/case-study-learning-platform/RL-Affinity-Map.png" alt="Affinity map organizing educator and student interview insights into themes: fragmentation, cognitive overload, communication barriers, and missing integrations" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/93bbf5_c0a3b4814b574294bead1930a1ecaafc~mv2.png/v1/fill/w_967,h_293,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/RL%20Affinity%20Map.png" alt="Affinity map organizing educator and student interview insights into themes: fragmentation, cognitive overload, communication barriers, and missing integrations" loading="lazy"/>
     </div>
     <p class="img-caption">Affinity mapping — interview insights clustered to identify design priorities</p>
     <h3>Competitive Analysis</h3>
     <p>Finding a genuine comparable was harder than expected. One desktop app — Shift — addressed the multi-account problem but didn't unify curriculum, grading, or communication meaningfully. That gap confirmed the opportunity.</p>
     <div class="img-full">
-      <img src="images/case-study-learning-platform/Competitive-Analysis.png" alt="Comparative analysis of Shift desktop app — evaluated against the needs of remote educators managing multiple platforms and tools" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/93bbf5_76fdf0f75a964d879959fdc98ada5dbf~mv2.png/v1/fill/w_964,h_628,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Competitive%20Analysis.png" alt="Comparative analysis of Shift desktop app — evaluated against the needs of remote educators managing multiple platforms and tools" loading="lazy"/>
     </div>
     <p class="img-caption">Comparative analysis of Shift — the closest existing solution and where it fell short</p>
   </section>
@@ -298,11 +288,11 @@ footer .footer-links a:hover{color:var(--bg);}
       </div>
     </div>
     <div class="img-full">
-      <img src="images/case-study-learning-platform/RL-Platform-User-Flow.png" alt="User flow diagram mapping educator and student paths through the platform — login, dashboard, task flows, and communication" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/93bbf5_0721c350967246c4917def29eb1b673b~mv2.png/v1/fill/w_950,h_351,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/RL%20Platform%20User%20Flow.png" alt="User flow diagram mapping educator and student paths through the platform — login, dashboard, task flows, and communication" loading="lazy"/>
     </div>
     <p class="img-caption">User flows — mapping where educator and student paths intersect</p>
     <div class="img-full">
-      <img src="images/case-study-learning-platform/2X2-Matrix.png" alt="2x2 feature prioritization matrix plotting platform features by user value and implementation effort" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/93bbf5_036bad413aae45019819012b67a68e86~mv2.png/v1/fill/w_664,h_451,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/2X2%20Matrix.png" alt="2x2 feature prioritization matrix plotting platform features by user value and implementation effort" loading="lazy"/>
     </div>
     <p class="img-caption">2×2 prioritization matrix — scoping the MVP by user value vs. effort</p>
   </section>
@@ -313,10 +303,10 @@ footer .footer-links a:hover{color:var(--bg);}
     <p>Initial sketches centered the three pillars educators had named most urgently: communication, grading, and curriculum. Low-fidelity wireframes used Google Suite as the assumed integration layer — the most universally adopted toolset across all institutions interviewed — making the familiar feel native rather than bolted on.</p>
     <div class="img-row">
       <div class="img-full">
-        <img src="images/case-study-learning-platform/Screen-Shot-wireframe.png" alt="Early dashboard sketch showing layout concepts for communication panel, grading, and curriculum navigation" loading="lazy"/>
+        <img src="https://static.wixstatic.com/media/93bbf5_cd15c332d35c4a119c1ff474c19d962c~mv2.png/v1/fill/w_453,h_325,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screen%20Shot%202022-02-03%20at%201_15_57%20PM.png" alt="Early dashboard sketch showing layout concepts for communication panel, grading, and curriculum navigation" loading="lazy"/>
       </div>
       <div class="img-full">
-        <img src="images/case-study-learning-platform/Low-Fidelity-Wireframe.png" alt="Low-fidelity wireframe of the desktop platform showing main navigation, Google Suite integration panel, class roster, and assignment feed" loading="lazy"/>
+        <img src="https://static.wixstatic.com/media/93bbf5_d77215e4a6c246de93616a2eabe38e26~mv2.png/v1/fill/w_688,h_391,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Low%20Fidelity%20Wireframe.png" alt="Low-fidelity wireframe of the desktop platform showing main navigation, Google Suite integration panel, class roster, and assignment feed" loading="lazy"/>
       </div>
     </div>
     <p class="img-caption">Early sketches and low-fidelity wireframes — structure before visual design</p>
@@ -417,10 +407,10 @@ footer .footer-links a:hover{color:var(--bg);}
 <nav class="cs-next" aria-label="Next case study">
   <div class="cs-next-inner">
     <div>
-      <p class="cs-next-label">Back to Featured Work</p>
-      <h3>Designing an Intuitive Partner Device for Dialysis Fluid Management</h3>
+      <p class="cs-next-label">Next Case Study</p>
+      <h3>On-Demand Dialysate Generator</h3>
     </div>
-    <a href="case-study-dialysate-generator.html" class="btn-next" aria-label="View featured case study: Dialysate Generator">
+    <a href="case-study-dialysate-generator.html" class="btn-next" aria-label="View next case study: On-Demand Dialysate Generator">
       View Case Study
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -432,12 +422,11 @@ footer .footer-links a:hover{color:var(--bg);}
   <span class="footer-name">©2026 Kassandra Rodriguez</span>
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
-    <li><a href="about.html">>About</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#e289908d86908b859787988590838a838fa2858f838b8ecc818d8f">Email</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
-
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {

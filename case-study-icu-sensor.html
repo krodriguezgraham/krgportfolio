@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="icon" href="favicon.ico" sizes="any" />
-<link rel="apple-touch-icon" href="favicon.png" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="ICU Patient Monitor Sensor Integration — UX Case Study by Kassandra Rodriguez." />
 <title>ICU Sensor Integration — Kassandra Rodriguez</title>
+<link rel="icon" type="image/png" href="images/shared/favicon.png" />
+<link rel="icon" href="images/shared/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="images/shared/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -58,13 +58,7 @@
 #about       { background: var(--bg); }
 #contact     { background: var(--ink); }
 #earlier-work { background: var(--bg-mid); }
-footer       { background: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 3rem;
-  gap: 2rem;
-}
+footer       { background: var(--ink); }
 
 
 
@@ -88,7 +82,7 @@ img { display: block; max-width: 100%; }
 /* NAV */
 nav#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
 nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); backdrop-filter: blur(8px); }
-.nav-logo { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-transform: uppercase; }
+.nav-logo { display: inline-flex; align-items: center; line-height: 0; } .nav-logo img { height: 32px; width: 32px; display: block; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a { font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); position: relative; transition: color 0.2s; }
 .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s var(--ease-out-expo); }
@@ -210,9 +204,9 @@ nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); 
 
 /* FOOTER */
 footer{ }
-footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.65); }
+footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(13,43,53,0.4); }
 footer .footer-links { display: flex; gap: 2rem; list-style: none; }
-footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,244,239,0.65); transition: color 0.2s; }
+footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(13,43,53,0.4); transition: color 0.2s; }
 footer .footer-links a:hover { color: var(--bg); }
 
 /* REVEAL */
@@ -225,7 +219,7 @@ footer .footer-links a:hover { color: var(--bg); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 
 @media (max-width: 900px) {
-  nav { padding: 1.25rem 1.5rem; }
+  nav#nav { padding: 1.25rem 1.5rem; }
   .cs-hero { padding: 8rem 1.5rem 4rem; }
   .cs-body { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
   .cs-sidebar { position: static; }
@@ -240,22 +234,18 @@ footer .footer-links a:hover { color: var(--bg); }
 
 
 
-
-@media (max-width: 640px) {
-  footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; gap: 1rem; }
-  footer .footer-links { flex-wrap: wrap; gap: 1rem; }
-}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <a href="index.html" class="nav-logo" aria-label="Back to Kassandra Rodriguez homepage">KR</a>
+  <a href="index.html" class="nav-logo" aria-label="Back to Kassandra Rodriguez homepage"><img src="images/shared/favicon.png" alt="Kassandra Rodriguez — home" width="32" height="32" /></a>
   <ul class="nav-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#process">Process</a></li>
     <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#earlier-work">Earlier Work</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -623,12 +613,11 @@ footer .footer-links a:hover { color: var(--bg); }
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#452e372a21372c2230203f2237242d2428052228242c296b262a287a3630272f202631780d2c6077066077750e243636242b2137246077066077750c607775292a33206077753c2a3037607775322a372e64">Email</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {

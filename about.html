@@ -109,6 +109,7 @@ nav.scrolled{border-color:var(--border);background:rgba(240,247,249,0.96);backdr
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 /* STORY LAYOUT */
 .story-wrap{max-width:1100px;margin:0 auto;padding:6rem 3rem;display:grid;grid-template-columns:260px 1fr;gap:6rem;align-items:start;}
+#skills.s-block{background:var(--paper);margin-left:-3rem;margin-right:-3rem;padding:3rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .story-aside{position:sticky;top:7rem;}
 .aside-label{font-family:var(--font-mono);font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1.25rem;}
 .aside-nav{list-style:none;display:flex;flex-direction:column;}
@@ -195,6 +196,7 @@ footer .fl a:hover{color:var(--bg);}
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#process">Process</a></li>
     <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#earlier-work">Earlier Work</a></li>
     <li><a href="about.html" aria-current="page">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -222,14 +224,14 @@ footer .fl a:hover{color:var(--bg);}
     <div class="hero-photo" aria-hidden="true">
       <div class="photo-frame">
         <img
-      src="kassandra-photo.jpg"
+      src="images/shared/kassandra-photo.jpg"
       alt="Kassandra Rodriguez, Senior UX Designer"
       style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
     />
     <div style="display:none;width:100%;height:100%;background:linear-gradient(160deg,var(--accent-light) 0%,var(--bg-mid) 100%);align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
       <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="24" r="13" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M6 58c0-14.4 11.6-26 26-26s26 11.6 26 26" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round"/></svg>
-      <p style="font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);">kassandra-photo.jpg</p>
+      <p style="font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);">images/shared/kassandra-photo.jpg</p>
     </div>
       </div><!-- /photo-frame -->
       <div class="photo-badge">
@@ -448,7 +450,7 @@ footer .fl a:hover{color:var(--bg);}
   <h2 id="contact-h2">Let's build something <em>meaningful</em> together</h2>
   <p>Open to senior design roles, consulting engagements, and cross-functional collaborations that push boundaries.</p>
   <div class="cs-actions">
-    <a href="/cdn-cgi/l/email-protection#adc6dfc2c9dfc4cad8c8d7cadfccc5ccc0edcac0ccc4c183cec2c092ded8cfc7c8ced990e5c4889fee889f9de6ccdedeccc3c9dfcc889fee889f9de4889f9dc1c2dbc8889f9dd4c2d8df889f9ddac2dfc68c" class="btn-c" aria-label="Email Kassandra">
+    <a href="mailto:krodriguezgraham@gmail.com" class="btn-c" aria-label="Email Kassandra">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Send a Message
     </a>
@@ -462,12 +464,11 @@ footer .fl a:hover{color:var(--bg);}
   <ul class="fl" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#aac1d8c5ced8c3cddfcfd0cdd8cbc2cbc7eacdc7cbc3c684c9c5c7">Email</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {

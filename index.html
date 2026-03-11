@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="favicon.png" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Senior UX Designer &amp; Strategist at Fresenius Medical Care. 6+ years designing accessible, mission-critical products." />
@@ -56,11 +59,6 @@
 #contact      { background: var(--ink); }
 #earlier-work  { background: var(--bg-mid); }
 footer       { background: var(--ink); }
-
-
-
-
-
 
 
 
@@ -219,6 +217,16 @@ h1.hero-name em  {
   line-height: 1.65;
   color: var(--ink-soft);
   max-width: 38ch;
+}
+.hero-philosophy {
+  margin-top: 1.25rem;
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--accent-dark);
+  line-height: 1.6;
+  max-width: 38ch;
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
 }
 .hero-ctas  {
   margin-top: 2.75rem;
@@ -517,14 +525,14 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
   background: var(--border);
   border: 1.5px solid var(--border);
 }
-/* Featured: 2/3 + 1/3 */
-.work-row-1  {
-  grid-template-columns: 2fr 1fr;
+/* Featured: full width solo */
+.work-row-featured {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5px;
 }
 .work-row-2  {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   display: grid;
   gap: 1.5px;
 }
@@ -615,6 +623,34 @@ h2.section-title em  { font-style: italic; color: var(--accent); }
   border: 1px solid var(--accent);
   padding: 0.25rem 0.625rem;
   border-radius: 2px;
+}
+/* Outcome stats strip inside the hero featured card */
+.case-card__stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.case-card__stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.case-card__stat-number {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.case-card__stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.4;
 }
 
 /* ═══════════════════════════════════════════
@@ -1026,7 +1062,7 @@ footer .footer-links a:hover { color: var(--bg); }
   .approach-intro, .skills-left  { position: static; }
   .process-steps  { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .process-steps::before { display: none; }
-  .work-row-1, .work-row-2  { grid-template-columns: 1fr; }
+  .work-row-featured, .work-row-2  { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -1038,9 +1074,6 @@ footer .footer-links a:hover { color: var(--bg); }
   .process-steps  { grid-template-columns: 1fr; }
   footer { flex-direction: column; align-items: flex-start; }
 }
-
-
-
 
 
 
@@ -1083,6 +1116,9 @@ footer .footer-links a:hover { color: var(--bg); }
     <p class="hero-tagline">
       Lead UX Designer &amp; Strategist with 6+ years designing mission-critical products in highly regulated environments. Currently at Fresenius Medical Care, designing Class II/III medical devices for global clinical teams.
     </p>
+    <p class="hero-philosophy">
+      Great UX in regulated environments isn't a constraint — it's where design rigor actually matters.
+    </p>
     <div class="hero-ctas">
       <a href="#work" class="btn-primary">View Case Studies</a>
       <a href="#contact" class="btn-secondary">Let's Collaborate</a>
@@ -1105,16 +1141,15 @@ footer .footer-links a:hover { color: var(--bg); }
 
   <div class="hero-right" aria-label="Photo of Kassandra Rodriguez at Paramount Pictures">
     <img
-        src="kassandra-photo.jpg"
+        src="images/shared/kassandra-photo.jpg"
         alt="Kassandra Rodriguez, Senior UX Designer"
         style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
       />
       <div class="hero-photo-fallback" style="display:none;width:100%;height:100%;background:linear-gradient(160deg,var(--accent-light) 0%,var(--bg-mid) 100%);align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true"><circle cx="28" cy="22" r="11" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M6 50c0-12 9.8-22 22-22s22 9.8 22 22" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <p style="font-family:var(--font-mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);">Add kassandra-photo.jpg</p>
+        <p style="font-family:var(--font-mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);">Add images/shared/kassandra-photo.jpg</p>
       </div>
-    <span class="hero-badge" aria-hidden="true">Open to Opportunities</span>
     <div class="hero-tags" aria-label="Specializations">
       <div class="hero-tag">UX Research &amp; Design</div>
       <div class="hero-tag">Design Systems</div>
@@ -1149,8 +1184,8 @@ footer .footer-links a:hover { color: var(--bg); }
 <section id="approach" aria-labelledby="approach-title">
   <div class="approach-intro reveal">
     <p class="section-label">Design Philosophy</p>
-    <h2 class="section-title" id="approach-title">How I solve <em>complex</em> problems</h2>
-    <p>I embed early with engineering, product, and clinical teams — asking uncomfortable questions before any wireframe is drawn.</p>
+    <h2 class="section-title" id="approach-title">Rigor isn't the enemy of <em>creativity</em></h2>
+    <p>Constraints are where design gets interesting. Whether it's FDA regulations, WCAG compliance, or a two-week sprint — I've learned to treat every constraint as a design brief, not a barrier. The best work I've done has always come from pressing into what's hard, not around it.</p>
   </div>
 
   <div class="approach-cards">
@@ -1195,10 +1230,48 @@ footer .footer-links a:hover { color: var(--bg); }
   </div>
 
   <div class="work-grid" role="list">
-    <div class="work-row-1" role="listitem">
-      <!-- Featured card -->
-      <a href="case-study-icu-sensor.html" class="case-card case-card-featured reveal" aria-label="Case study: Building a Unified Design System for Dialysis Medical Devices">
+
+    <!-- ROW 1 — Full-width featured -->
+    <div class="work-row-featured" role="listitem">
+      <a href="case-study-dialysate-generator.html" class="case-card case-card-featured reveal" aria-label="Case study: On-Demand Dialysate Generator">
         <span class="case-card__featured-label" aria-label="Featured project">Featured</span>
+        <p class="case-card__tag">Medical Device UX · Alarm Hierarchy · Ecosystem Design</p>
+        <h3>Designing an Intuitive Partner Device for Dialysis Fluid Management</h3>
+        <p>Designed the HMI for an on-demand dialysate generator replacing a legacy batch system — resolving a critical patient safety gap through a risk-based alarm hierarchy and ecosystem-native visual language. The resulting design system is now applied across three future Home Hemodialysis products.</p>
+        <div class="case-card__meta">
+          <span class="chip">Class II/III Device</span>
+          <span class="chip">IEC 60601-1-8</span>
+          <span class="chip">Human Factors</span>
+          <span class="chip">FDA / ISO 62366</span>
+          <span class="chip">Fresenius Medical Care</span>
+        </div>
+        <div class="case-card__stats" aria-label="Key outcomes">
+          <div class="case-card__stat-item">
+            <span class="case-card__stat-number">100%</span>
+            <span class="case-card__stat-label">Alarm urgency<br>accuracy</span>
+          </div>
+          <div class="case-card__stat-item">
+            <span class="case-card__stat-number">40%</span>
+            <span class="case-card__stat-label">Faster alarm<br>resolution</span>
+          </div>
+          <div class="case-card__stat-item">
+            <span class="case-card__stat-number">60%</span>
+            <span class="case-card__stat-label">Est. training<br>time reduction</span>
+          </div>
+          <div class="case-card__stat-item">
+            <span class="case-card__stat-number">×3</span>
+            <span class="case-card__stat-label">Products using<br>the design system</span>
+          </div>
+        </div>
+        <div class="case-card__arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- ROW 2 — ICU Sensor + RTL -->
+    <div class="work-row-2" role="listitem">
+      <a href="case-study-icu-sensor.html" class="case-card reveal reveal-delay-1" aria-label="Case study: Embedded Third-Party Sensor Data Integration for ICU Patient Monitor">
         <p class="case-card__tag">UX · Medical Device · Cross-Functional</p>
         <h3>Embedded Third-Party Sensor Data Integration for ICU Patient Monitor</h3>
         <p>Eliminated a secondary ICU display by integrating real-time hematocrit, SpO2, and blood volume data into a primary patient monitor — reducing cognitive load for nurses during critical therapy.</p>
@@ -1212,8 +1285,7 @@ footer .footer-links a:hover { color: var(--bg); }
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </a>
-      <!-- Right side -->
-      <a href="case-study-rtl.html" class="case-card reveal reveal-delay-1" aria-label="Case study: Screen Design for Right-to-Left Languages">
+      <a href="case-study-rtl.html" class="case-card reveal reveal-delay-2" aria-label="Case study: Screen Design for Right-to-Left Languages">
         <p class="case-card__tag">UX Research · Internationalization</p>
         <h3>Screen Design for Right-to-Left Languages</h3>
         <p>Rearchitected layout grids and component logic to support Arabic and Hebrew — a systems-level challenge requiring close partnership with l10n engineers.</p>
@@ -1227,6 +1299,7 @@ footer .footer-links a:hover { color: var(--bg); }
         </div>
       </a>
     </div>
+
   </div>
 </section>
 
@@ -1338,7 +1411,7 @@ footer .footer-links a:hover { color: var(--bg); }
   <div class="about-visual reveal">
     <div class="about-photo-frame">
       <img
-        src="kassandra-photo-2.jpg"
+        src="images/shared/kassandra-photo-2.JPG"
         alt="Kassandra Rodriguez, Senior UX Designer"
         style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
@@ -1375,30 +1448,85 @@ footer .footer-links a:hover { color: var(--bg); }
 
 
 <!-- ── EARLIER WORK ── -->
-<section id="earlier-work" aria-labelledby="earlier-work-title" style="background:var(--paper);padding:5rem 3rem;border-top:1px solid var(--border);">
+<section id="earlier-work" aria-labelledby="earlier-work-title" style="background:var(--paper);padding:6rem 3rem;border-top:1px solid var(--border);">
   <div style="max-width:1100px;margin:0 auto;">
-    <div class="reveal" style="margin-bottom:2.5rem;">
-      <p class="section-label">Earlier Work</p>
-      <h2 class="section-title" id="earlier-work-title" style="max-width:none;">Where the craft <em>began</em></h2>
-      <p style="margin-top:1rem;font-size:1rem;color:var(--ink-soft);max-width:52ch;line-height:1.7;">Foundational projects from the Google UX Design Certificate and a UX Design Fellowship — included because process and growth are worth showing.</p>
+
+    <!-- Section header with career arc framing -->
+    <div class="reveal" style="margin-bottom:3.5rem;">
+      <p class="section-label">The Glow-Up</p>
+      <h2 class="section-title" id="earlier-work-title" style="max-width:none;">Where the craft <em>became</em> a career</h2>
+      <p style="margin-top:1.25rem;font-size:1rem;color:var(--ink-soft);max-width:56ch;line-height:1.75;">
+        These projects were the foundation — certificate coursework and a UX design fellowship that turned a background in graphic design and print production into a full UX practice. The process thinking, accessibility instincts, and user research fundamentals built here are the same ones I apply to Class II/III medical devices today. The domain changed. The rigor didn't.
+      </p>
+      <p style="margin-top:1rem;font-size:0.875rem;font-style:italic;color:var(--accent-dark);border-left:2px solid var(--accent);padding-left:1rem;max-width:48ch;line-height:1.65;">
+        "Every senior designer has a stack of early work they had to fight through to get good. Here's mine."
+      </p>
     </div>
+
+    <!-- Career arc visual connector -->
+    <div class="reveal" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:3rem;padding:1.5rem 2rem;background:var(--bg);border:1px solid var(--border);border-radius:2px;">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex:1;flex-wrap:wrap;">
+        <span style="font-family:var(--font-mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);">Career arc</span>
+        <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+          <span style="background:var(--amber-light);border:1px solid rgba(122,92,30,0.3);color:var(--amber);font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.625rem;border-radius:2px;">Google UX Certificate '22</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="color:var(--ink-faint);flex-shrink:0;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="background:var(--amber-light);border:1px solid rgba(122,92,30,0.3);color:var(--amber);font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.625rem;border-radius:2px;">UX Design Fellowship '22</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="color:var(--ink-faint);flex-shrink:0;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="background:var(--teal-light);border:1px solid rgba(29,107,104,0.25);color:var(--teal);font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.625rem;border-radius:2px;">Common Media '21–'23</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="color:var(--ink-faint);flex-shrink:0;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="background:var(--accent-light);border:1px solid rgba(184,74,46,0.25);color:var(--accent-dark);font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.625rem;border-radius:2px;">Fresenius Medical Care '23–</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case study cards -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);border:1px solid var(--border);">
 
-      <a href="case-study-movie-theater.html" class="reveal" style="background:var(--bg);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;"  >
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">Google UX Certificate</span>
+      <a href="case-study-movie-theater.html" class="reveal" style="background:var(--bg);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;">
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+          <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">Google UX Certificate</span>
+          <span style="font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);">2022</span>
+        </div>
         <h3 style="font-family:var(--font-display);font-size:1.25rem;color:var(--ink);line-height:1.2;">Kasanova Theater — Mobile Ticketing App</h3>
-        <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">End-to-end iOS app design for a local cinema — screen reader–friendly, WCAG compliant, with digital ticketing and saved checkout state.</p>
+        <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">End-to-end iOS app design for a local cinema — screen reader–friendly, WCAG compliant, with digital ticketing and saved checkout state. My first full accessibility-first design system.</p>
+        <!-- Artifact placeholder -->
+        <div style="margin-top:0.5rem;background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:var(--ink-faint);flex-shrink:0;"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div>
+            <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.2rem;">Artifact placeholder</p>
+            <p style="font-size:0.8125rem;color:var(--ink-soft);">Add wireframes or hi-fi mockup screens here</p>
+          </div>
+        </div>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
           <span class="chip">iOS</span><span class="chip">Accessibility</span><span class="chip">Figma</span>
         </div>
+        <div style="display:flex;align-items:center;gap:0.375rem;font-size:0.8125rem;font-weight:500;color:var(--accent);margin-top:0.25rem;">
+          View case study
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
       </a>
 
-      <a href="case-study-learning-platform.html" class="reveal reveal-delay-1" style="background:var(--bg);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;"  >
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">UX Bootcamp</span>
+      <a href="case-study-learning-platform.html" class="reveal reveal-delay-1" style="background:var(--bg);padding:2.5rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;color:inherit;transition:background 0.25s;">
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+          <span style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(122,92,30,0.3);background:var(--amber-light);padding:0.25rem 0.625rem;border-radius:2px;width:fit-content;">UX Design Fellowship</span>
+          <span style="font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);">2022</span>
+        </div>
         <h3 style="font-family:var(--font-display);font-size:1.25rem;color:var(--ink);line-height:1.2;">Unified Online Learning Platform</h3>
-        <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">A desktop platform consolidating fragmented remote-education tools into one integrated workspace for educators and students.</p>
+        <p style="font-size:0.875rem;color:var(--ink-soft);line-height:1.65;flex:1;">A desktop platform consolidating fragmented remote-education tools into one integrated workspace for educators and students. A dual user system with distinct but unified information architectures.</p>
+        <!-- Artifact placeholder -->
+        <div style="margin-top:0.5rem;background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:var(--ink-faint);flex-shrink:0;"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div>
+            <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.2rem;">Artifact placeholder</p>
+            <p style="font-size:0.8125rem;color:var(--ink-soft);">Add wireframes, journey map, or prototype screens here</p>
+          </div>
+        </div>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
           <span class="chip">EdTech</span><span class="chip">Desktop</span><span class="chip">Dual User System</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.375rem;font-size:0.8125rem;font-weight:500;color:var(--accent);margin-top:0.25rem;">
+          View case study
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </a>
 
@@ -1412,7 +1540,7 @@ footer .footer-links a:hover { color: var(--bg); }
   <h2 class="reveal reveal-delay-1" id="contact-title">Let's build something <em>meaningful</em> together</h2>
   <p class="reveal reveal-delay-2">I'm always open to conversations about senior design roles, consulting engagements, and cross-functional collaborations that push boundaries.</p>
   <div class="contact-actions reveal reveal-delay-3">
-    <a href="mailto:krodriguezgraham@gmail.com" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
+    <a href="/cdn-cgi/l/email-protection#dbb0a9b4bfa9b2bcaebea1bca9bab3bab69bbcb6bab2b7f5b8b4b6" class="btn-contact-primary" aria-label="Send email to Kassandra Rodriguez">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Send a Message
     </a>
@@ -1430,12 +1558,12 @@ footer .footer-links a:hover { color: var(--bg); }
     <li><a href="#work">Work</a></li>
     <li><a href="#earlier-work">Earlier Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#553e273a31273c3220302f3227343d3438153238343c397b363a38">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
 <script>
 /* ── Nav scroll state ── */
 const nav = document.getElementById('nav');

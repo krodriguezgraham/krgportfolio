@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="favicon.png" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="RTL Language Screen Design for Medical Device — UX Case Study by Kassandra Rodriguez." />
@@ -55,7 +58,13 @@
 #about       { background: var(--bg); }
 #contact     { background: var(--ink); }
 #earlier-work { background: var(--bg-mid); }
-footer       { background: var(--ink); }
+footer       { background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  gap: 2rem;
+}
 
 
 
@@ -77,7 +86,7 @@ img { display: block; max-width: 100%; }
 .skip-link:focus { top: 0; }
 
 /* ── NAV ── */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+nav#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
 nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); backdrop-filter: blur(8px); }
 .nav-logo { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-transform: uppercase; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -209,16 +218,16 @@ nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); 
 /* ── NEXT ── */
 .cs-next { background: var(--ink); padding: 5rem 3rem; }
 .cs-next-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(13,43,53,0.4); margin-bottom: 0.75rem; }
+.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,244,239,0.65); margin-bottom: 0.75rem; }
 .cs-next h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--bg); }
 .btn-next { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: white; padding: 1rem 1.75rem; font-size: 0.9375rem; font-weight: 500; border: 2px solid var(--accent); border-radius: 2px; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
 .btn-next:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
 
 /* ── FOOTER ── */
 footer{ }
-footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(13,43,53,0.4); }
+footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,0.65); }
 footer .footer-links { display: flex; gap: 2rem; list-style: none; }
-footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(13,43,53,0.4); transition: color 0.2s; }
+footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,244,239,0.65); transition: color 0.2s; }
 footer .footer-links a:hover { color: var(--bg); }
 
 /* ── REVEAL ── */
@@ -248,6 +257,11 @@ footer .footer-links a:hover { color: var(--bg); }
 
 
 
+
+@media (max-width: 640px) {
+  footer { flex-direction: column; align-items: flex-start; padding: 1.5rem; gap: 1rem; }
+  footer .footer-links { flex-wrap: wrap; gap: 1rem; }
+}
 </style>
 </head>
 <body>
@@ -259,7 +273,7 @@ footer .footer-links a:hover { color: var(--bg); }
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#process">Process</a></li>
     <li><a href="index.html#skills">Skills</a></li>
-    <li><a href="about.html">>About</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
 </nav>
@@ -381,7 +395,7 @@ footer .footer-links a:hover { color: var(--bg); }
       <div class="compare-grid" role="img" aria-label="Side-by-side comparison of Arabic and English Facebook login screens, illustrating RTL layout behavior including right-aligned text fields, mirrored navigation, and repositioned logos">
         <div class="compare-cell">
           <img
-            src="https://static.wixstatic.com/media/93bbf5_f2e03ec60dd24fb2a20cb4e3c07981c3~mv2.png/v1/fill/w_650,h_377,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Facebook%202017%20Arabic.png"
+            src="images/case-study-rtl/Facebook-2017-Arabic.png"
             alt="Arabic Facebook login page from 2017 showing right-aligned text, RTL layout, and repositioned navigation elements"
             loading="lazy"
           />
@@ -392,7 +406,7 @@ footer .footer-links a:hover { color: var(--bg); }
         </div>
         <div class="compare-cell">
           <img
-            src="https://static.wixstatic.com/media/93bbf5_72d1b8c3bfdb456190166b4025d94b62~mv2.png/v1/fill/w_560,h_325,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Facebook%202017.png"
+            src="images/case-study-rtl/Facebook-2017.png"
             alt="English Facebook login page from 2017 showing standard left-to-right layout for direct comparison"
             loading="lazy"
           />
@@ -412,7 +426,7 @@ footer .footer-links a:hover { color: var(--bg); }
       <div class="compare-grid" role="img" aria-label="iPhone screenshots comparing English and Arabic interface to understand RTL navigation behavior and spatial flow">
         <div class="compare-cell">
           <img
-            src="https://static.wixstatic.com/media/93bbf5_0814ddace2b442949b74a4bf2c79ec91~mv2.png/v1/fill/w_271,h_540,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/iPhone%20English.png"
+            src="images/case-study-rtl/iPhone-English.png"
             alt="iPhone in English showing left-to-right navigation layout as baseline"
             loading="lazy"
             style="max-height:420px;object-fit:contain;margin:0 auto;"
@@ -424,7 +438,7 @@ footer .footer-links a:hover { color: var(--bg); }
         </div>
         <div class="compare-cell">
           <img
-            src="https://static.wixstatic.com/media/93bbf5_30f377c8963a4a2dad4618ac4681f7dc~mv2.png/v1/fill/w_271,h_540,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/93bbf5_30f377c8963a4a2dad4618ac4681f7dc~mv2.png"
+            src="images/case-study-rtl/iPhone-Arabic.png"
             alt="iPhone set to Arabic showing right-to-left interface layout, mirrored navigation, and Arabic script throughout"
             loading="lazy"
             style="max-height:420px;object-fit:contain;margin:0 auto;"
@@ -496,7 +510,7 @@ footer .footer-links a:hover { color: var(--bg); }
         </p>
         <div class="screen-img">
           <img
-            src="https://static.wixstatic.com/media/93bbf5_074b3eaa4c1f413d8a40de5c4eaa20d2~mv2.png/v1/fill/w_345,h_906,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LTR.png"
+            src="images/case-study-rtl/LTR.png"
             alt="English LTR device screen showing left-aligned text, left-to-right progress bar, forward arrow pointing right, and step numbers with period to the right"
             loading="lazy"
           />
@@ -513,7 +527,7 @@ footer .footer-links a:hover { color: var(--bg); }
         <p class="screen-label">Arabic (RTL)</p>
         <div class="screen-img">
           <img
-            src="https://static.wixstatic.com/media/93bbf5_e253d239338b4ad9a3d0fde364e592f9~mv2.png/v1/fill/w_345,h_905,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/RTL.png"
+            src="images/case-study-rtl/RTL.png"
             alt="Arabic RTL device screen showing right-aligned text, right-to-left progress bar, back arrow pointing right, forward arrow pointing left, and mirrored step numbering"
             loading="lazy"
           />
@@ -532,6 +546,23 @@ footer .footer-links a:hover { color: var(--bg); }
 
     <h3>The Rule System</h3>
     <p>Every component was categorized against three questions: Does this element carry directional meaning? Is its meaning culturally universal or contextual? Does inverting it risk clinical misinterpretation? The answers produced explicit per-component rules documented in Figma and handed off to development as a standalone RTL specification sheet.</p>
+
+    <!-- ── ARTIFACT PLACEHOLDER — add RTL design artifacts ── -->
+    <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;" role="img" aria-label="Design artifact placeholders — replace with RTL design system artifacts">
+      <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="2" y="4" width="24" height="20" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M8 10h12M8 14h8M8 18h10" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
+        <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add RTL component specification sheet or Figma annotation screenshot</p>
+      </div>
+      <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="2" y="4" width="24" height="20" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M7 14h14M14 7v14" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
+        <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add the per-component rules table or decision matrix export</p>
+      </div>
+      <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="4" y="8" width="20" height="14" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M9 8V6a5 5 0 0110 0v2" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
+        <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add handoff spec or dev collaboration screenshot</p>
+      </div>
+    </div>
+    <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.75rem;">↑ Replace these placeholders with your RTL design system artifacts — specs, annotations, Figma handoff views</p>
   </section>
 
   <!-- COLLABORATION -->
@@ -626,6 +657,11 @@ footer .footer-links a:hover { color: var(--bg); }
         </div>
       </div>
     </div>
+
+    <div style="margin-top:2.5rem;background:var(--bg-mid);border-left:3px solid var(--accent);padding:1.5rem 1.75rem;border-radius:0 2px 2px 0;">
+      <p style="font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.625rem;">From the Designer</p>
+      <p style="font-size:0.9375rem;font-style:italic;color:var(--ink-soft);line-height:1.75;margin:0;">This project taught me that global design is really just good design — it forces you to question every assumption you've baked into your defaults. Direction, iconography, number formatting: things that feel "neutral" are only neutral to one language's speakers. Designing for RTL didn't expand my definition of good UX. It clarified it.</p>
+    </div>
   </section>
 
 </article>
@@ -696,16 +732,16 @@ footer .footer-links a:hover { color: var(--bg); }
 </main>
 
 <footer>
-  <span class="footer-name">©2025 Kassandra Rodriguez</span>
+  <span class="footer-name">©2026 Kassandra Rodriguez</span>
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
-    <li><a href="about.html">>About</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="/cdn-cgi/l/email-protection#4328312c27312a243626392431222b222e03242e222a2f6d202c2e7c303621292620377e0b2a66710066717308223030222d2731226671006671730a6671732f2c35266671733a2c3631667173342c312862">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {

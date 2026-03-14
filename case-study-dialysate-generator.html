@@ -260,7 +260,7 @@ footer .footer-links a:hover { color: var(--bg); }
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <a href="index.html" class="nav-logo" aria-label="Back to Kassandra Rodriguez homepage"><img src="images/shared/favicon.png" alt="Kassandra Rodriguez — home" width="32" height="32" /></a>
+  <a href="index.html" class="nav-logo" aria-label="Back to Kassandra Rodriguez homepage"><img src="images/shared/kr-logo.svg" alt="Kassandra Rodriguez — home" width="36" height="36" style="border-radius:5px;" /></a>
   <ul class="nav-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#process">Process</a></li>
@@ -656,12 +656,12 @@ footer .footer-links a:hover { color: var(--bg); }
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#7c170e13180e151b0919061b0e1d141d113c1b111d1510521f1311">Email</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -671,4 +671,12 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      observer.unobserve(e
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

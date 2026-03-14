@@ -8,6 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="RTL Language Screen Design for Medical Device — UX Case Study by Kassandra Rodriguez." />
 <title>RTL Language Design — Kassandra Rodriguez</title>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="RTL Language Design — Kassandra Rodriguez" />
+<meta property="og:description" content="UX Case Study: Screen design for right-to-left languages on an FDA-regulated medical device — 13 languages, two RTL scripts." />
+<meta property="og:url" content="https://krodriguezgraham.github.io/krgportfolio/case-study-rtl.html" />
+<meta property="og:image" content="https://krodriguezgraham.github.io/krgportfolio/images/shared/kassandra-photo.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="RTL Language Design — Kassandra Rodriguez" />
+<meta name="twitter:description" content="UX Case Study: Screen design for right-to-left languages on an FDA-regulated medical device — 13 languages, two RTL scripts." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -340,9 +348,6 @@ footer .footer-links a:hover { color: var(--bg); }
   <section class="cs-section reveal" id="overview" aria-labelledby="overview-h2">
     <p class="section-eyebrow">The Brief</p>
     <h2 id="overview-h2">A fully-shipped product. A global market. A design system <em>built for one direction.</em></h2>
-    <p>A Fresenius Medical Care device with an established, FDA-cleared interface was being prepared for international release across 13 languages. The device guides users through critical step-by-step therapy procedures using on-screen text, imagery, and interactive elements — making clear communication a patient safety requirement, not a nice-to-have.</p>
-    <p>Two of those 13 languages — Arabic and Hebrew — are read right-to-left. The existing design system had been built entirely around left-to-right reading patterns. Every layout, every navigation arrow, every progress indicator, every piece of directional logic needed to be re-examined and, in many cases, fundamentally inverted.</p>
-
     <div class="pull-quote">
       <p>"This wasn't a translation project. It was a systems problem — every layout assumption baked into the original design had to be interrogated, not just mirrored."</p>
     </div>
@@ -351,9 +356,7 @@ footer .footer-links a:hover { color: var(--bg); }
   <!-- PROBLEM -->
   <section class="cs-section reveal" id="problem" aria-labelledby="problem-h2">
     <p class="section-eyebrow">Problem Definition</p>
-    <h2 id="problem-h2">Three compounding design challenges — <em>all patient-safety critical.</em></h2>
-    <p>RTL adaptation in a general consumer context carries design risk. In a regulated medical device context, that risk is amplified: a misread instruction, an ambiguous directional cue, or a mistranslated term can directly affect patient outcomes. The challenges were distinct and each required its own solution.</p>
-
+    <h2 id="problem-h2">Four compounding design challenges — <em>all patient-safety critical.</em></h2>
     <div class="two-col" role="list" aria-label="Core design challenges">
       <div class="finding-card" role="listitem">
         <p class="finding-num">Challenge 01</p>
@@ -382,14 +385,9 @@ footer .footer-links a:hover { color: var(--bg); }
   <section class="cs-section reveal" id="research" aria-labelledby="research-h2">
     <p class="section-eyebrow">Research &amp; Discovery</p>
     <h2 id="research-h2">Before designing RTL, I <em>learned to read it.</em></h2>
-    <p>The most significant early insight was methodological: I couldn't design for a reading experience I'd never inhabited. Before mapping a single screen, I reconfigured my own iPhone to Arabic and Hebrew — not as a token gesture, but as a structured immersion exercise. Navigating a device you use daily in an unfamiliar script forces an intuitive understanding of disorientation, flow, and where spatial assumptions break down.</p>
-
-    <div class="callout" role="note">
-      <p>Setting my iPhone to Arabic wasn't a cute anecdote. It was the fastest way to experience the precise moments where LTR design assumptions create friction — and to build the muscle memory of RTL spatial logic before touching a design file.</p>
-    </div>
+    <p>I couldn't design for a reading experience I'd never inhabited. Before mapping a single screen, I reconfigured my own iPhone to Arabic and Hebrew — not as a token gesture, but as a structured immersion exercise. It was the fastest way to experience the precise moments where LTR design assumptions create friction, and to build spatial intuition for RTL before touching a design file.</p>
 
     <h3>Competitive Benchmarking</h3>
-    <p>The research extended to auditing established RTL digital products against usability standards — identifying where existing solutions succeeded, and where they revealed unresolved tensions between global design consistency and local cultural expectations.</p>
 
     <div class="compare-wrap">
       <p class="compare-label">Benchmarking: Arabic Facebook Login (2017) vs. English equivalent</p>
@@ -420,7 +418,6 @@ footer .footer-links a:hover { color: var(--bg); }
     </div>
 
     <h3>Immersive Device Testing</h3>
-    <p>Switching a personal device to Arabic and Hebrew provided hands-on insight into how layout, navigation gestures, and interface metaphors behave under RTL conditions — and which of those behaviors would transfer to the device's constrained, step-by-step UI context.</p>
 
     <div class="compare-wrap">
       <p class="compare-label">iPhone set to Arabic — immersive RTL environment research</p>
@@ -457,8 +454,7 @@ footer .footer-links a:hover { color: var(--bg); }
   <section class="cs-section reveal" id="testing" aria-labelledby="testing-h2">
     <p class="section-eyebrow">Usability Testing</p>
     <h2 id="testing-h2">Native speakers, conflicting feedback, <em>and a decision that had to be made.</em></h2>
-    <p>Four moderated usability sessions were conducted virtually — two in Arabic, two in Hebrew — with native readers evaluating a visual simulator of the device software. Linguistic experts were engaged in parallel to validate text rendering, script recognition, and typographic details specific to each script.</p>
-    <p>The sessions surfaced an unexpected tension: the first two sessions generated directly conflicting feedback on icon orientation. Participants disagreed on whether certain directional iconography should be mirrored. When the final sessions were complete, the data was inconclusive — and the decision fell to the lead Human Factors engineer and me to define the testing path forward.</p>
+    <p>Four moderated usability sessions — two in Arabic, two in Hebrew — with native readers evaluating a visual simulator of the device software. Linguistic experts validated text rendering and typographic precision for each script. The sessions surfaced a direct conflict: participants disagreed on whether certain directional iconography should be mirrored. The data was inconclusive, and the decision fell to the lead Human Factors engineer and me to resolve.</p>
 
     <div class="callout" role="note">
       <p>Inconclusive usability data is not a failure — it's a signal. Our job was to resolve ambiguity through principled decision-making, not to wait for consensus that wasn't coming.</p>
@@ -546,32 +542,14 @@ footer .footer-links a:hover { color: var(--bg); }
     <p style="font-size:0.8125rem;color:var(--ink-faint);font-style:italic;text-align:center;margin-top:-1rem;margin-bottom:2rem;">All images are portfolio mockups. Proprietary device screens omitted per NDA.</p>
 
     <h3>The Rule System</h3>
-    <p>Every component was categorized against three questions: Does this element carry directional meaning? Is its meaning culturally universal or contextual? Does inverting it risk clinical misinterpretation? The answers produced explicit per-component rules documented in Figma and handed off to development as a standalone RTL specification sheet.</p>
+    <p>Every component was evaluated against three questions: Does it carry directional meaning? Is its meaning culturally universal or contextual? Does inverting it risk clinical misinterpretation? The answers produced per-component rules — documented in Figma and handed off as a standalone RTL specification sheet.</p>
 
-    <!-- ── ARTIFACT PLACEHOLDER — add RTL design artifacts ── -->
-    <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;" role="img" aria-label="Design artifact placeholders — replace with RTL design system artifacts">
-      <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="2" y="4" width="24" height="20" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M8 10h12M8 14h8M8 18h10" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
-        <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add RTL component specification sheet or Figma annotation screenshot</p>
-      </div>
-      <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="2" y="4" width="24" height="20" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M7 14h14M14 7v14" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
-        <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add the per-component rules table or decision matrix export</p>
-      </div>
-      <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="4" y="8" width="20" height="14" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M9 8V6a5 5 0 0110 0v2" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
-        <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add handoff spec or dev collaboration screenshot</p>
-      </div>
-    </div>
-    <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.75rem;">↑ Replace these placeholders with your RTL design system artifacts — specs, annotations, Figma handoff views</p>
   </section>
 
   <!-- COLLABORATION -->
   <section class="cs-section reveal" id="collaboration" aria-labelledby="collab-h2">
     <p class="section-eyebrow">Cross-Functional Collaboration</p>
     <h2 id="collab-h2">Three disciplines, <em>one shared specification.</em></h2>
-    <p>The design wouldn't survive contact with development if it existed only as Figma screens. Translating RTL logic into implementation-ready specifications required sustained, structured collaboration across engineering, human factors, and product management from the project's first sprint.</p>
-
     <div class="collab-grid" role="list" aria-label="Cross-functional collaboration details">
       <div class="collab-card" role="listitem">
         <p class="collab-role">Software Developer</p>
@@ -596,8 +574,6 @@ footer .footer-links a:hover { color: var(--bg); }
   <section class="cs-section reveal" id="outcomes" aria-labelledby="outcomes-h2">
     <p class="section-eyebrow">Outcomes</p>
     <h2 id="outcomes-h2">A scalable RTL system, <em>ready for global release.</em></h2>
-    <p>The project delivered a complete, implementation-ready RTL design system that supported the device's international market release — structured to scale beyond Arabic and Hebrew to any future RTL language requirement.</p>
-
     <div class="outcomes-row" role="list" aria-label="Project outcomes">
       <div class="outcome-cell" role="listitem">
         <div class="outcome-icon" aria-hidden="true">
@@ -632,26 +608,12 @@ footer .footer-links a:hover { color: var(--bg); }
       <div class="learning-item" role="listitem">
         <div class="learning-num" aria-hidden="true">01</div>
         <div class="learning-text">
-          <h4>Immersion beats assumption</h4>
-          <p>Setting my device to Arabic gave me an intuitive, embodied understanding of RTL friction that no amount of documentation could replicate. When designing for an unfamiliar context, the fastest path to insight is to live in it — even imperfectly.</p>
-        </div>
-      </div>
-      <div class="learning-item" role="listitem">
-        <div class="learning-num" aria-hidden="true">02</div>
-        <div class="learning-text">
           <h4>Conflicting data requires a decision, not a delay</h4>
           <p>When usability sessions produce opposing findings, the answer is not to run more sessions hoping for consensus. It's to synthesize the existing evidence, make a principled, documented decision, and test that decision — not the original question again.</p>
         </div>
       </div>
       <div class="learning-item" role="listitem">
-        <div class="learning-num" aria-hidden="true">03</div>
-        <div class="learning-text">
-          <h4>Mirroring is a heuristic, not a rule</h4>
-          <p>The instinct to "flip everything" for RTL produces dangerous outputs in medical contexts. Universal symbols, numerical values, and cultural imagery each require individual assessment. The discipline is in building a principled rule system — not applying a blanket transformation.</p>
-        </div>
-      </div>
-      <div class="learning-item" role="listitem">
-        <div class="learning-num" aria-hidden="true">04</div>
+        <div class="learning-num" aria-hidden="true">02</div>
         <div class="learning-text">
           <h4>Test on real hardware next time</h4>
           <p>All sessions were conducted using a visual simulator. While effective, simulator-based testing cannot fully replicate the physical interaction context of a medical device — particularly for gesture-based navigation. Future RTL validation should incorporate actual device hardware as early as the testing protocol allows.</p>

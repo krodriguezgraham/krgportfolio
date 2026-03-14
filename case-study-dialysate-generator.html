@@ -421,7 +421,7 @@ footer .footer-links a:hover { color: var(--bg); }
         <img
           src="images/shared/workflow-blurred.jpg"
           alt="Information architecture diagram showing the happy path flow: Standby and Setup, Dialysate Prep, Connect to Cartridge, Treatment, Teardown — alongside the full menu structure with secondary flows"
-          style="background:#000;"
+          style="background:#000;max-height:520px;object-fit:contain;object-position:center;"
         />
         <p class="artifact-caption">The IA defined the treatment workflow as a linear five-phase happy path, with a parallel menu structure handling maintenance, settings, and advanced options. This separation — guided linear flow vs. non-linear menu access — was a core structural decision that influenced every screen design.</p>
       </div>
@@ -696,7 +696,7 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 revealEls.forEach(el => observer.observe(el));
 </script>
 

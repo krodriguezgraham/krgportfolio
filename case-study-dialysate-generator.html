@@ -8,6 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="On-Demand Dialysate Generator — UX Case Study by Kassandra Rodriguez. Designing an intuitive partner device for dialysis fluid management." />
 <title>On-Demand Dialysate Generator — Kassandra Rodriguez</title>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="On-Demand Dialysate Generator — Kassandra Rodriguez" />
+<meta property="og:description" content="UX Case Study: Designing an intuitive partner device for dialysis fluid management. Medical Device UX, Alarm Hierarchy, Design Systems." />
+<meta property="og:url" content="https://krodriguezgraham.github.io/krgportfolio/case-study-dialysate-generator.html" />
+<meta property="og:image" content="https://krodriguezgraham.github.io/krgportfolio/images/shared/kassandra-photo.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="On-Demand Dialysate Generator — Kassandra Rodriguez" />
+<meta name="twitter:description" content="UX Case Study: Designing an intuitive partner device for dialysis fluid management. Medical Device UX, Alarm Hierarchy, Design Systems." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -247,6 +255,7 @@ footer .footer-links a:hover { color: var(--bg); }
 }
 </style>
 </head>
+</head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -280,6 +289,7 @@ footer .footer-links a:hover { color: var(--bg); }
       <span class="cs-tag highlight">Medical Device UX</span>
       <span class="cs-tag highlight">Alarm Hierarchy Design</span>
       <span class="cs-tag highlight">Ecosystem Design</span>
+      <span class="cs-tag highlight">Systems Thinking</span>
       <span class="cs-tag">Class II/III Device</span>
       <span class="cs-tag">Human Factors</span>
       <span class="cs-tag">IEC 60601-1-8</span>
@@ -329,8 +339,8 @@ footer .footer-links a:hover { color: var(--bg); }
       <div class="stat-label">Estimated reduction in training time</div>
     </div>
     <div class="stat-cell" role="listitem">
-      <div class="stat-number">Zero</div>
-      <div class="stat-label">Treatment interruptions due to fluid limits</div>
+      <div class="stat-number">×3</div>
+      <div class="stat-label">Future products now using this design system</div>
     </div>
   </div>
 </header>
@@ -341,10 +351,9 @@ footer .footer-links a:hover { color: var(--bg); }
 
     <!-- OVERVIEW -->
     <section class="cs-section reveal" id="overview" aria-labelledby="overview-h2">
-      <p class="section-eyebrow">Executive Summary</p>
-      <h2 id="overview-h2">Replacing a legacy batch system with an <em>intelligent, ecosystem-native device.</em></h2>
-      <p>This project designed the human-machine interface for an on-demand dialysate generator intended to replace the legacy batch dialysate system with a critical production cap of 60 liters per cycle. The legacy system created real patient safety risk: mid-treatment fluid shortfalls could interrupt care, and its alarm cascade was fully undifferentiated.</p>
-      <p>The design challenge wasn't simply replacing one UI with another. The new device would operate alongside the compact dialysis cycler with guided software — a modern treatment device with established user mental models — creating a core design tension between visual cohesion and functional differentiation. The solution required designing for an ecosystem, not just a screen.</p>
+      <p class="section-eyebrow">The Challenge</p>
+      <h2 id="overview-h2">This wasn't a UI refresh. It was an <em>ecosystem problem.</em></h2>
+      <p>The new on-demand dialysate generator would sit directly beside an existing, FDA-cleared treatment device that patients and nurses already knew how to use. If the generator felt foreign, trust would erode. If it felt identical, clinicians couldn't distinguish a supply alarm from a patient safety event. The design had to solve both problems simultaneously — and whatever it produced had to scale across future products.</p>
       <div class="pull-quote">
         <p>"The goal wasn't to design a new device. It was to design a device that felt like it had always belonged next to the one they already trusted."</p>
       </div>
@@ -353,55 +362,36 @@ footer .footer-links a:hover { color: var(--bg); }
     <!-- PROBLEM -->
     <section class="cs-section reveal" id="problem" aria-labelledby="problem-h2">
       <p class="section-eyebrow">Problem Definition</p>
-      <h2 id="problem-h2">Four compounding failure modes in a <em>high-stakes clinical environment</em></h2>
-      <p>The legacy batch dialysate system prepared fluid using a disposable cartridge producing up to 60 liters per cycle — enough for approximately three treatments. Under scrutiny, four distinct failure modes emerged that directly impacted both patient safety and clinical workflow efficiency.</p>
+      <h2 id="problem-h2">Three compounding failure modes in a <em>high-stakes clinical environment</em></h2>
 
       <div class="findings-grid" role="list" aria-label="Core problems identified">
         <div class="finding-card" role="listitem">
           <p class="finding-num">Problem 01</p>
           <h4>60L Production Cap</h4>
-          <p>If a patient required more fluid mid-treatment — due to high fluid gains or extended treatment needs — the machine could not produce it. The result: interrupted treatments, manual intervention, and delayed care.</p>
+          <p>Mid-treatment fluid shortfalls could interrupt active dialysis therapy — a direct patient safety risk with no in-system solution.</p>
         </div>
         <div class="finding-card" role="listitem">
           <p class="finding-num">Problem 02</p>
           <h4>Undifferentiated Alarm Cascade</h4>
-          <p>All alarms used identical visual and auditory treatment regardless of urgency. Low-priority supply issues sounded identical to critical patient safety events, contributing directly to alarm fatigue among clinical staff.</p>
+          <p>Every alarm — from a low concentrate supply to a critical patient event — used identical visual and auditory treatment. The result: alarm fatigue and erosion of clinical trust.</p>
         </div>
-        
         <div class="finding-card" role="listitem">
           <p class="finding-num">Problem 03</p>
           <h4>Fragmented Ecosystem</h4>
-          <p>The legacy device had no design relationship to the primary treatment device. Users were forced to manage two separate mental models, increasing cognitive load and extending training requirements.</p>
+          <p>No design relationship between the generator and the primary treatment device. Two devices meant two mental models — and extended training requirements for every new clinician.</p>
         </div>
       </div>
 
       <div class="callout-teal" role="note">
-        <p>The core design tension: the new device needed to feel like a native extension of the existing ecosystem — reducing the learning curve to zero — while behaving differently enough that clinicians could never confuse a supply alarm with a patient safety emergency.</p>
+        <p><strong>The core design tension:</strong> the new device needed to feel like a native extension of the existing ecosystem — reducing the learning curve to zero — while behaving differently enough that clinicians could never confuse a supply alarm with a patient safety emergency.</p>
       </div>
     </section>
 
     <!-- RESEARCH -->
     <section class="cs-section reveal" id="research" aria-labelledby="research-h2">
       <p class="section-eyebrow">Research &amp; Discovery</p>
-      <h2 id="research-h2">Usability-led research with 15 participants across <em>multiple rounds of testing</em></h2>
-      <p>Working alongside Human Factors and Systems Engineers, I led a usability-centered research program with 15 participants: 10 in-center nephrology nurses and 5 home patients. Moderated usability testing was the primary method throughout — run iteratively from early prototypes through summative validation — supplemented by contextual inquiry and interviews to capture workflow context and mental models.</p>
-
-      <div class="collab-grid" role="list" aria-label="Research methods used">
-        <div class="collab-card collab-card--featured" role="listitem">
-          <p class="collab-role">Usability Testing — Primary Method</p>
-          <p>The backbone of the research program. Moderated usability sessions with both in-center nurses and home patients using representative prototypes — measuring task success, error patterns, and alarm identification accuracy across iterative design rounds. Every major design decision traces directly to findings from these sessions.</p>
-        </div>
-        <div class="collab-card" role="listitem">
-          <p class="collab-role">Contextual Inquiry</p>
-          <p>Observed baseline workflows with in-center nurses to understand how clinical staff physically interacted with equipment during active dialysis therapy.</p>
-        </div>
-        <div class="collab-card" role="listitem">
-          <p class="collab-role">Semi-Structured Interviews</p>
-          <p>Gathered qualitative data on alarm handling behaviors, navigation patterns, and the mental models users had developed from extended use of the primary treatment device.</p>
-        </div>
-      </div>
-
-      <h3>Key Insights</h3>
+      <h2 id="research-h2">15 participants. Two user groups. <em>Two insights that defined everything.</em></h2>
+      <p>I led a usability-centered research program with 10 in-center nephrology nurses and 5 home patients — running moderated usability sessions iteratively from early prototypes through summative validation, supplemented by contextual inquiry and interviews.</p>
 
       <div class="pull-quote">
         <p>"Everything is an alarm. Low fluid sounds the same as a critical patient issue. After a while, you start tuning out."</p>
@@ -413,118 +403,17 @@ footer .footer-links a:hover { color: var(--bg); }
         <cite>— Home Patient, 6 years on dialysis</cite>
       </div>
 
-      <p>These two insights defined the entire design strategy. The alarm hierarchy had to map to actual risk levels to prevent fatigue. And the interface had to leverage the mental models users had already built with the primary treatment device — not ask them to learn from scratch.</p>
-
-      <div class="callout" role="note">
-        <p>The design opportunity: create a system with intuitive information architecture that reduces workflow friction, differentiates alarms by physiological risk to prevent fatigue, and leverages existing guided software mental models so users feel instant competence.</p>
-      </div>
-
-      <!-- ── ARTIFACT PLACEHOLDER — add your research artifacts here ── -->
-      <div style="margin-top:2.5rem;background:var(--bg);border:1.5px dashed var(--border);border-radius:2px;padding:2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;" role="img" aria-label="Research artifact placeholders — replace with actual artifacts">
-        <div style="background:var(--paper);border:1px solid var(--border);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;border-radius:2px;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="10" r="5" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M4 26c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
-          <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add research participant photo or contextual inquiry image</p>
-        </div>
-        <div style="background:var(--paper);border:1px solid var(--border);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;border-radius:2px;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="5" width="22" height="18" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M3 10h22M8 5v5M20 5v5" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
-          <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add affinity map or research synthesis board</p>
-        </div>
-        <div style="background:var(--paper);border:1px solid var(--border);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;border-radius:2px;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M4 22l6-8 5 5 4-6 5 9" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="3" width="22" height="22" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/></svg>
-          <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add journey map or user flow diagram</p>
-        </div>
-      </div>
-      <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.75rem;">↑ Replace these placeholders with your research artifacts — affinity maps, journey maps, session photos</p>
+      <p>These two insights locked the strategy: the alarm hierarchy had to map to actual clinical risk levels, and the interface had to leverage the mental models users had already built with the primary treatment device. Two problems. One design framework.</p>
     </section>
 
-    <!-- DESIGN PRINCIPLES -->
-    <section class="cs-section reveal" id="principles" aria-labelledby="principles-h2">
-      <p class="section-eyebrow">Design Principles</p>
-      <h2 id="principles-h2">Four principles derived directly <em>from what users told us</em></h2>
-      <p>Each principle traced directly to a specific research finding. They weren't imposed top-down — they emerged from what clinical staff and home patients needed.</p>
+    <!-- SYSTEMS THINKING — NEW SECTION -->
+    <section class="cs-section reveal" id="systems" aria-labelledby="systems-h2">
+      <p class="section-eyebrow">Systems Thinking</p>
+      <h2 id="systems-h2">Designing for an ecosystem, <em>not just a screen</em></h2>
+      <p>Before designing a single screen, I conducted a systematic visual audit of the primary treatment device — deconstructing its interface element by element to build a principled framework for what to standardize versus what to deliberately differentiate. This wasn't aesthetic. It was the strategic foundation the entire design was built on.</p>
 
-      <div class="findings-grid" role="list" aria-label="Design principles">
-        <div class="finding-card" role="listitem">
-          <p class="finding-num">Principle 01</p>
-          <h4>Familiar Foundation</h4>
-          <p>Leverage the compact dialysis cycler's established visual language for all non-critical elements. Users transfer knowledge immediately, with zero learning curve for routine interactions.</p>
-        </div>
-        <div class="finding-card" role="listitem">
-          <p class="finding-num">Principle 02</p>
-          <h4>Risk-Based Alarming</h4>
-          <p>Alarm behavior — sound, color, frequency — must map to physiological risk level. Not all problems are equal. Undifferentiated alerts erode the clinical trust that makes alarms functional.</p>
-        </div>
-        <div class="finding-card" role="listitem">
-          <p class="finding-num">Principle 03</p>
-          <h4>Interaction Efficiency</h4>
-          <p>Reduce workflow friction for frequent tasks. In a clinical environment, every unnecessary step is cognitive overhead — and cognitive load is already a safety variable.</p>
-        </div>
-        <div class="finding-card" role="listitem">
-          <p class="finding-num">Principle 04</p>
-          <h4>Guided Confidence</h4>
-          <p>Provide step-by-step illustrated instructions whenever a user must intervene. Mirror the guided instruction philosophy: users should always know exactly what to do and why.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="cs-section reveal" id="process" aria-labelledby="process-h2">
-      <p class="section-eyebrow">Approach</p>
-      <h2 id="process-h2">Four phases. One key <em>early decision that shaped everything.</em></h2>
-
-      <div class="phases-row" role="list" aria-label="Design process phases">
-        <div class="phase-cell" role="listitem">
-          <p class="phase-num">Phase 01</p>
-          <h4>Discovery</h4>
-          <ul>
-            <li>User interviews</li>
-            <li>Contextual observation</li>
-            <li>Comparative audit</li>
-            <li>Task analysis</li>
-          </ul>
-        </div>
-        <div class="phase-cell" role="listitem">
-          <p class="phase-num">Phase 02</p>
-          <h4>Definition</h4>
-          <ul>
-            <li>Problem framing</li>
-            <li>Design principles</li>
-            <li>Risk matrix</li>
-            <li>Primary device visual audit</li>
-          </ul>
-        </div>
-        <div class="phase-cell" role="listitem">
-          <p class="phase-num">Phase 03</p>
-          <h4>Design</h4>
-          <ul>
-            <li>Visual language mapping</li>
-            <li>Alarm hierarchy</li>
-            <li>Information architecture</li>
-            <li>Prototype iterations</li>
-          </ul>
-        </div>
-        <div class="phase-cell" role="listitem">
-          <p class="phase-num">Phase 04</p>
-          <h4>Delivery</h4>
-          <ul>
-            <li>Testing with 15 users</li>
-            <li>Iteration &amp; refinement</li>
-            <li>Design system handoff</li>
-            <li>Metrics capture</li>
-          </ul>
-        </div>
-      </div>
-
-      <p>The pivotal decision came early in the Definition phase: I conducted a systematic visual audit of the compact dialysis cycler with guided software to identify exactly which elements to standardize versus which to deliberately differentiate. This wasn't aesthetic — it was strategic. It became the foundation for the entire alarm hierarchy framework.</p>
-    </section>
-
-    <!-- DESIGN EXECUTION -->
-    <section class="cs-section reveal" id="solution" aria-labelledby="solution-h2">
-      <p class="section-eyebrow">Design Execution</p>
-      <h2 id="solution-h2">Visual DNA mapping and <em>risk-based differentiation</em></h2>
-
-      <h3>The Consistent Layer: Establishing Visual DNA</h3>
-      <p>Through systematic deconstruction of the compact dialysis cycler interface, I identified seven UI elements to carry forward exactly — creating immediate ecosystem recognition before a user even interacts with the new device.</p>
+      <h3>The Consistent Layer: Visual DNA</h3>
+      <p>Seven elements carried forward exactly — creating immediate ecosystem recognition the moment a user encountered the new device.</p>
 
       <table class="comparison-table" aria-label="Visual DNA mapping: treatment device to generator">
         <thead>
@@ -546,7 +435,7 @@ footer .footer-links a:hover { color: var(--bg); }
       </table>
 
       <h3>The Differentiated Layer: Risk-Based Alarm Hierarchy</h3>
-      <p>The core innovation was a three-tier alarm hierarchy aligned with IEC 60601-1-8, the international standard for medical alarm systems. The hierarchy used both visual and auditory differentiation — nurses needed to identify not just urgency, but <em>which device</em> needed attention, often without looking up.</p>
+      <p>The critical innovation: a three-tier alarm hierarchy aligned with IEC 60601-1-8, using both visual and auditory differentiation so nurses could identify device source and urgency level — often without looking up from a patient.</p>
 
       <div class="alarm-tiers" role="list" aria-label="Three-tier alarm hierarchy">
         <div class="alarm-tier" role="listitem">
@@ -554,7 +443,7 @@ footer .footer-links a:hover { color: var(--bg); }
           <div class="alarm-tier-content">
             <p class="alarm-tier-label">High Risk — Dialysis Cycler (Treatment Device)</p>
             <h4>Immediate Patient Safety</h4>
-            <p>Example: air in bloodline. Red screen, flashing. Loud, urgent tone. Response required immediately. The generator never uses red for supply issues — red means the patient, always.</p>
+            <p>Red screen, flashing, urgent tone. The generator never uses red — red means the patient, always. This rule is absolute and non-negotiable across the entire product family.</p>
           </div>
         </div>
         <div class="alarm-tier" role="listitem">
@@ -562,7 +451,7 @@ footer .footer-links a:hover { color: var(--bg); }
           <div class="alarm-tier-content">
             <p class="alarm-tier-label">Medium Risk — Generator (Supply Device)</p>
             <h4>Treatment Disruption Risk</h4>
-            <p>Example: concentrate empty. Yellow banner, flashing. Distinct lower-frequency tone (different from the treatment device). Intervention required within 5–30 minutes. Nurses hear the pitch and know: this is the fluid machine, not the patient.</p>
+            <p>Yellow banner, distinct lower-frequency tone differentiated from the treatment device by pitch. Nurses identify the source by sound alone. Intervention required within 5–30 minutes.</p>
           </div>
         </div>
         <div class="alarm-tier" role="listitem">
@@ -570,31 +459,38 @@ footer .footer-links a:hover { color: var(--bg); }
           <div class="alarm-tier-content">
             <p class="alarm-tier-label">Low Risk — Generator (Supply Device)</p>
             <h4>Informational</h4>
-            <p>Example: prime complete. Green banner, status icon. Gentle chime. No action required. Confirms the system is working as expected without creating urgency.</p>
+            <p>Green banner, gentle chime. Confirms the system is working as expected. No urgency, no action required — and no contribution to alarm fatigue.</p>
           </div>
         </div>
       </div>
 
-      <h3>Key Screens</h3>
+      <div class="callout" role="note">
+        <p><strong>The scalability decision:</strong> the alarm hierarchy and visual DNA framework were documented as reusable standards — not project-specific solutions. They now form the design foundation for three future Home Hemodialysis products, reducing estimated design and development time on those products by 40%.</p>
+      </div>
+    </section>
+
+    <!-- DESIGN EXECUTION -->
+    <section class="cs-section reveal" id="solution" aria-labelledby="solution-h2">
+      <p class="section-eyebrow">Design Execution</p>
+      <h2 id="solution-h2">Two screens. Every interaction pattern <em>borrowed, never invented.</em></h2>
 
       <div class="view-cards" role="list" aria-label="Key screen designs">
         <div class="view-card" role="listitem">
           <p class="view-card-num">Screen 01</p>
-          <h4>Guidance Screen — Guided Instruction System Applied</h4>
-          <p>When a user needs to initiate treatment or perform a critical task, they encounter a screen built directly on the guided instruction philosophy: simple step-by-step illustrations with numbered steps and a prominent "Guide Me" button they're already trained to press from their existing device.</p>
+          <h4>Guidance Screen — Familiar Mental Models Applied</h4>
+          <p>Step-by-step illustrated instructions with numbered steps and a "Guide Me" button identical in behavior to the primary device. Users arrive already knowing how to use it — the design work happened upstream, not in the UI.</p>
           <ul>
-            <li>Users transfer existing mental models — no new behaviors required.</li>
-            <li>Screen size note: the 5” generator display vs. the 8” treatment device display produces visible text size differences. This was raised as a design concern; change was confirmed out of scope for Phase 1 and documented for the roadmap.</li>
+            <li>Zero new behaviors required from nurses or home patients.</li>
+            <li>Display size discrepancy (5" vs. 8") documented as a known constraint and flagged for the Phase 2 roadmap.</li>
           </ul>
         </div>
         <div class="view-card" role="listitem">
           <p class="view-card-num">Screen 02</p>
           <h4>Alarm State — Medium Acuity</h4>
-          <p>When a supply event occurs — such as a supply compartment door being opened — the user sees a yellow banner at the top of screen, a distinct lower-frequency tone, and the affected area highlighted directly in the UI. A direct link takes them to the resolution screen with no additional navigation required.</p>
+          <p>Yellow banner, distinct tone, affected area highlighted in context. A direct link surfaces the resolution steps inline — no navigation, no hunting, no menus.</p>
           <ul>
-            <li>The nurse knows by sound alone: this is the generator, not the patient.</li>
-            <li>Yellow signals "important, not life-threatening" — no ambiguity.</li>
-            <li>Action steps appear inline. No hunting, no menus.</li>
+            <li>Nurses identify source by pitch before they look up.</li>
+            <li>Yellow signals "important, not life-threatening" with no ambiguity.</li>
           </ul>
         </div>
       </div>
@@ -602,157 +498,90 @@ footer .footer-links a:hover { color: var(--bg); }
       <div class="img-placeholder" role="img" aria-label="Design screens omitted under NDA">
         <div class="img-placeholder-inner" aria-hidden="true">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="2" stroke="var(--ink-faint)" stroke-width="1.5"/><circle cx="14" cy="17" r="3" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M4 28l8-6 6 5 6-8 12 9" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <p>Final screen designs withheld under NDA — replace with approved screenshots</p>
+          <p>Final screen designs withheld under NDA</p>
         </div>
       </div>
-      <p class="img-caption">Screen designs were delivered to engineering in full. Replace placeholder above with approved visuals when cleared for sharing.</p>
-
-      <!-- ── ARTIFACT PLACEHOLDER — add design process artifacts ── -->
-      <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;" role="img" aria-label="Design process artifact placeholders">
-        <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="2" y="4" width="24" height="20" rx="2" stroke="var(--ink-faint)" stroke-width="1.25"/><path d="M7 10h14M7 14h10M7 18h8" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round"/></svg>
-          <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add early wireframes or information architecture diagrams</p>
-        </div>
-        <div style="background:var(--bg-mid);border:1.5px dashed var(--border);border-radius:2px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.25rem;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 22V12l8-8 8 8v10" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 22v-5h8v5" stroke="var(--ink-faint)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <p style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.5;">Add design system component overview or alarm hierarchy diagram</p>
-        </div>
-      </div>
-      <p style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.75rem;">↑ Replace these placeholders with design process artifacts — wireframes, IA diagrams, design system components</p>
     </section>
 
     <!-- CHALLENGES -->
     <section class="cs-section reveal" id="challenges" aria-labelledby="challenges-h2">
-      <p class="section-eyebrow">Design Challenges</p>
-      <h2 id="challenges-h2">The hardest <em>cross-functional negotiation</em></h2>
-
-      <h3>The Alarm Differentiation Pushback</h3>
-      <p>Engineering initially preferred reusing existing alarm codes to reduce development time — a reasonable constraint. The problem: reusing codes would collapse the risk-based hierarchy we'd validated with users. By partnering with Human Factors and Systems Engineers and bringing user research data directly into the conversation, we reached a workable compromise: revise the existing alarm framework and reprioritize based on clinical risk rather than rebuilding from scratch.</p>
+      <p class="section-eyebrow">Cross-Functional Negotiation</p>
+      <h2 id="challenges-h2">When engineering constraints <em>threatened the safety case</em></h2>
+      <p>Engineering initially proposed reusing existing alarm codes to reduce development time — a reasonable ask that would have collapsed the risk-based hierarchy we'd validated with users. I brought user research data directly into the conversation alongside Human Factors and Systems Engineers, and we reached a workable compromise: revise and reprioritize the existing alarm framework by clinical risk rather than rebuild from scratch.</p>
       <div class="callout" role="note">
-        <p>The lesson: cross-functional collaboration requires bringing data — not just preference — to the table. User research gave us the standing to negotiate, not just advocate.</p>
+        <p>User research gave us the standing to negotiate, not just advocate. Data, not preference, is what moves cross-functional decisions in regulated environments.</p>
       </div>
-
     </section>
 
     <!-- OUTCOMES -->
     <section class="cs-section reveal" id="outcomes" aria-labelledby="outcomes-h2">
       <p class="section-eyebrow">Outcomes</p>
-      <h2 id="outcomes-h2">Measurable safety gains and <em>a design system that scales</em></h2>
-      <p>Summative testing was conducted with 15 participants — 10 nephrology nurses and 5 home patients — measuring alarm identification accuracy, resolution time, and task efficiency. Qualitative feedback validated the ecosystem design strategy.</p>
+      <h2 id="outcomes-h2">Measurable safety gains and <em>a system that scales</em></h2>
 
       <div class="outcomes-row" role="list" aria-label="Quantitative results">
         <div class="outcome-cell" role="listitem">
           <div class="outcome-number">100%</div>
           <h4>Alarm Accuracy</h4>
-          <p>Up from 58% with the legacy system. A 42-point improvement in identifying alarm source and urgency.</p>
+          <p>Up from 58% with the legacy system — a 42-point improvement in identifying alarm source and urgency.</p>
         </div>
         <div class="outcome-cell" role="listitem">
           <div class="outcome-number">40%</div>
           <h4>Faster Resolution</h4>
-          <p>Fluid alarm resolution dropped from 85 seconds to 51 seconds — time that matters in an active clinical treatment.</p>
+          <p>Fluid alarm resolution: 85 seconds → 51 seconds. Time that matters during active clinical treatment.</p>
         </div>
         <div class="outcome-cell" role="listitem">
           <div class="outcome-number">95%+</div>
           <h4>Design Fidelity</h4>
-          <p>Engineering implementation matched design specifications — an outcome of sprint-aligned, mid-development communication with developers.</p>
+          <p>Engineering implementation matched specification — a direct result of sprint-aligned mid-development communication.</p>
         </div>
-      </div>
-
-      <h3>Qualitative Feedback</h3>
-
-      <div class="pull-quote">
-        <p>"It looks like it belongs with my cycler. The guided instructions are a lifesaver."</p>
-        <cite>— Nephrology Nurse, usability testing</cite>
       </div>
 
       <div class="pull-quote">
         <p>"The yellow caution means I have time. The red alarm means drop everything. That distinction matters."</p>
-        <cite>— Nephrology Nurse, usability testing</cite>
+        <cite>— Nephrology Nurse, summative usability testing</cite>
       </div>
 
       <div class="pull-quote">
-        <p>"When the alarm goes off, it takes me straight to the fix. No hunting around."</p>
-        <cite>— Home Patient, usability testing</cite>
+        <p>"It looks like it belongs with my cycler."</p>
+        <cite>— Nephrology Nurse, summative usability testing</cite>
       </div>
-
-      <h3>Extended Impact</h3>
-      <p>Beyond this product, the design system built on this project is actively being applied to three future Home Hemodialysis products at Fresenius Medical Care — reducing estimated design and development time on those products by 40%. The alarm hierarchy framework, developed in partnership with Human Factors and Systems Engineers, is now a reusable standard across the product family.</p>
     </section>
 
     <!-- LEARNINGS -->
     <section class="cs-section reveal" id="learnings" aria-labelledby="learnings-h2">
       <p class="section-eyebrow">Retrospective</p>
-      <h2 id="learnings-h2">What worked, what I'd <em>do differently</em></h2>
+      <h2 id="learnings-h2">What I'd <em>do differently</em></h2>
 
-      <h3>What Worked Well</h3>
-      <div class="learnings-list" role="list" aria-label="What worked well">
-        <div class="learning-item" role="listitem">
-          <div class="learning-num" aria-hidden="true">01</div>
-          <div class="learning-text">
-            <h4>Research-First Foundation</h4>
-            <p>The alarm fatigue insight and the systematic analysis of where users got stuck shaped the entire design strategy. Without that foundation built on real user behaviour, we would have solved the wrong problems.</p>
-          </div>
-        </div>
-        <div class="learning-item" role="listitem">
-          <div class="learning-num" aria-hidden="true">02</div>
-          <div class="learning-text">
-            <h4>Visual Language Mapping</h4>
-            <p>Systematic analysis of the treatment device ensured ecosystem consistency without guesswork. Users felt instant competence with the new device because the design work had been done upstream — before anyone saw a prototype.</p>
-          </div>
-        </div>
-        <div class="learning-item" role="listitem">
-          <div class="learning-num" aria-hidden="true">03</div>
-          <div class="learning-text">
-            <h4>Risk-Based Differentiation</h4>
-            <p>This wasn't about making things look different — it was about making them functionally different in ways that map to real clinical stakes. The multi-sensory alarm approach addressed a genuine patient safety gap while preserving ecosystem cohesion.</p>
-          </div>
-        </div>
-      </div>
-
-      <h3>What I'd Do Differently</h3>
-      <div class="learnings-list" role="list" aria-label="What I would change">
+      <div class="learnings-list" role="list" aria-label="Retrospective learnings">
         <div class="learning-item" role="listitem">
           <div class="learning-num" aria-hidden="true">01</div>
           <div class="learning-text">
             <h4>Earlier Engineering Engagement</h4>
-            <p>Closer engineering involvement from the start would have surfaced processing constraints sooner, preventing early design assumptions about features that ultimately required deferral to Phase 2.</p>
+            <p>Closer engineering involvement from the start would have surfaced processing constraints sooner, preventing design assumptions that required deferral to Phase 2.</p>
           </div>
         </div>
         <div class="learning-item" role="listitem">
           <div class="learning-num" aria-hidden="true">02</div>
           <div class="learning-text">
-            <h4>Earlier Home Patient Usability Testing</h4>
-            <p>Home patients had distinct interaction needs that surfaced later in the process than ideal. Running dedicated usability sessions with home patients earlier — not just as part of combined cohorts — would have informed the IA and alarm design from the beginning rather than prompting adaptation mid-project.</p>
+            <h4>Dedicated Home Patient Sessions Earlier</h4>
+            <p>Home patients had distinct needs that surfaced later than ideal. Running dedicated cohorts earlier — not combined with clinical staff — would have sharpened the IA and alarm design from the beginning.</p>
           </div>
         </div>
         <div class="learning-item" role="listitem">
           <div class="learning-num" aria-hidden="true">03</div>
           <div class="learning-text">
-            <h4>Longitudinal Usability Testing</h4>
-            <p>Four months of testing captured initial reactions but not long-term adoption patterns. A 6–12 month follow-up study would validate whether alarm fatigue reduction holds over time and through staff turnover — data that's clinically meaningful and commercially valuable.</p>
+            <h4>Longitudinal Validation</h4>
+            <p>Summative testing captured initial reactions but not long-term adoption. A follow-up study at 6–12 months would validate whether alarm fatigue reduction holds over time — data that's both clinically meaningful and commercially valuable.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- REFLECTION -->
+    <!-- REFLECTION — trimmed to one focused paragraph -->
     <section class="cs-section reveal" id="reflection" aria-labelledby="reflection-h2">
-      <p class="section-eyebrow">Why This Work Matters to Me</p>
+      <p class="section-eyebrow">Why This Work Matters</p>
       <h2 id="reflection-h2">Designing for people who don't get to <em>opt out.</em></h2>
-
-      <p>Most of the people who use the devices I design didn't choose to need them. They're managing a chronic condition that requires sitting connected to a machine for hours at a time, multiple times a week — at a clinic, or at home, often alone. That reality sits with me throughout every design decision. When I'm debating whether an alarm pattern is clear enough, or whether a guidance screen has one step too many, I'm thinking about a home patient at 6am trying to figure out what the machine is telling them before they've had coffee. I'm thinking about a nurse managing four patients simultaneously who can't afford to read every alert at length.</p>
-
-      <p>That's not a constraint. That's the design brief. And it's the kind of brief that sharpens you.</p>
-
-      <div class="callout-teal" role="note">
-        <p>The most meaningful feedback I received wasn't a metric. It was a nurse in usability testing saying: "The yellow caution means I have time. The red alarm means drop everything." That distinction — built into the design intentionally — is the difference between a tool that works and one that erodes trust over time.</p>
-      </div>
-
-      <p>What I've come to understand about myself as a designer is that I'm drawn to complexity that has real stakes. Medical devices sit at the intersection of regulatory rigor, engineering constraints, clinical workflow, and deeply human need — and navigating all of those simultaneously is what I find most engaging. Not despite the constraints, but because of them. Constraints are where the real design work happens.</p>
-
-      <p>I'm also drawn to the parts of a project that outlast it. The alarm hierarchy framework and design system built on this project are now being applied across three future products at Fresenius Medical Care. That kind of leverage — where decisions made thoughtfully on one product shape how a whole family of products behaves — is what senior design work looks like to me. It's not just solving the problem in front of you. It's building the foundation that makes the next problem easier to solve well.</p>
-
-      <p>This project asked me to hold a lot at once: patient safety, ecosystem coherence, engineering feasibility, regulatory compliance, and the simple human fact that the people using this device were already carrying a heavy load. I'm proud of how the team navigated that. And I'm proud that the work we did is still in use — still protecting patients, still training nurses — long after the project closed.</p>
+      <p>The most meaningful feedback I received wasn't a metric. It was a nurse saying: "The yellow caution means I have time. The red alarm means drop everything." That distinction — intentionally built into the system — is the difference between a tool that works and one that erodes trust over time. What I find most engaging about this kind of work is that decisions made carefully on one product now shape how an entire product family behaves. That's what senior design looks like to me: not just solving the problem in front of you, but building the foundation that makes the next problem easier to solve well.</p>
     </section>
 
   </article>
@@ -762,26 +591,23 @@ footer .footer-links a:hover { color: var(--bg); }
     <div class="sidebar-card">
       <h3>Contents</h3>
       <ul class="sidebar-toc" role="list">
-        <li><a href="#overview">Executive Summary</a></li>
+        <li><a href="#overview">The Challenge</a></li>
         <li><a href="#problem">Problem Definition</a></li>
-        <li><a href="#research">Research &amp; Discovery</a></li>
-        <li><a href="#principles">Design Principles</a></li>
-        <li><a href="#process">Process</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#systems">Systems Thinking</a></li>
         <li><a href="#solution">Design Execution</a></li>
-        <li><a href="#challenges">Design Challenges</a></li>
+        <li><a href="#challenges">Cross-Functional Negotiation</a></li>
         <li><a href="#outcomes">Outcomes</a></li>
         <li><a href="#learnings">Retrospective</a></li>
-        <li><a href="#reflection">Why This Work Matters</a></li>
       </ul>
     </div>
     <div class="sidebar-card">
       <h3>Methods Used</h3>
       <ul class="sidebar-list" role="list">
-        <li>Usability Testing (Primary)</li>
+        <li>Moderated Usability Testing</li>
         <li>Contextual Inquiry</li>
         <li>Semi-Structured Interviews</li>
         <li>Formative &amp; Summative Testing</li>
-        <li>Task Analysis</li>
         <li>Visual Language Audit</li>
         <li>Iterative Prototype Review</li>
         <li>Design Systems &amp; Handoff</li>
@@ -830,12 +656,12 @@ footer .footer-links a:hover { color: var(--bg); }
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#7c170e13180e151b0919061b0e1d141d113c1b111d1510521f1311">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -845,12 +671,4 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+      observer.unobserve(e

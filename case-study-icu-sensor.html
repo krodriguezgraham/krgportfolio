@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="ICU Patient Monitor Sensor Integration — UX Case Study by Kassandra Rodriguez." />
 <title>ICU Sensor Integration — Kassandra Rodriguez</title>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="ICU Sensor Integration — Kassandra Rodriguez" />
+<meta property="og:description" content="UX Case Study: Integrating third-party sensor data into an ICU patient monitor to eliminate a secondary display and reduce cognitive load." />
+<meta property="og:url" content="https://krodriguezgraham.github.io/krgportfolio/case-study-icu-sensor.html" />
+<meta property="og:image" content="https://krodriguezgraham.github.io/krgportfolio/images/shared/kassandra-photo.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ICU Sensor Integration — Kassandra Rodriguez" />
+<meta name="twitter:description" content="UX Case Study: Integrating third-party sensor data into an ICU patient monitor to eliminate a secondary display and reduce cognitive load." />
 <link rel="icon" type="image/png" href="images/shared/favicon.png" />
 <link rel="icon" href="images/shared/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="images/shared/favicon.png" />
@@ -193,6 +201,12 @@ nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); 
 .img-placeholder-inner { text-align: center; color: var(--ink-faint); }
 .img-placeholder-inner p { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem; }
 .img-caption { font-size: 0.8125rem; color: var(--ink-faint); text-align: center; margin-top: -1.25rem; margin-bottom: 2rem; font-style: italic; }
+.artifact-img { width: 100%; border: 1px solid var(--border); border-radius: 2px; display: block; margin: 2rem 0 0; }
+.artifact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0 0; }
+.artifact-row .artifact-item { display: flex; flex-direction: column; gap: 0.75rem; }
+.artifact-row .artifact-item img { width: 100%; border: 1px solid var(--border); border-radius: 2px; display: block; }
+.artifact-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+@media(max-width:640px) { .artifact-row { grid-template-columns: 1fr; } }
 
 /* NEXT CASE STUDY */
 .cs-next { background: var(--ink); padding: 5rem 3rem; }
@@ -268,6 +282,7 @@ footer .footer-links a:hover { color: var(--bg); }
     <div class="cs-tags" aria-label="Project disciplines">
       <span class="cs-tag highlight">Medical Device UX</span>
       <span class="cs-tag highlight">Cross-Functional Design</span>
+      <span class="cs-tag highlight">Integration Design</span>
       <span class="cs-tag">Class II/III Device</span>
       <span class="cs-tag">Human Factors</span>
       <span class="cs-tag">FDA / ISO 62366</span>
@@ -299,7 +314,7 @@ footer .footer-links a:hover { color: var(--bg); }
   </div>
   <div class="status-banner" role="note" aria-label="Project status note">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.5v4M9 11.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    <p><strong>NDA Project:</strong> Visual assets are omitted to protect proprietary information. This case study presents process, methodology, and outcomes. Software development completed to specification; project was paused prior to clinical validation due to program-level decisions.</p>
+    <p><strong>NDA Project:</strong> Final screen designs are omitted to protect proprietary information. Process artifacts — design notes and sketches — are included where they illustrate methodology. Software was developed to specification; the project was paused prior to clinical validation due to program-level decisions outside the design team's scope.</p>
   </div>
 </header>
 
@@ -309,118 +324,101 @@ footer .footer-links a:hover { color: var(--bg); }
 
     <!-- OVERVIEW -->
     <section class="cs-section reveal" id="overview" aria-labelledby="overview-h2">
-      <p class="section-eyebrow">Executive Summary</p>
-      <h2 id="overview-h2">Two screens. One nurse. A critical <em>workflow problem.</em></h2>
-      <p>During Continuous Renal Replacement Therapy (CRRT) in the ICU, nurses were forced to manage two separate, non-integrated displays simultaneously. A primary monitor displayed core therapy data while a secondary third-party sensor displayed real-time hematocrit, oxygen saturation, and blood volume change — critical values with no physical or digital connection to the primary system.</p>
-      <p>The cognitive cost was real: nurses had to mentally cross-reference two screens in real time, in one of medicine's most demanding environments. The objective was unambiguous — eliminate the secondary display entirely by integrating its data stream directly into the primary monitor's interface.</p>
-
-      <div class="pull-quote">
-        <p>"The goal wasn't to add a feature. It was to remove a screen from a place where every square inch and every second of cognitive load counts."</p>
-      </div>
+      <p class="section-eyebrow">The Challenge</p>
+      <h2 id="overview-h2">The goal wasn't to add a feature. It was to <em>remove a screen.</em></h2>
+      <p>During Continuous Renal Replacement Therapy in the ICU, nurses managed two separate non-integrated displays simultaneously — a primary patient monitor and a secondary third-party sensor showing hematocrit, SpO2, and blood volume change. In one of medicine's most demanding environments, mentally cross-referencing two screens in real time was both a cognitive burden and a patient safety risk. The objective: eliminate the secondary display entirely by integrating its data stream into the primary monitor.</p>
     </section>
 
     <!-- PROBLEM -->
     <section class="cs-section reveal" id="problem" aria-labelledby="problem-h2">
       <p class="section-eyebrow">Problem Definition</p>
-      <h2 id="problem-h2">Physical clutter and cognitive friction in a <em>high-stakes environment</em></h2>
-      <p>The dual-screen configuration created two distinct, compounding problems that directly impacted patient safety risk:</p>
+      <h2 id="problem-h2">Two compounding problems. <em>One design constraint that shaped everything.</em></h2>
 
       <div class="findings-grid" role="list" aria-label="Core problems identified">
         <div class="finding-card" role="listitem">
           <p class="finding-num">Problem 01</p>
           <h4>Physical Clutter</h4>
-          <p>The secondary sensor display occupied physical space on an already-crowded IV pole, creating an obstacle in a clinical environment where spatial real estate is safety-critical.</p>
+          <p>The secondary sensor occupied space on an already-crowded IV pole — a meaningful obstacle in an environment where spatial real estate is a safety variable.</p>
         </div>
         <div class="finding-card" role="listitem">
           <p class="finding-num">Problem 02</p>
           <h4>Cognitive Friction</h4>
-          <p>Nurses were required to mentally cross-reference numerical and trending data between two non-integrated screens to form a complete picture of patient status — increasing risk of missed information and delayed response.</p>
+          <p>Nurses had to mentally cross-reference numerical and trending data across two non-integrated screens to form a complete picture of patient status — increasing the risk of missed information under pressure.</p>
         </div>
       </div>
 
       <div class="callout" role="note">
-        <p>The core design challenge: integrate a new data stream into an established interface without disrupting existing workflows or compromising the visual hierarchy that nurses depend on under pressure.</p>
+        <p><strong>The design constraint:</strong> integrate a new data stream into an established, trusted interface without disrupting the existing visual hierarchy nurses depend on under pressure. Adding new data couldn't cost existing clarity.</p>
       </div>
     </section>
 
     <!-- RESEARCH -->
     <section class="cs-section reveal" id="research" aria-labelledby="research-h2">
       <p class="section-eyebrow">Research &amp; Discovery</p>
-      <h2 id="research-h2">Understanding the clinical environment <em>before designing anything</em></h2>
-      <p>Research was conducted in a simulated ICU environment using a multi-method approach designed to surface real workflow patterns, not just stated preferences.</p>
+      <h2 id="research-h2">Four findings that <em>defined the integration logic</em></h2>
+      <p>Research in a simulated ICU environment with 5 ICU nurses and 2 nephrologists — using contextual inquiry, workflow mapping, semi-structured interviews, and heuristic analysis of the primary monitor — surfaced four findings that directly drove the design.</p>
 
-      <h3>Methods</h3>
-      <div class="collab-grid" role="list" aria-label="Research methods used">
-        <div class="collab-card" role="listitem">
-          <p class="collab-role">Contextual Inquiry</p>
-          <p>Observed baseline workflows and environmental factors in a simulated ICU setting to understand how nurses physically interact with equipment during active therapy.</p>
-        </div>
-        <div class="collab-card" role="listitem">
-          <p class="collab-role">Semi-Structured Interviews</p>
-          <p>Interviewed 5 ICU nurses and 2 nephrologists to gather qualitative data on usage patterns, pain points, and the mental models nurses use to interpret sensor data.</p>
-        </div>
-        <div class="collab-card" role="listitem">
-          <p class="collab-role">Workflow Mapping</p>
-          <p>Documented existing workflows to identify the exact moments where the secondary screen was consulted — pinpointing friction points and decision nodes.</p>
-        </div>
-        <div class="collab-card" role="listitem">
-          <p class="collab-role">Heuristic Analysis</p>
-          <p>Evaluated the primary monitor's existing interface against established medical device usability standards to understand integration constraints and opportunities.</p>
-        </div>
-      </div>
-
-      <h3>Key Findings</h3>
       <div class="findings-grid" role="list" aria-label="Key research findings">
         <div class="finding-card" role="listitem">
           <p class="finding-num">Finding 01</p>
           <h4>The Vigilant Observer Pattern</h4>
-          <p>Nurses spend most of their time in a monitoring state — glancing at screens while performing other tasks. Any new data must be visible on the default screen. Navigation to find it is clinically unacceptable.</p>
+          <p>Nurses monitor continuously while performing other tasks. New data must be visible on the default screen — navigation to find it is clinically unacceptable.</p>
         </div>
         <div class="finding-card" role="listitem">
           <p class="finding-num">Finding 02</p>
-          <h4>Contextual Data Deficit</h4>
-          <p>A single numerical value was insufficient. Nurses needed trend data over time to differentiate between a gradual drift and a rapid, clinically significant change requiring immediate action.</p>
+          <h4>Trend Over Point-in-Time</h4>
+          <p>A single value is insufficient. Nurses need trend data to differentiate a gradual drift from a rapid, clinically significant change requiring immediate action.</p>
         </div>
         <div class="finding-card" role="listitem">
           <p class="finding-num">Finding 03</p>
-          <h4>Alarm Hierarchy &amp; Trust</h4>
-          <p>Alerts from the primary monitor were trusted above those from the secondary device. Any new alerts needed to inherit the primary system's visual and behavioral language to be acted upon.</p>
+          <h4>Trust Follows the Host System</h4>
+          <p>Alerts from the primary monitor were trusted above those from the secondary device. New alerts had to inherit the primary system's visual and behavioral language to be acted upon.</p>
         </div>
         <div class="finding-card" role="listitem">
           <p class="finding-num">Finding 04</p>
-          <h4>Physical Device Rejection</h4>
-          <p>The secondary screen was universally cited as unwanted clutter. This reinforced that full integration — not reduction — was the only solution nurses would accept and trust.</p>
+          <h4>Full Integration, Not Reduction</h4>
+          <p>The secondary screen was universally cited as unwanted clutter. Partial integration — a bridge between devices — was not acceptable. Only full elimination would earn clinical trust.</p>
         </div>
+      </div>
+
+      <div class="artifact-item" style="margin-top:2.5rem;">
+        <p class="artifact-label">Design Notes — Alarm Hierarchy Exploration · Aug 9, 2023</p>
+        <img
+          src="images/shared/crit-line.png"
+          alt="Handwritten design notes exploring alarm hierarchy options: three-tier alert system (Alert / Notification / Advisory), flashing microinteraction options, alert fatigue reduction strategies, and data ordering (HCT / ScVO2 / RBV)"
+          class="artifact-img"
+          style="max-height:520px;object-fit:contain;object-position:top;background:var(--paper);"
+        />
+        <p style="font-size:0.8125rem;color:var(--ink-soft);line-height:1.7;margin-top:0.75rem;">Working notes from early definition — exploring the three-tier alert taxonomy (Alert / Notification / Advisory), flashing microinteraction options per tier, and data priority order for the default screen. The decision to use distinct pitch and behavior per tier, and to use a non-standard color (leaning toward magenta) to visually separate generator alerts from the primary monitor, traces directly to this session.</p>
       </div>
     </section>
 
-    <!-- COLLABORATION -->
+    <!-- CROSS-FUNCTIONAL -->
     <section class="cs-section reveal" id="collaboration" aria-labelledby="collab-h2">
       <p class="section-eyebrow">Cross-Functional Collaboration</p>
-      <h2 id="collab-h2">Five disciplines, one shared <em>understanding</em></h2>
-      <p>Operating on two-week Agile sprint cycles, the design process required continuous, deep collaboration with every discipline on the team. Each partnership shaped the design in fundamental ways.</p>
+      <h2 id="collab-h2">Shared understanding of constraints <em>is itself a design output</em></h2>
 
       <div class="collab-grid" role="list" aria-label="Cross-functional collaborations">
         <div class="collab-card" role="listitem">
           <p class="collab-role">Systems Engineers</p>
-          <p>Mapped sensor behavior states: signal acquisition, stable transmission, signal loss, and recovery. These technical states were directly translated into distinct UI conditions communicating data reliability to nurses.</p>
+          <p>Mapped sensor behavior states — acquisition, stable transmission, signal loss, recovery — which were directly translated into distinct UI conditions communicating data reliability to nurses.</p>
         </div>
         <div class="collab-card" role="listitem">
           <p class="collab-role">Clinical Experts</p>
-          <p>Conducted iterative prototype reviews to validate design assumptions and ensure clinical accuracy. Clinical feedback directly drove revisions to alert verbiage and trend visualization thresholds.</p>
+          <p>Iterative prototype reviews validated assumptions and ensured clinical accuracy. Feedback directly drove revisions to alert verbiage and trend visualization thresholds.</p>
         </div>
         <div class="collab-card" role="listitem">
           <p class="collab-role">Human Factors Engineers</p>
-          <p>Validated touch target sizes for gloved hands, assessed visual hierarchy against peripheral vision studies, and verified cognitive load implications of every new screen state.</p>
+          <p>Validated touch targets for gloved hands, assessed visual hierarchy against peripheral vision research, and verified cognitive load implications of every new screen state.</p>
         </div>
         <div class="collab-card" role="listitem">
           <p class="collab-role">Software Developers</p>
-          <p>Delivered detailed design specs mid-sprint to minimize implementation ambiguity. Maintained open communication throughout to address technical constraints before they became costly rework.</p>
+          <p>Sprint-aligned design specs delivered mid-cycle minimized ambiguity and prevented costly late-stage rework. Open communication kept technical constraints visible before they became design problems.</p>
         </div>
       </div>
 
       <div class="callout" role="note">
-        <p>The most robust solutions emerged from embedding with engineers and clinicians early — not presenting designs to them late. Shared understanding of constraints is itself a design output.</p>
+        <p>The most robust solutions came from embedding with engineers and clinicians early — not presenting to them late. Getting to shared constraint understanding is design work, not pre-work.</p>
       </div>
     </section>
 
@@ -428,55 +426,59 @@ footer .footer-links a:hover { color: var(--bg); }
     <section class="cs-section reveal" id="solution" aria-labelledby="solution-h2">
       <p class="section-eyebrow">Design Solution</p>
       <h2 id="solution-h2">Three interaction states. Zero <em>new paradigms to learn.</em></h2>
-      <p>The final design was organized around the three distinct contexts in which a nurse would encounter the integrated sensor data — each designed to meet the nurse where they already were, not redirect them somewhere new.</p>
+      <p>The design organized around the three contexts in which a nurse would encounter the integrated data — each meeting them where they already were, without redirecting them somewhere new.</p>
 
       <div class="view-cards" role="list" aria-label="Three interaction states designed">
         <div class="view-card" role="listitem">
           <p class="view-card-num">State 01 — Always Visible</p>
           <h4>Vigilance View (Default Screen)</h4>
-          <p>The most critical design decision of the project: integrating sensor data into the always-visible default screen without displacing primary therapy data. A dedicated zone was created within the existing card-based layout, utilizing space previously allocated to lower-priority auxiliary data.</p>
-          <ul aria-label="Design decisions for Vigilance View">
-            <li>Preserved the legacy sensor's cyan color and line style for blood volume trend — leveraging existing nurse recognition and reducing relearning.</li>
-            <li>Adapted backgrounds, axes, and gridlines to conform to the primary monitor's established dark palette for visual cohesion.</li>
-            <li>Used the system's existing high-contrast font set to ensure readability at clinical viewing distances.</li>
+          <p>The pivotal decision: integrating sensor data into the always-visible default screen without displacing primary therapy data. A dedicated zone was carved from space previously used by lower-priority auxiliary data.</p>
+          <ul>
+            <li>Preserved the legacy sensor's cyan color and line style for blood volume trend — leveraging existing nurse recognition, eliminating relearning.</li>
+            <li>Adapted backgrounds and axes to the primary monitor's dark palette for visual cohesion.</li>
+            <li>Existing high-contrast font set maintained for readability at clinical viewing distances.</li>
           </ul>
         </div>
         <div class="view-card" role="listitem">
           <p class="view-card-num">State 02 — On Demand</p>
           <h4>Analysis View (Full-Screen Trends)</h4>
-          <p>Detailed historical trend access, integrated into the monitor's existing Trends screen — placing new data within a familiar container that required zero additional learning from clinical staff.</p>
-          <ul aria-label="Components of Analysis View">
-            <li>Blood volume change trend graph with supporting HCT and SpO2 numerical data.</li>
-            <li>Standard timeline scrubber for historical data review, consistent with existing interaction patterns.</li>
-            <li>Alarm limit settings panel matching the visual and behavioral language of all other device settings.</li>
+          <p>Historical trend access integrated into the monitor's existing Trends screen — new data inside a familiar container, requiring zero additional learning.</p>
+          <ul>
+            <li>Blood volume change trend with supporting HCT and SpO2 values.</li>
+            <li>Standard timeline scrubber, consistent with existing interaction patterns.</li>
+            <li>Alarm limit settings panel matching the behavioral language of all other device settings.</li>
           </ul>
         </div>
         <div class="view-card" role="listitem">
           <p class="view-card-num">State 03 — Interruption</p>
           <h4>Alert View (Interruption State)</h4>
-          <p>New alerts designed to be visually and behaviorally indistinguishable from native monitor alerts — because clinical trust is established through consistency, not novelty.</p>
-          <ul aria-label="Alert design specifications">
-            <li>Critical alerts appear in the identical red banner placement at the top of screen as all native alerts.</li>
-            <li>All alerts routed to the centralized alarm tray — no parallel or competing alert systems.</li>
-            <li>Alert verbiage uses the same concise clinical voice as the host system: <em>"Rapid Blood Volume Change. Assess Patient."</em></li>
+          <p>New alerts designed to be visually and behaviorally indistinguishable from native alerts — because trust is built through consistency, not novelty.</p>
+          <ul>
+            <li>Critical alerts in the same red banner placement as all native alerts.</li>
+            <li>All alerts routed to the centralized alarm tray — no competing alert systems.</li>
+            <li>Alert copy uses the same concise clinical voice: <em>"Rapid Blood Volume Change. Assess Patient."</em></li>
           </ul>
         </div>
       </div>
 
-      <div class="img-placeholder" role="img" aria-label="Design mockup placeholder — visual assets omitted under NDA">
-        <div class="img-placeholder-inner" aria-hidden="true">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="2" stroke="var(--ink-faint)" stroke-width="1.5"/><circle cx="14" cy="17" r="3" stroke="var(--ink-faint)" stroke-width="1.5"/><path d="M4 28l8-6 6 5 6-8 12 9" stroke="var(--ink-faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <p>Visual assets omitted — NDA</p>
-        </div>
+      <div class="artifact-item" style="margin-top:2.5rem;">
+        <p class="artifact-label">History Screen Sketch — Information Architecture · Early Design Phase</p>
+        <img
+          src="images/shared/history-screen.png"
+          alt="Handwritten sketch of history screen layout showing a data grid with columns for Date/Time, TF, UF, AP, VP, EP, BOV, HCT, RBV, and Description — with notes on scrolling, time intervals (15/30/60 min), and replacing alarm description text with alarm/caution number codes to save space"
+          class="artifact-img"
+          style="background:var(--paper);"
+        />
+        <p style="font-size:0.8125rem;color:var(--ink-soft);line-height:1.7;margin-top:0.75rem;">Early IA sketch for the Analysis View history screen — working through column priority, scrollable data intervals (15/30/60 min), and the decision to use alarm/caution codes in the Description column rather than full text to preserve horizontal space on a constrained display. This sketch directly informed the final Trends screen integration.</p>
       </div>
-      <p class="img-caption">Design specifications were delivered to development in full. Visual assets are withheld under NDA.</p>
+      <p class="img-caption" style="text-align:left;margin-top:0.5rem;">Final screen designs delivered to engineering in full. Screen assets withheld under NDA.</p>
     </section>
 
     <!-- OUTCOMES -->
     <section class="cs-section reveal" id="outcomes" aria-labelledby="outcomes-h2">
       <p class="section-eyebrow">Outcomes</p>
-      <h2 id="outcomes-h2">Development complete. <em>Impact delivered</em> before clinical validation.</h2>
-      <p>The design phase concluded with a complete specification handoff. Software was coded to specification before the project was paused at the program level prior to clinical validation. Despite the pause, the work delivered measurable value across three dimensions.</p>
+      <h2 id="outcomes-h2">Development complete. <em>Project paused at program level</em> before clinical validation.</h2>
+      <p>The design phase concluded with a full specification handoff. Software was built to spec before the project was paused due to program-level decisions outside the design team's scope. The work delivered clear value across three dimensions before the pause.</p>
 
       <div class="outcomes-row" role="list" aria-label="Project outcomes">
         <div class="outcome-cell" role="listitem">
@@ -484,21 +486,21 @@ footer .footer-links a:hover { color: var(--bg); }
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h4>Development Efficiency</h4>
-          <p>Sprint-aligned specifications reduced engineering ambiguity and rework — an outcome of intentional mid-sprint communication with developers.</p>
+          <p>Sprint-aligned specs reduced engineering ambiguity and rework — a direct result of intentional mid-sprint communication with developers rather than end-of-phase handoffs.</p>
         </div>
         <div class="outcome-cell" role="listitem">
           <div class="outcome-icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <h4>Product Strategy</h4>
-          <p>The comprehensive design provided a tangible, clinical-validated vision for eliminating a known source of physical clutter and cognitive load from the ICU environment.</p>
+          <h4>Validated Clinical Vision</h4>
+          <p>A research-grounded, clinically validated design that provides a concrete path to eliminating a known source of cognitive load from the ICU — ready for clinical validation when the program resumes.</p>
         </div>
         <div class="outcome-cell" role="listitem">
           <div class="outcome-icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" stroke="currentColor" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h4>Cross-Functional Alignment</h4>
-          <p>Established a shared understanding of user needs and technical constraints across Human Factors, Engineering, and Clinical teams — a foundation ready for clinical validation.</p>
+          <h4>Cross-Functional Foundation</h4>
+          <p>Shared understanding of user needs and technical constraints across Human Factors, Engineering, and Clinical — a foundation that doesn't need to be rebuilt when the program resumes.</p>
         </div>
       </div>
     </section>
@@ -506,36 +508,21 @@ footer .footer-links a:hover { color: var(--bg); }
     <!-- LEARNINGS -->
     <section class="cs-section reveal" id="learnings" aria-labelledby="learnings-h2">
       <p class="section-eyebrow">Retrospective</p>
-      <h2 id="learnings-h2">What this project <em>taught me</em></h2>
-      <p>Four principles reinforced through this project that now shape how I approach every complex design problem.</p>
+      <h2 id="learnings-h2">What this project <em>reinforced</em></h2>
 
       <div class="learnings-list" role="list" aria-label="Key learnings">
         <div class="learning-item" role="listitem">
           <div class="learning-num" aria-hidden="true">01</div>
           <div class="learning-text">
-            <h4>Integration Over Addition</h4>
-            <p>Successful design in complex environments requires not just adding features, but seamlessly integrating them into existing workflows and mental models. The goal is a unified system — not a collection of parts.</p>
+            <h4>Trust is the integration medium</h4>
+            <p>The most important design decision wasn't a layout choice — it was committing to inherit the host system's trust model entirely. New data that looks and behaves like native data gets acted on. New data that introduces novelty gets scrutinized. In a clinical environment, scrutiny costs time.</p>
           </div>
         </div>
         <div class="learning-item" role="listitem">
           <div class="learning-num" aria-hidden="true">02</div>
           <div class="learning-text">
-            <h4>Leverage Cross-Functional Expertise Early</h4>
-            <p>The most robust solutions emerged from close collaboration with Systems and Human Factors Engineers. Understanding technical constraints and cognitive science principles early prevents expensive redesign late.</p>
-          </div>
-        </div>
-        <div class="learning-item" role="listitem">
-          <div class="learning-num" aria-hidden="true">03</div>
-          <div class="learning-text">
-            <h4>Context is the Interface</h4>
-            <p>A number on a screen is insufficient in clinical environments. Providing historical context (trends) and system state (signal quality) is essential for accurate clinical interpretation and confident decision-making.</p>
-          </div>
-        </div>
-        <div class="learning-item" role="listitem">
-          <div class="learning-num" aria-hidden="true">04</div>
-          <div class="learning-text">
-            <h4>Designing for Trust</h4>
-            <p>New features in high-stakes environments must inherit the trust already established by the host system. Visual and behavioral consistency is not an aesthetic preference — it is a patient safety tool.</p>
+            <h4>Context is the interface</h4>
+            <p>A number without trend is clinically incomplete. Designing for the full informational context a nurse needs — not just the data point — is what separates a useful integration from a confusing one.</p>
           </div>
         </div>
       </div>
@@ -548,9 +535,9 @@ footer .footer-links a:hover { color: var(--bg); }
     <div class="sidebar-card">
       <h3>Contents</h3>
       <ul class="sidebar-toc" role="list">
-        <li><a href="#overview">Executive Summary</a></li>
+        <li><a href="#overview">The Challenge</a></li>
         <li><a href="#problem">Problem Definition</a></li>
-        <li><a href="#research">Research &amp; Discovery</a></li>
+        <li><a href="#research">Research</a></li>
         <li><a href="#collaboration">Cross-Functional Work</a></li>
         <li><a href="#solution">Design Solution</a></li>
         <li><a href="#outcomes">Outcomes</a></li>
@@ -591,7 +578,6 @@ footer .footer-links a:hover { color: var(--bg); }
     </div>
   </aside>
 </div>
-
 
 <nav class="cs-next" aria-label="Next case study">
   <div class="cs-next-inner">

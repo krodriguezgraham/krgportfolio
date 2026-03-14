@@ -218,6 +218,11 @@ nav#nav.scrolled{border-color:var(--border);background:rgba(247,244,239,0.95);ba
 .btn-link.ghost:hover{border-color:var(--ink);transform:translateY(-1px);}
 
 /* NEXT */
+.figma-embed-wrap { margin: 2rem 0; position: relative; width: 100%; }
+.figma-embed-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.75rem; display: block; }
+.figma-embed-wrap iframe { width: 100%; height: 500px; border: 1px solid var(--border); border-radius: 2px; display: block; }
+.figma-embed-fallback { display: none; background: var(--bg-mid); border: 1px solid var(--border); padding: 2rem; text-align: center; border-radius: 2px; }
+.figma-embed-fallback p { font-size: 0.875rem; color: var(--ink-soft); }
 .cs-next{background:var(--ink);padding:5rem 3rem;}
 .cs-next-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
 .cs-next-label{font-family:var(--font-mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,244,239,0.65);margin-bottom:.75rem;}
@@ -541,6 +546,17 @@ footer .footer-links a:hover{color:var(--bg);}
     <div class="pull-quote">
       <p>"The app made it so easy to order multiple tickets and the process was so fast, I didn't have to think about rushing to the theater!"</p>
       <cite>— Peer feedback, usability study</cite>
+    </div>
+
+
+    <span class="figma-embed-label">Interactive Prototype — Try it yourself</span>
+    <div class="figma-embed-wrap">
+      <iframe
+        src="https://embed.figma.com/proto/znvfw9lS5IQhJjLtXU4oZf/Google-UX?page-id=0%3A1&node-id=45-1057&p=f&viewport=499%2C154%2C0.1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=45%3A1057&show-proto-sidebar=1&embed-host=share"
+        allowfullscreen
+        title="Kasanova Theater App — Interactive Figma prototype"
+        loading="lazy"
+      ></iframe>
     </div>
 
     <div class="project-links">

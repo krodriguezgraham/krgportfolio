@@ -211,6 +211,10 @@ nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); 
 .img-placeholder-inner { text-align: center; color: var(--ink-faint); }
 .img-placeholder-inner p { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.75rem; }
 .img-caption { font-size: 0.8125rem; color: var(--ink-faint); text-align: center; margin-top: -1.25rem; margin-bottom: 2rem; font-style: italic; }
+.artifact-item { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2.5rem; }
+.artifact-item img { width: 100%; border: 1px solid var(--border); border-radius: 2px; display: block; background: var(--paper); }
+.artifact-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+.artifact-caption { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.7; margin-top: 0.5rem; }
 
 /* NEXT CASE STUDY */
 .cs-next { background: var(--ink); padding: 5rem 3rem; }
@@ -412,6 +416,16 @@ footer .footer-links a:hover { color: var(--bg); }
       <h2 id="systems-h2">Designing for an ecosystem, <em>not just a screen</em></h2>
       <p>Before designing a single screen, I conducted a systematic visual audit of the primary treatment device — deconstructing its interface element by element to build a principled framework for what to standardize versus what to deliberately differentiate. This wasn't aesthetic. It was the strategic foundation the entire design was built on.</p>
 
+      <div class="artifact-item">
+        <p class="artifact-label">Information Architecture — Happy Path &amp; Menu Structure</p>
+        <img
+          src="images/shared/workflow-blurred.jpg"
+          alt="Information architecture diagram showing the happy path flow: Standby and Setup, Dialysate Prep, Connect to Cartridge, Treatment, Teardown — alongside the full menu structure with secondary flows"
+          style="background:#000;"
+        />
+        <p class="artifact-caption">The IA defined the treatment workflow as a linear five-phase happy path, with a parallel menu structure handling maintenance, settings, and advanced options. This separation — guided linear flow vs. non-linear menu access — was a core structural decision that influenced every screen design.</p>
+      </div>
+
       <h3>The Consistent Layer: Visual DNA</h3>
       <p>Seven elements carried forward exactly — creating immediate ecosystem recognition the moment a user encountered the new device.</p>
 
@@ -467,7 +481,15 @@ footer .footer-links a:hover { color: var(--bg); }
       <div class="callout" role="note">
         <p><strong>The scalability decision:</strong> the alarm hierarchy and visual DNA framework were documented as reusable standards — not project-specific solutions. They now form the design foundation for three future Home Hemodialysis products, reducing estimated design and development time on those products by 40%.</p>
       </div>
-    </section>
+
+      <div class="artifact-item">
+        <p class="artifact-label">Atomic Design System — Ions &amp; Atoms Layer (excerpt)</p>
+        <img
+          src="images/shared/ds-cropped.jpg"
+          alt="Abstract view of the HHD design system showing the Ions layer (color palette, typography tokens, iconography) and Atoms layer (button states, icon library, progress indicators) — full screen-level designs omitted under NDA"
+        />
+        <p class="artifact-caption">The design system was structured across five atomic tiers: Ions (color, type, iconography tokens) → Atoms (buttons, icons, indicators) → Molecules (alarm states, content zones) → Organisms (full screen layouts) → Templates (complete flow screens). The system is now shared across the Home Hemodialysis product family. Screen-level designs omitted under NDA — this excerpt shows the foundational token and component layers only.</p>
+      </div>
 
     <!-- DESIGN EXECUTION -->
     <section class="cs-section reveal" id="solution" aria-labelledby="solution-h2">

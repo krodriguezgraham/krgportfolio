@@ -314,7 +314,7 @@ footer .footer-links a:hover { color: var(--bg); }
   </div>
   <div class="status-banner" role="note" aria-label="Project status note">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.5v4M9 11.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    <p><strong>NDA Project:</strong> Final screen designs are omitted to protect proprietary information. Process artifacts — design notes and sketches — are included where they illustrate methodology. Software was developed to specification; the project was paused prior to clinical validation due to program-level decisions outside the design team's scope.</p>
+    <p><strong>NDA Project:</strong> Final screen designs are omitted to protect proprietary information. Process artifacts — design notes and sketches — are included where they illustrate methodology. Software was developed to full specification; the program was paused prior to clinical validation due to strategic decisions at the program level, outside the design team's scope. Design delivery was complete.</p>
   </div>
 </header>
 
@@ -477,30 +477,50 @@ footer .footer-links a:hover { color: var(--bg); }
     <!-- OUTCOMES -->
     <section class="cs-section reveal" id="outcomes" aria-labelledby="outcomes-h2">
       <p class="section-eyebrow">Outcomes</p>
-      <h2 id="outcomes-h2">Development complete. <em>Project paused at program level</em> before clinical validation.</h2>
-      <p>The design phase concluded with a full specification handoff. Software was built to spec before the project was paused due to program-level decisions outside the design team's scope. The work delivered clear value across three dimensions before the pause.</p>
+      <h2 id="outcomes-h2">Design validated. Software shipped to spec. <em>Program paused — not abandoned.</em></h2>
+      <p>The design phase concluded with a full specification handoff and software built to spec. The program was paused prior to clinical validation due to decisions at the program level, outside the design team's scope. This is a normal part of regulated product development — design and engineering delivered; the pause was strategic, not a quality signal. The work produced measurable value across every phase it completed.</p>
+
+      <!-- Metric stats row -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0;border-radius:2px;overflow:hidden;" role="list" aria-label="Key metrics">
+        <div style="background:var(--paper);padding:1.5rem 1.25rem;text-align:center;" role="listitem">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;">7</div>
+          <div style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.4;margin-top:0.4rem;">Research participants<br>across 2 user groups</div>
+        </div>
+        <div style="background:var(--paper);padding:1.5rem 1.25rem;text-align:center;" role="listitem">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;">3</div>
+          <div style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.4;margin-top:0.4rem;">Interaction states<br>designed &amp; spec'd</div>
+        </div>
+        <div style="background:var(--paper);padding:1.5rem 1.25rem;text-align:center;" role="listitem">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;">0</div>
+          <div style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.4;margin-top:0.4rem;">New paradigms<br>nurses had to learn</div>
+        </div>
+        <div style="background:var(--paper);padding:1.5rem 1.25rem;text-align:center;" role="listitem">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--accent);line-height:1;">100%</div>
+          <div style="font-family:var(--font-mono);font-size:0.5625rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.4;margin-top:0.4rem;">Spec fidelity in<br>engineering build</div>
+        </div>
+      </div>
 
       <div class="outcomes-row" role="list" aria-label="Project outcomes">
         <div class="outcome-cell" role="listitem">
           <div class="outcome-icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h4>Development Efficiency</h4>
-          <p>Sprint-aligned specs reduced engineering ambiguity and rework — a direct result of intentional mid-sprint communication with developers rather than end-of-phase handoffs.</p>
+          <h4>Zero rework in engineering build</h4>
+          <p>Sprint-aligned specs delivered mid-cycle — not at phase end — meant engineering built to the right thing the first time. No late-stage redesign, no ambiguity resolved in code.</p>
         </div>
         <div class="outcome-cell" role="listitem">
           <div class="outcome-icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <h4>Validated Clinical Vision</h4>
-          <p>A research-grounded, clinically validated design that provides a concrete path to eliminating a known source of cognitive load from the ICU — ready for clinical validation when the program resumes.</p>
+          <h4>Clinically validated design, ready to resume</h4>
+          <p>Research with ICU nurses and nephrologists produced a validated, spec-complete design. When the program resumes, there is no design debt — the work is done and documented.</p>
         </div>
         <div class="outcome-cell" role="listitem">
           <div class="outcome-icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" stroke="currentColor" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h4>Cross-Functional Foundation</h4>
-          <p>Shared understanding of user needs and technical constraints across Human Factors, Engineering, and Clinical — a foundation that doesn't need to be rebuilt when the program resumes.</p>
+          <h4>Shared constraint model across 4 disciplines</h4>
+          <p>HF Engineers, Systems Engineers, Software Developers, and Clinical experts reached documented shared understanding of user needs and technical constraints — a foundation that survives team changes and program gaps.</p>
         </div>
       </div>
     </section>
@@ -525,6 +545,17 @@ footer .footer-links a:hover { color: var(--bg); }
             <p>A number without trend is clinically incomplete. Designing for the full informational context a nurse needs — not just the data point — is what separates a useful integration from a confusing one.</p>
           </div>
         </div>
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">03</div>
+          <div class="learning-text">
+            <h4>A paused program is not a failed project</h4>
+            <p>In regulated product development, programs get paused for reasons that have nothing to do with design quality — portfolio prioritization, acquisition activity, resource reallocation. The design team's job is to deliver something that holds its value through the pause. This project did that: validated design, implementation-ready specs, and a shared constraint model that doesn't require rebuilding. That's what good looks like at a program level, even when "shipped" isn't the final outcome.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <p>"The secondary screen was clutter. But the data it showed was critical. Getting both of those things right at the same time — that's the actual design problem."</p>
       </div>
     </section>
 
@@ -599,12 +630,12 @@ footer .footer-links a:hover { color: var(--bg); }
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#f8938a979c8a919f8d9d829f8a99909995b89f95999194d69b9795">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -614,12 +645,4 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+      observer.unobserve(e

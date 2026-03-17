@@ -315,7 +315,7 @@ footer .footer-links a:hover { color: var(--bg); }
       </div>
       <div class="meta-item" role="listitem">
         <div class="meta-label">Platform</div>
-        <div class="meta-value">Embedded Medical Device UI (5" display)</div>
+        <div class="meta-value">Embedded Medical Device UI — constrained display</div>
       </div>
       <div class="meta-item" role="listitem">
         <div class="meta-label">Team</div>
@@ -440,7 +440,7 @@ footer .footer-links a:hover { color: var(--bg); }
         <tbody>
           <tr><td>Typography</td><td>Open Sans</td><td class="val-good">Maintained exactly</td></tr>
           <tr><td>Iconography</td><td>2px line weight</td><td class="val-good">Maintained exactly</td></tr>
-          <tr><td>Primary Blue</td><td>Hex #003EC3</td><td class="val-good">Maintained exactly</td></tr>
+          <tr><td>Primary Blue</td><td>Brand blue — maintained exactly</td><td class="val-good">Maintained exactly</td></tr>
           <tr><td>Button Style</td><td>Circle, outline</td><td class="val-good">Maintained exactly</td></tr>
           <tr><td>Layout Grid</td><td>8px baseline</td><td class="val-good">Maintained exactly</td></tr>
           <tr><td>Instruction Style</td><td>Step-by-step illustrations</td><td class="val-good">Maintained exactly</td></tr>
@@ -550,7 +550,7 @@ footer .footer-links a:hover { color: var(--bg); }
         <div class="outcome-cell" role="listitem">
           <div class="outcome-number">40%</div>
           <h4>Faster Resolution</h4>
-          <p>Fluid alarm resolution: 85 seconds → 51 seconds. Time that matters during active clinical treatment.</p>
+          <p>Fluid alarm resolution time reduced by 40% over the legacy system — time that matters during active clinical treatment.</p>
         </div>
         <div class="outcome-cell" role="listitem">
           <div class="outcome-number">95%+</div>
@@ -679,12 +679,13 @@ footer .footer-links a:hover { color: var(--bg); }
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#711a031e1503181604140b16031019101c31161c10181d5f121e1c">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
-<script>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -697,9 +698,8 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 revealEls.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>

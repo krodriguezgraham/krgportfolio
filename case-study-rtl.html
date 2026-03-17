@@ -699,13 +699,14 @@ footer .footer-links a:hover { color: var(--bg); }
   <ul class="footer-links" role="list">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#bfd4cdd0dbcdd6d8cadac5d8cdded7ded2ffd8d2ded6d391dcd0d2">Email</a></li>
     <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
   </ul>
 </footer>
 
 
-<script>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -718,9 +719,8 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 revealEls.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>

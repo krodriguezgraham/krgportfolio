@@ -1471,6 +1471,7 @@ footer .footer-links a:hover { color: var(--bg); }
 </footer>
 
 
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── Nav scroll state ── */
 const nav = document.getElementById('nav');
@@ -1497,8 +1498,12 @@ const barObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       const el = entry.target;
       const w = el.dataset.width;
-      el.style.width = (parseFloat(w) * 100) + '%';}
+      el.style.width = (parseFloat(w) * 100) + '%';
+      barObserver.unobserve(el);
     }
-  )
-}
-)
+  });
+}, { threshold: 0.2 });
+skillBars.forEach(el => barObserver.observe(el));
+</script>
+</body>
+</html>

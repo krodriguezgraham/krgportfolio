@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Mortgage Onboarding Redesign — UX Case Study by Kassandra Rodriguez. A speculative redesign reducing drop-off in a high-stakes consumer financial flow." />
+<title>Mortgage Onboarding Redesign — Kassandra Rodriguez</title>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mortgage Onboarding Redesign — Kassandra Rodriguez" />
+<meta property="og:description" content="Speculative UX case study: redesigning a mortgage pre-qualification flow to reduce cognitive load and abandonment at the most high-stakes moment in a consumer's financial life." />
+<meta property="og:url" content="https://krodriguezgraham.github.io/krgportfolio/case-study-mortgage-onboarding.html" />
+<meta property="og:image" content="https://krodriguezgraham.github.io/krgportfolio/images/shared/kassandra-about-photo.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mortgage Onboarding Redesign — Kassandra Rodriguez" />
+<meta name="twitter:description" content="Speculative UX case study: redesigning a mortgage pre-qualification flow to reduce cognitive load and abandonment." />
+<link rel="icon" type="image/png" href="images/shared/favicon.png" />
+<link rel="icon" href="images/shared/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="images/shared/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg:           #f7f4ef;
+  --bg-mid:       #ede9e2;
+  --paper:        #ffffff;
+  --ink:          #1a1714;
+  --ink-soft:     #4a4540;
+  --ink-faint:    #7a736b;
+  --accent:       #b84a2e;
+  --accent-dark:  #8f3621;
+  --accent-light: #fdf3dc;
+  --border:       #d8d2c9;
+  --amber:        #7a5c1e;
+  --amber-light:  #fdf3dc;
+  --teal:         #1d6b68;
+  --teal-light:   #e6f2f1;
+  --focus-ring:   #1d6b68;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+  --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo:cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: 2px; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.skip-link { position: fixed; top: -100%; left: 1rem; z-index: 9999; background: var(--ink); color: var(--bg); padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 500; border-radius: 0 0 6px 6px; transition: top 0.2s; }
+.skip-link:focus { top: 0; }
+
+nav#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+nav.scrolled { border-color: var(--border); background: rgba(247,244,239,0.95); backdrop-filter: blur(8px); }
+.nav-logo { display: inline-flex; align-items: center; line-height: 0; }
+.nav-logo img { height: 32px; width: 32px; display: block; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); position: relative; transition: color 0.2s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s var(--ease-out-expo); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); transition: color 0.2s; }
+.nav-back:hover { color: var(--ink); }
+.nav-back svg { transition: transform 0.2s var(--ease-out-expo); }
+.nav-back:hover svg { transform: translateX(-3px); }
+
+.cs-hero { padding: 9rem 3rem 5rem; background: var(--paper); border-bottom: 1px solid var(--border); }
+.cs-hero-inner { max-width: 860px; margin: 0 auto; }
+.cs-breadcrumb { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 0.625rem; }
+.cs-breadcrumb span { color: var(--accent); }
+.cs-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
+.cs-hero h1 em { font-style: italic; color: var(--accent); }
+.cs-hero-meta { margin-top: 2.5rem; display: flex; gap: 3rem; flex-wrap: wrap; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+.meta-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.375rem; }
+.meta-value { font-size: 0.9375rem; font-weight: 500; color: var(--ink); }
+.cs-tags { margin-top: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.cs-tag { background: var(--bg); border: 1px solid var(--border); padding: 0.3rem 0.75rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.03em; color: var(--ink-soft); border-radius: 2px; }
+.cs-tag.highlight { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+
+.status-banner { background: var(--bg-mid); border: 1px solid var(--border); border-left: 3px solid var(--teal); padding: 1rem 1.5rem; margin: 3rem auto 0; max-width: 860px; display: flex; gap: 1rem; align-items: flex-start; border-radius: 0 2px 2px 0; }
+.status-banner svg { flex-shrink: 0; margin-top: 2px; color: var(--teal); }
+.status-banner p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.6; }
+.status-banner strong { color: var(--ink); }
+
+.cs-body { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start; }
+.cs-content { min-width: 0; }
+.cs-sidebar { position: sticky; top: 7rem; }
+
+.sidebar-card { background: var(--paper); border: 1px solid var(--border); padding: 1.75rem; margin-bottom: 1.5rem; }
+.sidebar-card h3 { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+.sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 0.625rem; }
+.sidebar-list li { font-size: 0.875rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.5; }
+.sidebar-list li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+.sidebar-toc { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.sidebar-toc li a { display: block; font-size: 0.8125rem; color: var(--ink-soft); padding: 0.5rem 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
+.sidebar-toc li:last-child a { border-bottom: none; }
+.sidebar-toc li a:hover { color: var(--accent); padding-left: 4px; }
+
+.cs-section { margin-bottom: 4.5rem; }
+.cs-section:last-child { margin-bottom: 0; }
+.section-eyebrow { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-eyebrow::after { content: ''; flex: 1; max-width: 2.5rem; height: 1px; background: var(--accent); }
+.cs-section h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
+.cs-section h2 em { font-style: italic; color: var(--accent); }
+.cs-section h3 { font-family: var(--font-display); font-size: 1.1875rem; color: var(--ink); margin: 2.5rem 0 0.875rem; }
+.cs-section p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.25rem; }
+.cs-section p:last-child { margin-bottom: 0; }
+
+.callout { background: var(--accent-light); border: 1px solid rgba(184,74,46,0.2); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 2px 2px 0; }
+.callout p { font-size: 0.9375rem; color: var(--accent-dark); line-height: 1.65; margin: 0; font-weight: 500; }
+
+.findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+.finding-card { background: var(--paper); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s; }
+.finding-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,23,20,0.07); }
+.finding-num { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.finding-card h4 { font-family: var(--font-display); font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.finding-card p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+.view-cards { display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0; }
+.view-card { background: var(--paper); border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden; border-radius: 2px; }
+.view-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--accent); }
+.view-card-num { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.625rem; }
+.view-card h4 { font-family: var(--font-display); font-size: 1.1875rem; color: var(--ink); margin-bottom: 0.75rem; }
+.view-card p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 0.75rem; }
+.view-card p:last-child { margin-bottom: 0; }
+.view-card ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.view-card ul li { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.6; }
+
+.outcomes-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; border-radius: 2px; overflow: hidden; }
+.outcome-cell { background: var(--paper); padding: 2rem 1.5rem; text-align: center; }
+.outcome-icon { width: 2.5rem; height: 2.5rem; background: var(--accent-light); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--accent); }
+.outcome-cell h4 { font-family: var(--font-display); font-size: 1.0625rem; color: var(--ink); margin-bottom: 0.375rem; }
+.outcome-cell p { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+
+.learnings-list { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+.learning-item { display: grid; grid-template-columns: 3rem 1fr; gap: 1.25rem; align-items: start; }
+.learning-num { width: 3rem; height: 3rem; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); flex-shrink: 0; }
+.learning-text h4 { font-weight: 500; font-size: 0.9375rem; color: var(--ink); margin-bottom: 0.375rem; }
+.learning-text p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; margin: 0; }
+
+.pull-quote { border-left: 3px solid var(--accent); padding: 1.5rem 2rem; margin: 2.5rem 0; background: var(--paper); }
+.pull-quote p { font-family: var(--font-display); font-size: 1.1875rem; font-style: italic; color: var(--ink); line-height: 1.5; margin: 0; }
+
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.ba-card { background: var(--paper); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+.ba-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.625rem 1rem; border-bottom: 1px solid var(--border); }
+.ba-label.before { background: var(--bg-mid); color: var(--ink-faint); }
+.ba-label.after { background: var(--accent-light); color: var(--accent); }
+.ba-content { padding: 1.25rem; }
+.ba-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.ba-content ul li { font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.5; padding-left: 1rem; position: relative; }
+.ba-content ul li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+.ba-content .after-list li::before { background: var(--accent); }
+
+.cs-next { background: var(--ink); padding: 5rem 3rem; }
+.cs-next-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.cs-next-label { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,244,239,0.65); margin-bottom: 0.75rem; }
+.cs-next h3 { font-family: var(--font-display); font-size: 1.625rem; color: var(--bg); }
+.btn-next { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: white; padding: 1rem 1.75rem; font-size: 0.9375rem; font-weight: 500; border: 2px solid var(--accent); border-radius: 2px; white-space: nowrap; transition: background 0.2s, transform 0.2s; }
+.btn-next:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
+
+footer { display: flex; align-items: center; justify-content: space-between; padding: 2rem 3rem; background: var(--ink); }
+footer .footer-name { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,239,.65); }
+footer .footer-links { display: flex; gap: 2rem; list-style: none; }
+footer .footer-links a { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,244,239,.65); transition: color 0.2s; }
+footer .footer-links a:hover { color: var(--bg); }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+@media (max-width: 900px) {
+  nav#nav { padding: 1.25rem 1.5rem; }
+  .cs-hero { padding: 8rem 1.5rem 4rem; }
+  .cs-body { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
+  .cs-sidebar { position: static; }
+  .findings-grid, .before-after { grid-template-columns: 1fr; }
+  .outcomes-row { grid-template-columns: 1fr; }
+  .cs-next { padding: 3rem 1.5rem; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Back to Kassandra Rodriguez homepage"><img src="images/shared/kr-logo.svg" alt="Kassandra Rodriguez — home" width="36" height="36" style="border-radius:5px;" /></a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#earlier-work">Earlier Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+<header class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-breadcrumb">
+      <a href="index.html#work" class="nav-back" aria-label="Back to all work">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+      <span aria-hidden="true">/</span>
+      <span>Consumer Fintech · UX</span>
+    </p>
+    <h1>Redesigning a Mortgage Pre-Qualification Flow to <em>Earn Trust Before Asking for Data</em></h1>
+    <div class="cs-tags" aria-label="Project disciplines">
+      <span class="cs-tag highlight">Consumer Fintech</span>
+      <span class="cs-tag highlight">UX Research</span>
+      <span class="cs-tag highlight">Information Architecture</span>
+      <span class="cs-tag">Speculative Redesign</span>
+      <span class="cs-tag">WCAG 2.2</span>
+      <span class="cs-tag">Mobile-First</span>
+      <span class="cs-tag">Figma</span>
+    </div>
+    <div class="cs-hero-meta" role="list" aria-label="Project details">
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Type</div>
+        <div class="meta-value">Speculative Redesign</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Domain</div>
+        <div class="meta-value">Consumer Mortgage / Fintech</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">3 Weeks</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">Mobile-First Web</div>
+      </div>
+      <div class="meta-item" role="listitem">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Sole Designer & Researcher</div>
+      </div>
+    </div>
+  </div>
+  <div class="status-banner" role="note" aria-label="Project context note">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.5v4M9 11.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <p><strong>Speculative Redesign:</strong> This project is not affiliated with any mortgage lender. It applies the same research-led methodology I use in regulated medical device work to a high-stakes consumer financial context — where trust, anxiety, and irreversible decisions create UX challenges that are structurally similar to clinical environments.</p>
+  </div>
+</header>
+
+<div class="cs-body">
+  <article class="cs-content" aria-label="Case study content">
+
+    <!-- OVERVIEW -->
+    <section class="cs-section reveal" id="overview" aria-labelledby="overview-h2">
+      <p class="section-eyebrow">The Problem</p>
+      <h2 id="overview-h2">A mortgage application is one of the most stressful experiences in a consumer's life. <em>Most digital flows make it worse.</em></h2>
+      <p>Buying a home is the largest financial decision most people will ever make. Pre-qualification — the first digital step in that process — should reduce anxiety and build confidence. Instead, most mortgage pre-qualification flows front-load data collection, bury explanations, use jargon without definition, and provide no sense of progress or safety. The result is a flow that feels adversarial rather than supportive.</p>
+      <p>I chose this problem space deliberately. The UX challenges in consumer fintech — high stakes, irreversible decisions, users operating under stress, regulatory compliance requirements — are structurally similar to the medical device environments I work in daily. The transfer is direct: the same design principles that prevent alarm fatigue in an ICU prevent abandonment in a mortgage flow.</p>
+
+      <div class="callout" role="note">
+        <p>The core problem: the flow asks for sensitive personal and financial data before explaining why it's needed or what happens to it. Trust is never established — it's just assumed.</p>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="cs-section reveal" id="research" aria-labelledby="research-h2">
+      <p class="section-eyebrow">Research & Discovery</p>
+      <h2 id="research-h2">Five interviews. One overwhelming theme: <em>people feel interrogated, not guided.</em></h2>
+      <p>I conducted five semi-structured interviews with first-time homebuyers who had completed a mortgage pre-qualification within the past 18 months — across three different lenders. I supplemented this with a heuristic audit of four major mortgage pre-qualification flows (Rocket Mortgage, Better.com, Chase, and loanDepot) evaluated against Nielsen's 10 heuristics and WCAG 2.2.</p>
+
+      <div class="findings-grid" role="list" aria-label="Key research findings">
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 01</p>
+          <h4>Data collection precedes trust-building</h4>
+          <p>Every flow audited asked for SSN, income, and employment details before explaining what would happen with that data, what pre-qualification meant, or whether it would affect credit. Users described feeling "tricked into" submitting sensitive information.</p>
+        </div>
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 02</p>
+          <h4>Jargon without definition creates decision paralysis</h4>
+          <p>Terms like "DTI ratio," "LTV," and "hard pull vs. soft pull" appeared without explanation in 3 of 4 flows audited. 4 of 5 interviewees reported stopping to Google a term mid-application — and two abandoned the flow entirely after doing so.</p>
+        </div>
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 03</p>
+          <h4>No sense of what comes next</h4>
+          <p>None of the audited flows showed users how long the process would take, what the steps were, or what would happen after they submitted. Users described this as "flying blind" — amplifying anxiety at every screen transition.</p>
+        </div>
+        <div class="finding-card" role="listitem">
+          <p class="finding-num">Finding 04</p>
+          <h4>Error states are punishing, not instructive</h4>
+          <p>Validation errors across all four flows used generic messages ("Invalid input") with no guidance for correction. First-time buyers with non-standard income situations — freelancers, recently changed jobs — described repeated form failures as "humiliating."</p>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <p>"I didn't know if clicking 'Continue' would affect my credit score. So I just closed the tab."</p>
+      </div>
+
+      <p>This quote from a 31-year-old first-time buyer captures the core failure precisely. The drop-off wasn't caused by a lack of motivation — it was caused by a lack of safety. The user didn't trust the flow enough to take the next step. This is the same dynamic I work against in clinical environments: when users don't trust a system's behavior, they disengage — and in a medical context, disengagement costs health outcomes. In a mortgage context, it costs conversions and, more importantly, a person's path to homeownership.</p>
+    </section>
+
+    <!-- DESIGN DECISIONS -->
+    <section class="cs-section reveal" id="design" aria-labelledby="design-h2">
+      <p class="section-eyebrow">Design Decisions</p>
+      <h2 id="design-h2">Three structural changes. Each one <em>earned by the research.</em></h2>
+      <p>The redesign didn't require adding features — it required reordering priorities. The data the lender needs is the same. What changes is the sequence, the framing, and the amount of context provided before asking for anything sensitive.</p>
+
+      <div class="view-cards" role="list" aria-label="Three core design decisions">
+        <div class="view-card" role="listitem">
+          <p class="view-card-num">Decision 01 — Trust before data</p>
+          <h4>Lead with a plain-language explanation of what pre-qualification is and isn't</h4>
+          <p>The first screen now shows: what the process involves, that the initial check is a soft pull (no credit impact), how long it takes, and what the user will get at the end. No data collection until the user has confirmed they understand what they're entering. This mirrors a principle I apply in medical device design — never ask a user to act on something they haven't been given the context to understand.</p>
+          <ul>
+            <li>"This is a soft credit check — it won't affect your credit score" appears before any PII is requested.</li>
+            <li>Step count ("3 of 7") and estimated time ("About 8 minutes") shown persistently in the header.</li>
+            <li>Plain-language definitions appear inline via expandable tooltips — no leaving the flow to Google.</li>
+          </ul>
+        </div>
+        <div class="view-card" role="listitem">
+          <p class="view-card-num">Decision 02 — Progressive disclosure of sensitive data</p>
+          <h4>Sequence data requests from low-stakes to high-stakes</h4>
+          <p>The original flow asked for SSN on screen 3 of 12. In the redesign, SSN is requested on screen 9 — after the user has already invested time, received partial results, and been shown why the remaining data is needed. By the time sensitive data is requested, trust has been established through demonstrated competence and transparency.</p>
+          <ul>
+            <li>Property goals and location collected first — low stakes, builds momentum.</li>
+            <li>Employment and income in the middle — moderate stakes, context provided for each field.</li>
+            <li>SSN and hard-pull consent collected last, with explicit explanation of purpose and a "why we need this" expandable section.</li>
+          </ul>
+        </div>
+        <div class="view-card" role="listitem">
+          <p class="view-card-num">Decision 03 — Error states that teach, not punish</p>
+          <h4>Validation errors become guidance, not dead ends</h4>
+          <p>Each error state was redesigned to answer three questions: what went wrong, why it matters, and what to do next. For non-standard income situations — self-employed, recently changed jobs, multiple income streams — the error state now branches into an alternative collection path rather than failing outright.</p>
+          <ul>
+            <li>Inline validation triggers on field exit, not on form submit — users catch errors before they've invested in completing the page.</li>
+            <li>Non-standard income types get a dedicated branch with tailored fields and explanatory copy.</li>
+            <li>Every error includes a direct path to chat support for edge cases the form can't handle.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section class="cs-section reveal" id="comparison" aria-labelledby="comparison-h2">
+      <p class="section-eyebrow">Before & After</p>
+      <h2 id="comparison-h2">The same information architecture. <em>A fundamentally different experience of it.</em></h2>
+      <p>The data collected is identical. The lender's requirements haven't changed. What changed is the order, the framing, and the amount of context provided at each step — making the same journey feel guided rather than interrogated.</p>
+
+      <div class="before-after" role="list" aria-label="Before and after comparison">
+        <div class="ba-card" role="listitem">
+          <div class="ba-label before">Before — original flow</div>
+          <div class="ba-content">
+            <ul>
+              <li>No intro screen — opens directly into data entry</li>
+              <li>Credit impact unexplained until legal fine print at submit</li>
+              <li>SSN requested on screen 3 of 12</li>
+              <li>Jargon undefined ("DTI," "LTV," "hard pull")</li>
+              <li>No step count or time estimate</li>
+              <li>Generic error messages on validation failure</li>
+              <li>Non-standard income types: no path, hard fail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ba-card" role="listitem">
+          <div class="ba-label after">After — redesigned flow</div>
+          <div class="ba-content">
+            <ul class="after-list">
+              <li>Screen 1: plain-language explanation, soft-pull confirmation, time estimate</li>
+              <li>Credit impact stated explicitly on screen 1, before any data collected</li>
+              <li>SSN deferred to screen 9 of 12</li>
+              <li>All jargon defined inline via expandable tooltips</li>
+              <li>Persistent step count and time estimate in header</li>
+              <li>Error states: what went wrong, why, what to do next</li>
+              <li>Non-standard income: dedicated branch with tailored fields</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="cs-section reveal" id="outcomes" aria-labelledby="outcomes-h2">
+      <p class="section-eyebrow">Outcomes & Validation</p>
+      <h2 id="outcomes-h2">Validated with the same people who <em>abandoned the original.</em></h2>
+      <p>I ran moderated usability testing on the redesigned prototype with 4 of the 5 original interview participants — giving each a task to complete a pre-qualification for a hypothetical home purchase. Feedback was evaluated against the four original research findings.</p>
+
+      <div class="outcomes-row" role="list" aria-label="Usability test outcomes">
+        <div class="outcome-cell" role="listitem">
+          <div class="outcome-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>4 / 4 completed</h4>
+          <p>All four participants completed the redesigned flow without abandoning — including the two who had abandoned during original research.</p>
+        </div>
+        <div class="outcome-cell" role="listitem">
+          <div class="outcome-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h4>0 mid-flow Google searches</h4>
+          <p>No participant left the flow to look up a term. Inline definitions were used 11 times across 4 sessions.</p>
+        </div>
+        <div class="outcome-cell" role="listitem">
+          <div class="outcome-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" stroke="currentColor" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Trust — unprompted</h4>
+          <p>3 of 4 participants used the word "transparent" without prompting when describing the redesigned flow. None used it to describe the original.</p>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <p>"This one actually tells me what it's doing and why. I don't feel like I'm signing something I don't understand."</p>
+      </div>
+    </section>
+
+    <!-- RETROSPECTIVE -->
+    <section class="cs-section reveal" id="learnings" aria-labelledby="learnings-h2">
+      <p class="section-eyebrow">Retrospective</p>
+      <h2 id="learnings-h2">What carries from regulated environments <em>into consumer fintech — and what doesn't.</em></h2>
+
+      <div class="learnings-list" role="list" aria-label="Key learnings">
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">01</div>
+          <div class="learning-text">
+            <h4>High-stakes consumer UX and regulated clinical UX share a root cause of failure</h4>
+            <p>In both contexts, the core failure is the same: asking users to act without giving them the information they need to act safely. In a dialysis system, this means an alarm without a risk level. In a mortgage flow, it means a "Continue" button without a credit impact disclosure. The design solution is structurally identical — provide context before requesting action, not after.</p>
+          </div>
+        </div>
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">02</div>
+          <div class="learning-text">
+            <h4>Consumer users self-advocate in ways clinical users can't</h4>
+            <p>A nurse in an ICU can't abandon a patient monitor mid-task. A homebuyer can close a browser tab instantly. This makes abandonment more abrupt and less recoverable in consumer contexts — which means the threshold for clarity and trust needs to be met earlier in the flow, not just eventually.</p>
+          </div>
+        </div>
+        <div class="learning-item" role="listitem">
+          <div class="learning-num" aria-hidden="true">03</div>
+          <div class="learning-text">
+            <h4>What I'd do differently with more time</h4>
+            <p>A/B test the SSN deferral specifically — it's the highest-risk structural decision and the one most likely to have business pushback from a conversion team optimising for early data capture. I'd also want to validate the error-state branches with the self-employed cohort specifically, as that group's needs drove those design decisions and they weren't represented in the usability test.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="cs-sidebar" aria-label="Case study navigation and details">
+    <div class="sidebar-card">
+      <h3>Contents</h3>
+      <ul class="sidebar-toc" role="list">
+        <li><a href="#overview">The Problem</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#design">Design Decisions</a></li>
+        <li><a href="#comparison">Before &amp; After</a></li>
+        <li><a href="#outcomes">Outcomes</a></li>
+        <li><a href="#learnings">Retrospective</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>Methods Used</h3>
+      <ul class="sidebar-list" role="list">
+        <li>Semi-Structured Interviews</li>
+        <li>Heuristic Audit (4 flows)</li>
+        <li>WCAG 2.2 Accessibility Audit</li>
+        <li>Information Architecture Redesign</li>
+        <li>High-Fidelity Prototyping</li>
+        <li>Moderated Usability Testing</li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>Design Principles Applied</h3>
+      <ul class="sidebar-list" role="list">
+        <li>Trust before data collection</li>
+        <li>Progressive disclosure</li>
+        <li>Jargon-free copy</li>
+        <li>Instructive error states</li>
+        <li>Persistent progress context</li>
+        <li>Accessible at WCAG 2.2 AA</li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>The Transfer</h3>
+      <ul class="sidebar-list" role="list">
+        <li>Same root cause as clinical UX: action without context</li>
+        <li>Same solution: context before request</li>
+        <li>Consumer stakes: financial irreversibility</li>
+        <li>Clinical stakes: patient safety</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<nav class="cs-next" aria-label="Next case study">
+  <div class="cs-next-inner">
+    <div>
+      <p class="cs-next-label">Next Case Study</p>
+      <h3>Designing an Intuitive Partner Device for Dialysis Fluid Management</h3>
+    </div>
+    <a href="case-study-dialysate-generator.html" class="btn-next" aria-label="View next case study: Dialysate Generator">
+      View Case Study
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</nav>
+
+</main>
+
+<footer>
+  <span class="footer-name">©2026 Kassandra Rodriguez</span>
+  <ul class="footer-links" role="list">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="mailto:krodriguezgraham@gmail.com">Email</a></li>
+    <li><a href="https://www.linkedin.com/in/kassandrarg/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
